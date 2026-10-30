@@ -46,7 +46,7 @@ export default function FinalCTA({ onOpenWorkspace }) {
         </h2>
 
         <p className="text-lg sm:text-xl text-[#88867F] max-w-xl mx-auto font-normal leading-relaxed">
-          We're building toward AI that learns from experience, explores what it doesn't know, and develops a deeper understanding over time.
+          We're building toward AI that learns from experience, explores what it doesn't know, and develops a deeper understanding over time, moving us closer to knowing whether artificial sentience is possible.
         </p>
 
         {/* Lime Primary CTA */}
@@ -68,13 +68,13 @@ export default function FinalCTA({ onOpenWorkspace }) {
               if (onOpenWorkspace) {
                 onOpenWorkspace('northwind');
               } else {
-                addToast('Opening AHI');
+                addToast('Opening BNI');
               }
             }}
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-transparent text-[#F8F7F2] border border-[#5F5D57] hover:border-[#F8F7F2] px-7 py-4 rounded-full text-sm font-medium transition-colors cursor-pointer"
           >
             <Sparkles className="w-4 h-4 text-[#C8E63A]" />
-            <span>Meet AHI</span>
+            <span>Meet BNI</span>
           </button>
         </div>
 

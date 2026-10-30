@@ -32,7 +32,7 @@ export default function App() {
     };
   }, []);
 
-  // The simulated meeting workspace was removed; "Research" entry points now lead to the AHI section
+  // The simulated meeting workspace was removed; "Research" entry points now lead to the BNI section
   const handleOpenWorkspace = () => smoothScrollTo('#memory', -80);
 
   return (

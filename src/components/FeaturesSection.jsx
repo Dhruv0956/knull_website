@@ -48,7 +48,7 @@ export default function FeaturesSection() {
       categoryColor: "bg-emerald-50 text-emerald-800 border-emerald-200",
       borderColor: "hover:border-[#C8E63A] hover:shadow-[0_20px_50px_rgba(200,230,58,0.12)]",
       headline: "Knowing what deserves attention.",
-      desc: "We're exploring mechanisms inspired by emotions: curiosity, doubt, surprise and empathy. They're functional signals that steer attention, learning and decisions. AHI doesn't feel them. They shape how it behaves, not how its text sounds.",
+      desc: "We're exploring mechanisms inspired by emotions: curiosity, doubt, surprise and empathy. They're functional signals that steer attention, learning and decisions. BNI doesn't feel them. They shape how it behaves, not how its text sounds.",
       visual: () => (
         <div className="bg-[#FAF9F5] p-5 rounded-2xl border border-[#DCDAD2] space-y-3 font-mono text-xs">
           <div className="p-3 bg-white rounded-xl border border-amber-100 space-y-1 font-sans text-xs">
@@ -73,7 +73,7 @@ export default function FeaturesSection() {
       categoryColor: "bg-violet-50 text-violet-700 border-violet-200",
       borderColor: "hover:border-violet-400 hover:shadow-[0_20px_50px_rgba(139,92,246,0.08)]",
       headline: "Finding the questions nobody thought to ask.",
-      desc: "Instead of waiting for the perfect question, AHI should help spot what needs investigating: missing information, overlooked links and inconsistencies. Our prototype already handles specific evidence-based investigations and context-gap detection. Broader autonomous discovery is still research.",
+      desc: "Instead of waiting for the perfect question, BNI should help spot what needs investigating: missing information, overlooked links and inconsistencies. Our prototype already handles specific evidence-based investigations and context-gap detection. Broader autonomous discovery is still research.",
       visual: () => (
         <div className="bg-[#FAF9F5] p-5 rounded-2xl border border-[#DCDAD2] space-y-3 font-mono text-xs">
           <div className="flex items-center justify-between text-[11px]">
@@ -95,7 +95,7 @@ export default function FeaturesSection() {
       categoryColor: "bg-amber-50 text-amber-800 border-amber-200",
       borderColor: "hover:border-amber-400 hover:shadow-[0_20px_50px_rgba(245,158,11,0.08)]",
       headline: "Understanding that can explain how it changed.",
-      desc: "AHI should remember where knowledge came from, separate evidence from assumptions, and explain why a conclusion needs to change. Learning should never mean quietly rewriting stored facts. Our evidence-governed investigation work is the foundation.",
+      desc: "BNI should remember where knowledge came from, separate evidence from assumptions, and explain why a conclusion needs to change. Learning should never mean quietly rewriting stored facts. Our evidence-governed investigation work is the foundation.",
       visual: () => (
         <div className="bg-[#FAF9F5] p-5 rounded-2xl border border-[#DCDAD2] space-y-2 font-mono text-xs">
           <div className="flex items-center justify-between p-2.5 bg-white rounded-xl border border-indigo-100 text-xs font-sans shadow-xs">

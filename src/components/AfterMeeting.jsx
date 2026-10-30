@@ -22,7 +22,7 @@ export default function AfterMeeting() {
   const sandboxY = useTransform(scrollYProgress, [0, 1], [25, -25]);
 
   const rawBullets = [
-    "Built: AHI, evidence-based investigation and context-gap detection.",
+    "Built: the Bio-Neural Interface (BNI), evidence-based investigation and context-gap detection.",
     "Researching: bio-inspired neural computation.",
     "Researching: adaptive memory and continual learning.",
     "Long term: our own efficient, proprietary architecture.",
@@ -41,7 +41,7 @@ export default function AfterMeeting() {
 
   const handleCopy = () => {
     setCopied(true);
-    navigator.clipboard?.writeText("Built: AHI evidence-based investigation. Researching: bio-inspired computation, adaptive memory, continual learning. Long term: a proprietary architecture. Open question: whether artificial sentience is possible.");
+    navigator.clipboard?.writeText("Built: BNI evidence-based investigation. Researching: bio-inspired computation, adaptive memory, continual learning. Long term: a proprietary architecture. Open question: whether artificial sentience is possible.");
     addToast('Roadmap copied');
     setTimeout(() => setCopied(false), 2000);
   };
@@ -94,7 +94,7 @@ export default function AfterMeeting() {
                 <span className="text-[10px] font-mono uppercase text-violet-700 font-semibold bg-violet-50 px-2 py-0.5 rounded-full border border-violet-200">
                   Research Roadmap
                 </span>
-                <h3 className="text-xl font-[550] text-[#171717]">From AHI to our own architecture</h3>
+                <h3 className="text-xl font-[550] text-[#171717]">From BNI to our own architecture</h3>
               </div>
             </div>
 
@@ -224,7 +224,7 @@ export default function AfterMeeting() {
                           Built today
                         </span>
                         <p className="text-[#171717] leading-relaxed">
-                          AHI runs <span className="lime-highlight font-medium">evidence-governed investigations</span> and flags gaps in context.
+                          BNI runs <span className="lime-highlight font-medium">evidence-governed investigations</span> and flags gaps in context.
                         </p>
                       </div>
 
@@ -254,7 +254,7 @@ export default function AfterMeeting() {
                           Open question
                         </span>
                         <p className="text-[#171717] font-medium leading-relaxed">
-                          Could a sentient artificial being ever exist? We're exploring it, with no guarantee of an answer. AHI is not sentient and doesn't experience feelings.
+                          Could a sentient artificial being ever exist? We're exploring it, with no guarantee of an answer. BNI is not sentient and doesn't experience feelings.
                         </p>
                       </div>
                     </motion.div>

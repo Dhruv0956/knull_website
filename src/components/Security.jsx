@@ -71,7 +71,7 @@ export default function Security() {
       num: 4,
       title: "Privacy by Design",
       shortDesc: "Handled with care from the start.",
-      expandedDesc: "Privacy and access control are design priorities as AHI develops. We don't claim formal certifications yet.",
+      expandedDesc: "Privacy and access control are design priorities as BNI develops. We don't claim formal certifications yet.",
       // Lower-Right
       pos: { x: "64%", y: "76%" },
       path: "M 530 380 C 480 350, 440 320, 400 295",
@@ -243,7 +243,7 @@ export default function Security() {
               transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
               className="text-base sm:text-lg text-[#66635D] leading-relaxed max-w-lg"
             >
-              Trust comes from seeing how a system learned. AHI keeps the source of every finding, records how conclusions change, and holds corrections for human review. Privacy and controlled change are part of the design from the start.
+              Trust comes from seeing how a system learned. BNI keeps the source of every finding, records how conclusions change, and holds corrections for human review. Privacy and controlled change are part of the design from the start.
             </motion.p>
 
             {/* Live Boundary Reassurance Pill */}

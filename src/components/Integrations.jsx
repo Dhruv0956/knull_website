@@ -102,7 +102,7 @@ export default function Integrations() {
       initials: "IN",
       color: "text-neutral-900",
       accentBg: "bg-stone-50 border-stone-200",
-      stats: { primary: "Prototype in AHI", secondary: "Evidence-based", detail: "Specific investigations today" },
+      stats: { primary: "Prototype in BNI", secondary: "Evidence-based", detail: "Specific investigations today" },
       // Bottom Left: (14%, 72%) -> (140, 460)
       pctX: 14,
       pctY: 72,
@@ -122,7 +122,7 @@ export default function Integrations() {
       initials: "EV",
       color: "text-violet-700",
       accentBg: "bg-violet-50 border-violet-200",
-      stats: { primary: "Prototype in AHI", secondary: "Provenance tracking", detail: "Competing explanations kept" },
+      stats: { primary: "Prototype in BNI", secondary: "Provenance tracking", detail: "Competing explanations kept" },
       // Bottom Right: (86%, 72%) -> (860, 460)
       pctX: 86,
       pctY: 72,
@@ -244,7 +244,7 @@ export default function Integrations() {
             transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="mt-5 text-base sm:text-lg text-[#68655F] leading-relaxed max-w-xl mx-auto"
           >
-            A map of the research areas we're working on and how we expect them to connect. These are research components, not finished products or third-party integrations.
+            A map of the research areas we're working on, how we expect them to connect, and how they might help us study sentience as an open question. These are research components, not finished products or third-party integrations.
           </motion.p>
         </div>
 

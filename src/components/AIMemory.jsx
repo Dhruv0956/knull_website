@@ -23,7 +23,7 @@ export default function AIMemory() {
 
   const sampleQueries = [
     "What context is still missing?",
-    "How does AHI adapt when evidence conflicts?",
+    "How does BNI adapt when evidence conflicts?",
     "Where did this finding come from?",
   ];
 
@@ -48,14 +48,14 @@ export default function AIMemory() {
           <div className="flex items-center gap-2 mb-3">
             <span className="w-2 h-2 rounded-full bg-[#C8E63A]" />
             <span className="text-xs font-mono uppercase tracking-widest text-[#88867F]">
-              04 &bull; AHI
+              04 &bull; BIO-NEURAL INTERFACE
             </span>
           </div>
           <h2 className="text-5xl sm:text-6xl lg:text-7xl font-[550] tracking-[-0.04em] text-[#171717] leading-[0.95]">
-            AHI <span className="font-serif italic font-normal">remembers why.</span>
+            BNI <span className="font-serif italic font-normal">remembers why.</span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-[#5F5D57] leading-relaxed">
-            AHI is our first research product. Today it runs evidence-based investigations: it gathers sources, tracks uncertainty and flags gaps in context. Next, we're researching long-term associative memory that connects evidence and past investigations over time.
+            Our Bio-Neural Interface (BNI) is our first research product. Today it runs evidence-based investigations: it gathers sources, tracks uncertainty and flags gaps in context. Next, we're researching long-term associative memory that connects evidence and past investigations over time. It's also our first step in exploring whether something like sentience could ever emerge from it.
           </p>
         </div>
 
@@ -144,7 +144,7 @@ export default function AIMemory() {
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 text-xs font-mono text-[#171717] font-semibold">
                     <span className="w-2 h-2 rounded-full bg-[#C8E63A]" />
-                    <span>Example AHI response &bull; pre-written for illustration</span>
+                    <span>Example BNI response &bull; pre-written for illustration</span>
                   </div>
 
                   {activeQuery.toLowerCase().includes("context") ? (
@@ -153,7 +153,7 @@ export default function AIMemory() {
                     </p>
                   ) : activeQuery.toLowerCase().includes("adapt") ? (
                     <p className="text-sm sm:text-base text-[#171717] leading-relaxed font-sans">
-                      "AHI doesn't overwrite the earlier finding. It records the conflict, keeps both explanations, and proposes a correction for human review."
+                      "BNI doesn't overwrite the earlier finding. It records the conflict, keeps both explanations, and proposes a correction for human review."
                     </p>
                   ) : (
                     <p className="text-sm sm:text-base text-[#171717] leading-relaxed font-sans">
@@ -165,7 +165,7 @@ export default function AIMemory() {
                 {/* Source Cards with Tooltips */}
                 <div className="pt-5 border-t border-[#E8E6DF] space-y-3">
                   <span className="text-[11px] font-mono text-[#88867F] uppercase block">
-                    What AHI connects (illustrative records):
+                    What BNI connects (illustrative records):
                   </span>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">

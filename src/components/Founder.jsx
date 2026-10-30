@@ -264,14 +264,14 @@ const CO_FOUNDERS = [
     initials: "HY",
     title: "Technical Co-Founder & Chief Engineer",
     focus: "AI Research & Engineering",
-    description: "Leads Knull's AI research and engineering, working on AHI, our proprietary intelligence architecture, adaptive memory, neural learning, and emotion-inspired computational mechanisms.",
+    description: "Leads Knull's AI research and engineering, working on the Bio-Neural Interface (BNI), our proprietary intelligence architecture, adaptive memory, neural learning, and emotion-inspired computational mechanisms.",
   },
   {
     name: "Dhruv Sharma",
     initials: "DS",
     title: "Technical Co-Founder",
     focus: "Backend & Systems Engineering",
-    description: "Leads backend and systems engineering, developing the infrastructure, research workflows, and evidence-management systems supporting AHI.",
+    description: "Leads backend and systems engineering, developing the infrastructure, research workflows, and evidence-management systems supporting BNI.",
   },
 ];
 

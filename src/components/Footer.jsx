@@ -9,7 +9,7 @@ export default function Footer() {
         { label: "The Problem", href: "#problem" },
         { label: "The Idea", href: "#idea" },
         { label: "The Vision", href: "#vision" },
-        { label: "AHI", href: "#memory" },
+        { label: "Bio-Neural Interface", href: "#memory" },
         { label: "Artificial Individuals", href: "#individuals" },
         { label: "Applications", href: "#applications" },
       ],
@@ -112,7 +112,7 @@ export default function Footer() {
               <span className="w-1.5 h-1.5 rounded-full bg-[#C8E63A] animate-pulse" />
               Research in progress
             </span>
-            <span>AHI &bull; First research product</span>
+            <span>BNI &bull; First research product</span>
           </div>
         </div>
       </div>

@@ -8,7 +8,7 @@ const SECTIONS = [
   { id: 'problem', label: 'Problem' },
   { id: 'idea', label: 'Idea' },
   { id: 'vision', label: 'Vision' },
-  { id: 'memory', label: 'AHI' },
+  { id: 'memory', label: 'BNI' },
   { id: 'individuals', label: 'Pillars' },
 ];
 

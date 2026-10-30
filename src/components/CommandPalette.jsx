@@ -10,7 +10,7 @@ export default function CommandPalette({ isOpen, onOpen, onClose, onOpenWorkspac
   const items = [
     { id: 'nav-problem', title: 'The Problem: why we\'re building Knull', category: 'Section', icon: FileText, action: () => smoothScrollTo('#problem', -80) },
     { id: 'nav-vision', title: 'The Vision: our own architecture', category: 'Section', icon: FileText, action: () => smoothScrollTo('#vision', -80) },
-    { id: 'nav-ahi', title: 'AHI: evidence-driven investigation', category: 'Product', icon: Sparkles, action: () => onOpenWorkspace() },
+    { id: 'nav-ahi', title: 'Bio-Neural Interface (BNI): evidence-driven investigation', category: 'Product', icon: Sparkles, action: () => onOpenWorkspace() },
     { id: 'nav-pillars', title: 'The four pillars', category: 'Section', icon: CheckSquare, action: () => smoothScrollTo('#individuals', -80) },
     { id: 'nav-architecture', title: 'Research architecture', category: 'Research', icon: Search, action: () => smoothScrollTo('#ecosystem', -80) },
     { id: 'nav-perspectives', title: 'Research perspectives', category: 'Research', icon: Search, action: () => smoothScrollTo('#people', -80) },

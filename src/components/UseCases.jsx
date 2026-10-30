@@ -25,7 +25,7 @@ export default function UseCases() {
         "Suggest directions worth investigating next.",
       ],
       metric: "Envisioned",
-      metricSub: "Builds on AHI's investigation work. Not yet a product.",
+      metricSub: "Builds on BNI's investigation work. Not yet a product.",
     },
     systems: {
       headline: "Work through complex questions with evidence attached at every step.",
@@ -38,7 +38,7 @@ export default function UseCases() {
         "Keep competing explanations open until the evidence decides.",
       ],
       metric: "Prototype",
-      metricSub: "Specific evidence-based investigations run in AHI today.",
+      metricSub: "Specific evidence-based investigations run in BNI today.",
     },
     governance: {
       headline: "Support decisions with reasoning you can inspect.",
