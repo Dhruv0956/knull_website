@@ -41,7 +41,13 @@ export default function Testimonials() {
       role: "Zhao et al., 2023",
       initials: "ZH",
       company: "INDEPENDENT PUBLICATION",
-      verifiedTag: "INDEPENDENT PUBLICATION · NOT BY KNULL",
+      verifiedTag: "INDEPENDENT PUBLICATION",
+      // Figures quoted from the paper (arXiv:2303.15935)
+      facts: [
+        { value: "86B", label: "neurons in the human brain, each forming up to 10,000 synapses" },
+        { value: "1.5B → 175B", label: "parameters from GPT-2 to GPT-3" },
+        { value: "10.4% → 40.7%", label: "GSM8K math accuracy with zero-shot chain-of-thought" },
+      ],
       waveformPath: "M 0 60 C 100 60, 150 25, 220 25 C 290 25, 320 90, 400 90 C 470 90, 520 35, 600 35 C 680 35, 720 80, 800 80 C 880 80, 930 60, 1000 60",
       secondaryWavePath: "M 0 60 C 80 60, 140 45, 200 45 C 280 45, 340 75, 420 75 C 500 75, 560 45, 650 45 C 730 45, 820 65, 900 65 C 950 65, 980 60, 1000 60",
       markers: [
@@ -64,7 +70,13 @@ export default function Testimonials() {
       role: "Fares et al., 2022",
       initials: "FA",
       company: "INDEPENDENT PUBLICATION",
-      verifiedTag: "INDEPENDENT PUBLICATION · NOT BY KNULL",
+      verifiedTag: "INDEPENDENT PUBLICATION",
+      // Figures quoted from the paper (arXiv:2210.01461)
+      facts: [
+        { value: "~20 W", label: "powers the human brain; a computer needs ~250 W to classify 1,000 object types" },
+        { value: "10¹³–10¹⁶", label: "estimated operations per second of raw brain compute" },
+        { value: "1,024", label: "channels on Neuralink's closed-loop implantable chip" },
+      ],
       waveformPath: "M 0 60 C 80 60, 120 16, 180 16 C 240 16, 280 100, 350 100 C 420 100, 460 22, 540 22 C 620 22, 680 92, 760 92 C 840 92, 920 60, 1000 60",
       secondaryWavePath: "M 0 60 C 90 60, 150 80, 230 80 C 310 80, 370 30, 450 30 C 530 30, 600 85, 690 85 C 770 85, 860 40, 940 40 C 970 40, 990 60, 1000 60",
       markers: [
@@ -453,6 +465,23 @@ export default function Testimonials() {
                   <div className="pt-2 border-t border-[rgba(0,0,0,0.06)] flex items-center gap-1.5 text-[11px] font-mono text-[#88867F]">
                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                     <span>{current.verifiedTag}</span>
+                  </div>
+
+                  {/* Key figures from the paper */}
+                  <div className="pt-1 space-y-2.5">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#88867F] block">
+                      Key figures
+                    </span>
+                    {current.facts.map((fact) => (
+                      <div key={fact.value} className="flex items-baseline gap-2.5">
+                        <span className="font-mono text-sm font-semibold text-[#111111] whitespace-nowrap bg-[#C8E63A]/25 px-1.5 py-0.5 rounded">
+                          {fact.value}
+                        </span>
+                        <span className="text-xs text-[#66635D] leading-snug">
+                          {fact.label}
+                        </span>
+                      </div>
+                    ))}
                   </div>
                 </motion.div>
               </AnimatePresence>
