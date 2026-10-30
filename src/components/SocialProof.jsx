@@ -5,7 +5,7 @@ export default function SocialProof() {
     { name: "Bio-Inspired Intelligence", symbol: "BI" },
     { name: "Computational Emotions", symbol: "CE" },
     { name: "Proactive Discovery", symbol: "PD" },
-    { name: "BNI-Based Artistic Thinking", symbol: "AT" },
+    { name: "Creative Thinking", symbol: "CT" },
   ];
 
   return (
