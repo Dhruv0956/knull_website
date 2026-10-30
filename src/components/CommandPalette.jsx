@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Calendar, FileText, Sparkles, CheckSquare, CornerDownLeft, X } from 'lucide-react';
-import { useToast } from '../context/ToastContext';
-import { smoothScrollTo } from '../utils/scroll';
+import { smoothScrollTo, getLenis } from '../utils/scroll';
 
 export default function CommandPalette({ isOpen, onClose, onOpenWorkspace }) {
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const { addToast } = useToast();
 
   const items = [
     { id: 'nav-problem', title: 'The Problem: why we\'re building Knull', category: 'Section', icon: FileText, action: () => smoothScrollTo('#problem', -80) },
@@ -18,6 +16,21 @@ export default function CommandPalette({ isOpen, onClose, onOpenWorkspace }) {
     { id: 'nav-perspectives', title: 'Research perspectives', category: 'Research', icon: Search, action: () => smoothScrollTo('#people', -80) },
     { id: 'nav-founder', title: 'Founder', category: 'Company', icon: Calendar, action: () => smoothScrollTo('#founder', -80) },
   ];
+
+  // Lenis must be running again before an item's smooth scroll starts
+  const selectItem = (item) => {
+    getLenis()?.start();
+    item.action();
+    onClose();
+  };
+
+  // Pause page smooth-scroll while the palette is open so the background stays put
+  useEffect(() => {
+    if (!isOpen) return;
+    const lenis = getLenis();
+    lenis?.stop();
+    return () => lenis?.start();
+  }, [isOpen]);
 
   const filtered = items.filter(i => 
     i.title.toLowerCase().includes(query.toLowerCase()) || 
@@ -43,14 +56,13 @@ export default function CommandPalette({ isOpen, onClose, onOpenWorkspace }) {
         setSelectedIndex((prev) => (prev - 1 + (filtered.length || 1)) % (filtered.length || 1));
       } else if (e.key === 'Enter' && filtered[selectedIndex]) {
         e.preventDefault();
-        filtered[selectedIndex].action();
-        onClose();
+        selectItem(filtered[selectedIndex]);
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, filtered, selectedIndex, onClose, onOpenWorkspace, addToast]);
+  }, [isOpen, filtered, selectedIndex, onClose, selectItem]);
 
   return (
     <AnimatePresence>
@@ -96,7 +108,7 @@ export default function CommandPalette({ isOpen, onClose, onOpenWorkspace }) {
             </div>
 
             {/* Results List */}
-            <div className="max-h-80 overflow-y-auto p-2 space-y-1">
+            <div data-lenis-prevent className="max-h-80 overflow-y-auto overscroll-contain p-2 space-y-1">
               {filtered.length === 0 ? (
                 <div className="p-8 text-center text-xs text-[#88867F]">
                   No matching sections found for "{query}".
@@ -108,10 +120,7 @@ export default function CommandPalette({ isOpen, onClose, onOpenWorkspace }) {
                   return (
                     <div
                       key={item.id}
-                      onClick={() => {
-                        item.action();
-                        onClose();
-                      }}
+                      onClick={() => selectItem(item)}
                       onMouseEnter={() => setSelectedIndex(idx)}
                       className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl cursor-pointer text-xs transition-colors ${
                         isSelected ? 'bg-white text-[#171717] shadow-xs border border-[#DCDAD2]' : 'text-[#5F5D57] hover:bg-white/60'
