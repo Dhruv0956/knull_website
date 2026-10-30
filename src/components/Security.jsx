@@ -33,9 +33,10 @@ export default function Security() {
     {
       id: "bots",
       num: 1,
-      title: "Evidence Provenance",
-      shortDesc: "Every finding keeps its source.",
-      expandedDesc: "Claims link back to where they came from, with the strength of support recorded.",
+      code: "BI",
+      title: "Bio-Inspired Intelligence",
+      shortDesc: "Learning that builds on experience.",
+      expandedDesc: "Researching bio-inspired networks and memory, so each interaction can build on the last.",
       // Upper-Left
       pos: { x: "4%", y: "10%" },
       path: "M 110 85 C 160 115, 200 150, 240 185",
@@ -45,9 +46,10 @@ export default function Security() {
     {
       id: "training",
       num: 2,
-      title: "Reviewable Changes",
-      shortDesc: "Corrections wait for human approval.",
-      expandedDesc: "Proposed updates are held for review instead of silently rewriting what the system knew.",
+      code: "PD",
+      title: "Proactive Discovery",
+      shortDesc: "Finding the questions nobody asked.",
+      expandedDesc: "Spotting missing information, overlooked links and contradictions worth investigating.",
       // Lower-Left
       pos: { x: "4%", y: "76%" },
       path: "M 110 380 C 160 350, 200 320, 240 295",
@@ -57,9 +59,10 @@ export default function Security() {
     {
       id: "encryption",
       num: 3,
-      title: "Investigation History",
-      shortDesc: "Past conclusions are kept, not erased.",
-      expandedDesc: "Earlier findings, competing explanations and the reasons for each change stay on record.",
+      code: "CE",
+      title: "Computational Emotions",
+      shortDesc: "Knowing what deserves attention.",
+      expandedDesc: "Curiosity, doubt, surprise and empathy as functional signals that guide attention, not feelings.",
       // Upper-Right
       pos: { x: "64%", y: "10%" },
       path: "M 530 85 C 480 115, 440 150, 400 185",
@@ -69,9 +72,10 @@ export default function Security() {
     {
       id: "governance",
       num: 4,
-      title: "Privacy by Design",
-      shortDesc: "Handled with care from the start.",
-      expandedDesc: "Privacy and access control are design priorities as BNI develops. We don't claim formal certifications yet.",
+      code: "VL",
+      title: "Verifiable Learning",
+      shortDesc: "Understanding that can explain how it changed.",
+      expandedDesc: "Sources, uncertainty and proposed corrections stay on record for human review.",
       // Lower-Right
       pos: { x: "64%", y: "76%" },
       path: "M 530 380 C 480 350, 440 320, 400 295",
@@ -259,7 +263,7 @@ export default function Security() {
                 <span className="text-emerald-800 font-medium">Traceable &amp; reviewable</span>
               </div>
               <span className="text-[#66635D] text-[11px]">
-                {activationStep >= 4 ? "4/4 Principles" : `${activationStep}/4 Principles`}
+                {activationStep >= 4 ? "4/4 Pillars" : `${activationStep}/4 Pillars`}
               </span>
             </motion.div>
           </motion.div>
@@ -573,6 +577,7 @@ export default function Security() {
                         isActive ? 'bg-[#C8E63A]' : 'bg-[rgba(0,0,0,0.2)]'
                       }`} />
                       <h4 className="text-xs font-semibold text-[#111111] leading-tight">
+                        <span className="font-mono text-[10px] text-[#66635D] mr-1.5">{lbl.code}</span>
                         {lbl.title}
                       </h4>
                     </div>
@@ -586,7 +591,7 @@ export default function Security() {
                     {isHovered && (
                       <div className="mt-2 pt-1.5 border-t border-[rgba(0,0,0,0.06)] flex items-center gap-1 text-[9px] font-mono text-emerald-800 font-semibold">
                         <Check className="w-2.5 h-2.5 text-emerald-600" />
-                        <span>Design principle</span>
+                        <span>Research pillar</span>
                       </div>
                     )}
                   </motion.div>
