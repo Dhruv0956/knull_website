@@ -43,7 +43,7 @@ export default function Hero({ onOpenWorkspace }) {
             <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-[#DCDAD2] text-xs shadow-xs hover:border-[#171717] transition-all cursor-pointer group">
               <span className="w-2 h-2 rounded-full bg-[#C8E63A]" />
               <span className="font-mono text-[#5F5D57] text-[11px] font-medium tracking-tight">
-                AHI &bull; OUR FIRST RESEARCH PRODUCT
+                BEYOND ANSWERS, TOWARD UNDERSTANDING
               </span>
               <ArrowRight className="w-3.5 h-3.5 text-[#5F5D57] transition-transform duration-200 group-hover:translate-x-1" />
             </div>
