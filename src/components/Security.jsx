@@ -619,6 +619,11 @@ export default function Security() {
           <div className="flex flex-wrap items-center gap-4 sm:gap-6">
             <span className="flex items-center gap-1.5 hover:text-[#F8F7F2] transition-colors cursor-default">
               <span className="w-1 h-1 rounded-full bg-emerald-600" />
+              NEW AI. NEW GUARDRAILS.
+            </span>
+            <span className="text-[#DCDAD2] hidden sm:inline">&bull;</span>
+            <span className="flex items-center gap-1.5 hover:text-[#F8F7F2] transition-colors cursor-default">
+              <span className="w-1 h-1 rounded-full bg-emerald-600" />
               SOURCES KEPT
             </span>
             <span className="text-[#DCDAD2] hidden sm:inline">&bull;</span>
