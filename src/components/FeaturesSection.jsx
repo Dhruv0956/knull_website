@@ -90,8 +90,8 @@ export default function FeaturesSection() {
       ),
     },
     {
-      title: "VERIFIABLE LEARNING",
-      category: "PILLAR 04 · VERIFIABLE LEARNING",
+      title: "BNI-BASED ARTISTIC THINKING",
+      category: "PILLAR 04 · BNI-BASED ARTISTIC THINKING",
       categoryColor: "bg-amber-500/10 text-amber-200 border-amber-500/25",
       borderColor: "hover:border-amber-400 hover:shadow-[0_20px_50px_rgba(245,158,11,0.08)]",
       headline: "Understanding that can explain how it changed.",

@@ -149,7 +149,7 @@ export default function Hero({ onOpenWorkspace }) {
                 <Sparkles className="w-10 h-10 text-[#C8E63A] mb-3 animate-pulse" />
                 <h4 className="text-xl font-semibold mb-2">Where AHI begins</h4>
                 <p className="text-xs text-[#71717A] max-w-md mb-6 leading-relaxed">
-                  AHI runs evidence-based investigations today. Our longer-term research explores bio-inspired intelligence, computational emotions, proactive discovery and verifiable learning: four pieces of an AI that builds on experience instead of starting over.
+                  AHI runs evidence-based investigations today. Our longer-term research explores bio-inspired intelligence, computational emotions, proactive discovery and BNI-based artistic thinking: four pieces of an AI that builds on experience instead of starting over.
                 </p>
                 <button
                   onClick={() => {

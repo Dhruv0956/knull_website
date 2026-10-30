@@ -51,7 +51,7 @@ export default function UseCases() {
         "Record why a recommendation changed, and who approved it.",
       ],
       metric: "Envisioned",
-      metricSub: "Depends on our verifiable learning research.",
+      metricSub: "Depends on our BNI-based artistic thinking research.",
     },
     autonomous: {
       headline: "Systems that investigate open questions, with people in the loop.",
