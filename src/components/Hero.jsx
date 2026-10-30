@@ -61,7 +61,7 @@ export default function Hero({ onOpenWorkspace }) {
               An AI that doesn't just respond. It remembers, questions, discovers, and evolves with you.
             </p>
             <p className="text-base sm:text-lg text-[#5F5D57] max-w-lg leading-relaxed font-normal">
-              We're Knull, an AI research company working toward intelligence that learns from experience, questions what it knows, and helps people discover what they're missing. AHI is where that journey begins.
+              We're Knull, an AI research company working toward intelligence that learns from experience, questions what it knows, and helps people discover what they're missing. Artificial Human Intelligence [AHI] is where the journey begins.
             </p>
 
             {/* CTA Buttons */}
