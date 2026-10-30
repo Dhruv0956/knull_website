@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Briefcase, Code, Compass, UserCheck, Shield, TrendingUp, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Briefcase, Code, Compass, UserCheck, Shield, TrendingUp, Sparkles, CheckCircle2, Waypoints } from 'lucide-react';
 
 export default function UseCases() {
   const [activeTab, setActiveTab] = useState('systems');
@@ -10,6 +10,7 @@ export default function UseCases() {
     { id: 'science', label: 'Scientific Research', icon: Compass, color: 'text-emerald-400' },
     { id: 'governance', label: 'Analysis & Decisions', icon: Briefcase, color: 'text-violet-400' },
     { id: 'interaction', label: 'Personal Adaptive Intelligence', icon: UserCheck, color: 'text-indigo-400' },
+    { id: 'behavior', label: 'Personality & Behavior Mapping', icon: Waypoints, color: 'text-rose-400' },
     { id: 'autonomous', label: 'Autonomous Research', icon: Shield, color: 'text-amber-400' },
   ];
 
@@ -78,6 +79,21 @@ export default function UseCases() {
       ],
       metric: "Long term",
       metricSub: "Needs long-term memory and continual learning first.",
+    },
+    behavior: {
+      headline: "Understand how behavior takes shape, changes, and evolves.",
+      desc: "Explore how intelligence can recognize patterns in communication, preferences, and decision-making, building a deeper understanding that adapts with experience.",
+      tag: "Long-term vision",
+      badgeColor: "bg-rose-500/10 text-rose-200 border-rose-500/25",
+      metricBadge: "bg-rose-500/10 text-rose-200 border-rose-500/25",
+      bullets: [
+        "Identify recurring behavioral patterns and preferences through consented interactions.",
+        "Track how decisions, habits, and responses evolve across different contexts.",
+        "Explore adaptable behavioral models for Artificial Individuals, without treating personality as a fixed label.",
+        "Keep behavioral interpretations transparent, correctable, and under user control.",
+      ],
+      metric: "Envisioned",
+      metricSub: "A proposed research direction, not a personality-profiling feature available in AHI today.",
     },
   };
 
@@ -150,6 +166,11 @@ export default function UseCases() {
               <h3 className="text-2xl sm:text-3xl font-[550] text-[#F8F7F2] leading-snug">
                 {current.headline}
               </h3>
+              {current.desc && (
+                <p className="text-sm sm:text-base text-[#A1A1AA] leading-relaxed">
+                  {current.desc}
+                </p>
+              )}
               <ul className="space-y-3.5 text-sm text-[#A1A1AA] leading-relaxed">
                 {current.bullets.map((bullet, i) => (
                   <li key={i} className="flex items-start gap-3">
