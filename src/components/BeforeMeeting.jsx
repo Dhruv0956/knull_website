@@ -40,7 +40,7 @@ export default function BeforeMeeting() {
   }, [isInView]);
 
   return (
-    <section id="idea" ref={containerRef} className="py-28 md:py-36 bg-[#F8F7F2] border-b border-[#E8E6DF] overflow-hidden relative">
+    <section id="idea" ref={containerRef} className="py-28 md:py-36 bg-[#171717] border-b border-[#27272A] overflow-hidden relative">
       {/* Subtle ambient colored lighting in the background */}
       <div className="absolute top-1/4 left-1/10 w-96 h-96 bg-blue-400/5 rounded-full filter blur-[100px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/10 w-96 h-96 bg-[#C8E63A]/10 rounded-full filter blur-[120px] pointer-events-none" />
@@ -51,14 +51,14 @@ export default function BeforeMeeting() {
         <div className="max-w-2xl mb-16 text-left">
           <div className="flex items-center gap-2 mb-3">
             <span className="w-2 h-2 rounded-full bg-[#C8E63A]" />
-            <span className="text-xs font-mono uppercase tracking-widest text-[#88867F]">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#71717A]">
               02 &bull; THE IDEA
             </span>
           </div>
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-[550] tracking-[-0.04em] text-[#171717] leading-[0.95]">
+          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-[550] tracking-[-0.04em] text-[#F8F7F2] leading-[0.95]">
             Intelligence is <span className="font-serif italic font-normal">shaped by experience.</span>
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-[#5F5D57] leading-relaxed">
+          <p className="mt-4 text-base sm:text-lg text-[#A1A1AA] leading-relaxed">
             People don't become wise by storing answers. Understanding grows from context, experience, relationships, feedback and adaptation. We think artificial intelligence can grow the same way, and that belief shapes our four pillars.
           </p>
         </div>
@@ -78,25 +78,25 @@ export default function BeforeMeeting() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0.6, y: 10 }}
               transition={{ duration: 0.6, delay: 0, ease: [0.22, 1, 0.36, 1] }}
-              className="relative z-30 bg-white p-6 sm:p-7 rounded-3xl border border-blue-200/80 shadow-[0_8px_30px_rgba(37,99,235,0.06)] hover:shadow-xl transition-shadow cursor-pointer"
+              className="relative z-30 bg-[#121215] p-6 sm:p-7 rounded-3xl border border-blue-500/25 shadow-[0_8px_30px_rgba(37,99,235,0.06)] hover:shadow-xl transition-shadow cursor-pointer"
             >
-              <div className="flex items-center justify-between pb-3 border-b border-[#E8E6DF] mb-4">
-                <span className="text-xs font-mono text-blue-700 font-semibold uppercase bg-blue-50 px-2.5 py-1 rounded-full border border-blue-200">
+              <div className="flex items-center justify-between pb-3 border-b border-[#27272A] mb-4">
+                <span className="text-xs font-mono text-blue-300 font-semibold uppercase bg-blue-500/10 px-2.5 py-1 rounded-full border border-blue-500/25">
                   Experience &bull; Pillar 01
                 </span>
                 <span className="px-2.5 py-1 rounded-full bg-blue-600 text-white text-xs font-mono font-medium shadow-xs">
                   Bio-inspired
                 </span>
               </div>
-              <h3 className="text-xl font-[550] text-[#171717]">
+              <h3 className="text-xl font-[550] text-[#F8F7F2]">
                 Learning that builds on what came before
               </h3>
-              <div className="flex items-center gap-2 text-xs text-[#5F5D57] mt-2 font-mono">
+              <div className="flex items-center gap-2 text-xs text-[#A1A1AA] mt-2 font-mono">
                 <span className="w-5 h-5 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[9px] font-bold">
                   CX
                 </span>
                 <span>Context</span>
-                <span className="text-[#88867F]">&bull;</span>
+                <span className="text-[#71717A]">&bull;</span>
                 <span className="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[9px] font-bold">
                   EX
                 </span>
@@ -111,17 +111,17 @@ export default function BeforeMeeting() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0.6, y: 10 }}
               transition={{ duration: 0.6, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-              className="relative z-20 bg-white p-6 sm:p-7 rounded-3xl border border-violet-200/80 shadow-[0_8px_30px_rgba(124,58,237,0.06)] hover:shadow-xl transition-shadow cursor-pointer space-y-3"
+              className="relative z-20 bg-[#121215] p-6 sm:p-7 rounded-3xl border border-violet-500/25 shadow-[0_8px_30px_rgba(124,58,237,0.06)] hover:shadow-xl transition-shadow cursor-pointer space-y-3"
             >
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-violet-900 font-semibold text-xs bg-violet-50 px-2.5 py-1 rounded-full border border-violet-200">
-                  <Sparkles className="w-3.5 h-3.5 text-violet-600" />
+                <div className="flex items-center gap-2 text-violet-200 font-semibold text-xs bg-violet-500/10 px-2.5 py-1 rounded-full border border-violet-500/25">
+                  <Sparkles className="w-3.5 h-3.5 text-violet-400" />
                   <span>Computational Emotions</span>
                 </div>
-                <span className="text-[10px] font-mono text-[#88867F]">Pillar 02</span>
+                <span className="text-[10px] font-mono text-[#71717A]">Pillar 02</span>
               </div>
-              <p className="text-xs text-[#4A4843] leading-relaxed">
-                Curiosity, doubt, surprise and empathy, modelled as signals that decide what deserves attention. <strong className="text-[#171717] bg-violet-50 px-1 rounded">Functional mechanisms, not feelings.</strong>
+              <p className="text-xs text-[#A1A1AA] leading-relaxed">
+                Curiosity, doubt, surprise and empathy, modelled as signals that decide what deserves attention. <strong className="text-[#F8F7F2] bg-violet-500/10 px-1 rounded">Functional mechanisms, not feelings.</strong>
               </p>
             </motion.div>
 
@@ -132,18 +132,18 @@ export default function BeforeMeeting() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0.6, y: 10 }}
               transition={{ duration: 0.6, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
-              className="relative z-10 bg-white p-6 sm:p-7 rounded-3xl border border-amber-200/80 shadow-[0_8px_30px_rgba(245,158,11,0.06)] hover:shadow-xl transition-shadow cursor-pointer space-y-2.5"
+              className="relative z-10 bg-[#121215] p-6 sm:p-7 rounded-3xl border border-amber-500/25 shadow-[0_8px_30px_rgba(245,158,11,0.06)] hover:shadow-xl transition-shadow cursor-pointer space-y-2.5"
             >
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-amber-900 font-semibold text-xs bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200">
-                  <AlertCircle className="w-3.5 h-3.5 text-amber-600" />
+                <div className="flex items-center gap-2 text-amber-200 font-semibold text-xs bg-amber-500/10 px-2.5 py-1 rounded-full border border-amber-500/25">
+                  <AlertCircle className="w-3.5 h-3.5 text-amber-400" />
                   <span>Relationships &amp; Feedback</span>
                 </div>
-                <span className="text-[10px] font-mono text-amber-700 bg-amber-100/60 px-2 py-0.5 rounded-full">
+                <span className="text-[10px] font-mono text-amber-300 bg-amber-500/15 px-2 py-0.5 rounded-full">
                   Pillars 03 &amp; 04
                 </span>
               </div>
-              <ul className="text-xs text-[#5F5D57] space-y-1.5 list-disc list-inside">
+              <ul className="text-xs text-[#A1A1AA] space-y-1.5 list-disc list-inside">
                 <li>Relationships between facts reveal what's missing or inconsistent</li>
                 <li>Feedback should change conclusions openly, with the reasons kept</li>
               </ul>
@@ -156,14 +156,14 @@ export default function BeforeMeeting() {
             initial={{ opacity: 0, y: 25 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0.6, y: 15 }}
             transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-5 bg-white p-8 sm:p-10 rounded-3xl border border-emerald-200/60 shadow-[0_20px_60px_rgba(16,185,129,0.06)] flex flex-col justify-between min-h-[460px] relative overflow-hidden"
+            className="lg:col-span-5 bg-[#121215] p-8 sm:p-10 rounded-3xl border border-emerald-500/25 shadow-[0_20px_60px_rgba(16,185,129,0.06)] flex flex-col justify-between min-h-[460px] relative overflow-hidden"
           >
             {/* Soft inner glow */}
             <div className="absolute top-0 right-0 w-48 h-48 bg-[#C8E63A]/15 rounded-full filter blur-2xl pointer-events-none" />
 
             <div className="relative z-10">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-mono uppercase tracking-wider text-[#88867F]">
+                <span className="text-xs font-mono uppercase tracking-wider text-[#71717A]">
                   Connected Pillars
                 </span>
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
@@ -171,20 +171,20 @@ export default function BeforeMeeting() {
 
               {/* Large Score Counter */}
               <div className="flex items-baseline gap-3 my-4">
-                <span className="text-7xl sm:text-8xl font-[550] tracking-tight text-[#171717]">
+                <span className="text-7xl sm:text-8xl font-[550] tracking-tight text-[#F8F7F2]">
                   {score}/4
                 </span>
-                <span className="text-xs font-mono text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full font-semibold uppercase border border-emerald-200">
+                <span className="text-xs font-mono text-emerald-200 bg-emerald-500/10 px-2.5 py-1 rounded-full font-semibold uppercase border border-emerald-500/25">
                   One System
                 </span>
               </div>
 
-              <p className="text-xs text-[#5F5D57] leading-relaxed mb-6">
+              <p className="text-xs text-[#A1A1AA] leading-relaxed mb-6">
                 Each pillar supports the others. Memory gives curiosity something to work with, and verification keeps discovery honest.
               </p>
 
               {/* Progress bar with Gradient Lime-Emerald */}
-              <div className="w-full bg-[#F1F0EA] h-2.5 rounded-full overflow-hidden mb-6 p-0.5">
+              <div className="w-full bg-[#1F1F22] h-2.5 rounded-full overflow-hidden mb-6 p-0.5">
                 <motion.div
                   className="bg-gradient-to-r from-[#C8E63A] to-[#10B981] h-full rounded-full shadow-[0_0_12px_rgba(16,185,129,0.4)]"
                   initial={{ width: 0 }}
@@ -194,25 +194,25 @@ export default function BeforeMeeting() {
               </div>
 
               {/* Checklist */}
-              <div className="space-y-2.5 text-xs font-medium text-[#171717]">
-                <div className="flex items-center gap-2.5 p-2 rounded-xl bg-emerald-50/50 border border-emerald-100">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+              <div className="space-y-2.5 text-xs font-medium text-[#F8F7F2]">
+                <div className="flex items-center gap-2.5 p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/25">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                   <span>Experience shapes what gets remembered</span>
                 </div>
-                <div className="flex items-center gap-2.5 p-2 rounded-xl bg-blue-50/50 border border-blue-100">
-                  <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
+                <div className="flex items-center gap-2.5 p-2 rounded-xl bg-blue-500/10 border border-blue-500/25">
+                  <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0" />
                   <span>Appraisal signals guide what gets investigated</span>
                 </div>
-                <div className="flex items-center gap-2.5 p-2 rounded-xl bg-[#FAFDF0] border border-[#C8E63A]/40">
-                  <CheckCircle2 className="w-4 h-4 text-[#171717] shrink-0" />
+                <div className="flex items-center gap-2.5 p-2 rounded-xl bg-[#1A1C12] border border-[#C8E63A]/40">
+                  <CheckCircle2 className="w-4 h-4 text-[#F8F7F2] shrink-0" />
                   <span>Evidence decides what gets updated</span>
                 </div>
               </div>
             </div>
 
-            <div className="pt-6 border-t border-[#E8E6DF] flex items-center justify-between text-xs font-mono relative z-10">
-              <span className="text-[#88867F]">Stage: active research</span>
-              <span className="text-emerald-700 font-semibold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+            <div className="pt-6 border-t border-[#27272A] flex items-center justify-between text-xs font-mono relative z-10">
+              <span className="text-[#71717A]">Stage: active research</span>
+              <span className="text-emerald-300 font-semibold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/25">
                 In progress
               </span>
             </div>

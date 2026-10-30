@@ -40,8 +40,8 @@ export default function Integrations() {
       category: "Adaptation",
       streamLabel: "Bio-inspired networks",
       initials: "NL",
-      color: "text-blue-600",
-      accentBg: "bg-blue-50 border-blue-200",
+      color: "text-blue-400",
+      accentBg: "bg-blue-500/10 border-blue-500/25",
       stats: { primary: "Researching", secondary: "Recurrent, spiking, liquid", detail: "Candidate architectures" },
       // Top Center: (50%, 9%) -> (500, 58)
       pctX: 50,
@@ -60,8 +60,8 @@ export default function Integrations() {
       category: "Associative, long-term",
       streamLabel: "Links across experience",
       initials: "AM",
-      color: "text-emerald-700",
-      accentBg: "bg-emerald-50 border-emerald-200",
+      color: "text-emerald-300",
+      accentBg: "bg-emerald-500/10 border-emerald-500/25",
       stats: { primary: "Researching", secondary: "Associative recall", detail: "Builds on past investigations" },
       // Top Left: (14%, 22%) -> (140, 140)
       pctX: 14,
@@ -80,8 +80,8 @@ export default function Integrations() {
       category: "Computational signals",
       streamLabel: "Curiosity, doubt, surprise",
       initials: "AS",
-      color: "text-teal-700",
-      accentBg: "bg-teal-50 border-teal-200",
+      color: "text-teal-300",
+      accentBg: "bg-teal-500/10 border-teal-500/25",
       stats: { primary: "Researching", secondary: "Guides attention", detail: "Functional signals, not feelings" },
       // Top Right: (86%, 22%) -> (860, 140)
       pctX: 86,
@@ -100,8 +100,8 @@ export default function Integrations() {
       category: "Discovery",
       streamLabel: "Context-gap detection",
       initials: "IN",
-      color: "text-neutral-900",
-      accentBg: "bg-stone-50 border-stone-200",
+      color: "text-[#F8F7F2]",
+      accentBg: "bg-[#171717] border-[#27272A]",
       stats: { primary: "Prototype in BNI", secondary: "Evidence-based", detail: "Specific investigations today" },
       // Bottom Left: (14%, 72%) -> (140, 460)
       pctX: 14,
@@ -120,8 +120,8 @@ export default function Integrations() {
       category: "Validation",
       streamLabel: "Sources & uncertainty",
       initials: "EV",
-      color: "text-violet-700",
-      accentBg: "bg-violet-50 border-violet-200",
+      color: "text-violet-300",
+      accentBg: "bg-violet-500/10 border-violet-500/25",
       stats: { primary: "Prototype in BNI", secondary: "Provenance tracking", detail: "Competing explanations kept" },
       // Bottom Right: (86%, 72%) -> (860, 460)
       pctX: 86,
@@ -140,8 +140,8 @@ export default function Integrations() {
       category: "Efficient compute",
       streamLabel: "Leaner reasoning",
       initials: "EC",
-      color: "text-indigo-700",
-      accentBg: "bg-indigo-50 border-indigo-200",
+      color: "text-indigo-300",
+      accentBg: "bg-indigo-500/10 border-indigo-500/25",
       stats: { primary: "Researching", secondary: "Efficiency goal", detail: "No benchmarks published yet" },
       // Bottom Mid-Left: (36%, 89%) -> (360, 570)
       pctX: 36,
@@ -160,8 +160,8 @@ export default function Integrations() {
       category: "Controlled change",
       streamLabel: "Approval before updates",
       initials: "HR",
-      color: "text-blue-800",
-      accentBg: "bg-sky-50 border-sky-200",
+      color: "text-blue-200",
+      accentBg: "bg-sky-500/10 border-sky-500/25",
       stats: { primary: "Design principle", secondary: "Corrections reviewed", detail: "No silent rewrites" },
       // Bottom Mid-Right: (64%, 89%) -> (640, 570)
       pctX: 64,
@@ -184,7 +184,7 @@ export default function Integrations() {
     <section 
       id="ecosystem" 
       ref={containerRef}
-      className="py-24 md:py-36 bg-[#F8F7F2] border-b border-[#E8E6DF] overflow-hidden relative select-none"
+      className="py-24 md:py-36 bg-[#171717] border-b border-[#27272A] overflow-hidden relative select-none"
     >
       {/* Background Ambient Radial Glow */}
       <div 
@@ -209,7 +209,7 @@ export default function Integrations() {
             className="flex items-center justify-center gap-2 mb-3"
           >
             <span className="w-2 h-2 rounded-full bg-[#C8E63A]" />
-            <span className="text-xs font-mono uppercase tracking-widest text-[#68655F]">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#A1A1AA]">
               RESEARCH ARCHITECTURE
             </span>
           </motion.div>
@@ -220,7 +220,7 @@ export default function Integrations() {
               initial={{ opacity: 0, y: 35 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 35 }}
               transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-              className="text-5xl sm:text-6xl lg:text-7xl font-[550] tracking-[-0.035em] text-[#111111] leading-[0.96]"
+              className="text-5xl sm:text-6xl lg:text-7xl font-[550] tracking-[-0.035em] text-[#F8F7F2] leading-[0.96]"
             >
               How the research
             </motion.h2>
@@ -231,7 +231,7 @@ export default function Integrations() {
               initial={{ opacity: 0, y: 35 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 35 }}
               transition={{ duration: 0.75, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-              className="text-5xl sm:text-6xl lg:text-7xl font-serif italic font-normal text-[#111111] leading-[0.96]"
+              className="text-5xl sm:text-6xl lg:text-7xl font-serif italic font-normal text-[#F8F7F2] leading-[0.96]"
             >
               fits together.
             </motion.div>
@@ -242,7 +242,7 @@ export default function Integrations() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-5 text-base sm:text-lg text-[#68655F] leading-relaxed max-w-xl mx-auto"
+            className="mt-5 text-base sm:text-lg text-[#A1A1AA] leading-relaxed max-w-xl mx-auto"
           >
             A map of the research areas we're working on, how we expect them to connect, and how they might help us study sentience as an open question. These are research components, not finished products or third-party integrations.
           </motion.p>
@@ -298,7 +298,7 @@ export default function Integrations() {
                   <path
                     d={tool.path}
                     fill="none"
-                    stroke={isHovered ? "rgba(200,230,58,0.85)" : "rgba(0,0,0,0.12)"}
+                    stroke={isHovered ? "rgba(200,230,58,0.85)" : "rgba(255,255,255,0.12)"}
                     strokeWidth={isHovered ? 2 : 1.2}
                     strokeDasharray={isHovered ? "none" : "3 4"}
                     className="transition-all duration-300"
@@ -400,7 +400,7 @@ export default function Integrations() {
               initial={{ opacity: 0, scale: 0.82 }}
               animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.82 }}
               transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className={`w-[245px] p-6 rounded-[28px] bg-[#111111] text-[#F8F7F2] border transition-all duration-300 shadow-[0_24px_70px_rgba(0,0,0,0.22)] flex flex-col items-center justify-center text-center relative ${
+              className={`w-[245px] p-6 rounded-[28px] bg-[#0E0E10] text-[#F8F7F2] border transition-all duration-300 shadow-[0_24px_70px_rgba(0,0,0,0.22)] flex flex-col items-center justify-center text-center relative ${
                 hoveredToolId 
                   ? 'border-[#C8E63A] ring-2 ring-[#C8E63A]/40 scale-[1.025]' 
                   : 'border-[rgba(200,230,58,0.35)] hover:border-[#C8E63A]/70'
@@ -449,7 +449,7 @@ export default function Integrations() {
                     <span className="w-2 h-2 rounded-full bg-[#C8E63A] animate-ping" />
                     <span>7 Research Areas</span>
                   </span>
-                  <span className="text-[#88867F] font-mono">
+                  <span className="text-[#71717A] font-mono">
                     In progress
                   </span>
                 </div>
@@ -501,28 +501,28 @@ export default function Integrations() {
                     }}
                   >
                     {/* The Clean White Card */}
-                    <div className={`w-[185px] p-4.5 rounded-[18px] bg-white border transition-all duration-300 shadow-[0_12px_35px_rgba(0,0,0,0.04)] text-left ${
+                    <div className={`w-[185px] p-4.5 rounded-[18px] bg-[#121215] border transition-all duration-300 shadow-[0_12px_35px_rgba(0,0,0,0.04)] text-left ${
                       isHovered 
-                        ? 'border-[#171717] shadow-[0_20px_45px_rgba(0,0,0,0.08)] ring-1 ring-[#171717]/10' 
-                        : 'border-[rgba(0,0,0,0.08)] hover:border-[rgba(0,0,0,0.2)]'
+                        ? 'border-[#3F3F46] shadow-[0_20px_45px_rgba(0,0,0,0.08)] ring-1 ring-[#3F3F46]/10' 
+                        : 'border-[rgba(255,255,255,0.08)] hover:border-[rgba(255,255,255,0.2)]'
                     }`}>
                       <div className="flex items-center gap-3">
-                        <div className={`w-9 h-9 rounded-xl ${tool.accentBg} flex items-center justify-center text-[#111111] shrink-0 transition-colors shadow-2xs`}>
+                        <div className={`w-9 h-9 rounded-xl ${tool.accentBg} flex items-center justify-center text-[#F8F7F2] shrink-0 transition-colors shadow-2xs`}>
                           <BrandGlyph toolId={tool.id} className="w-4.5 h-4.5" />
                         </div>
                         <div className="overflow-hidden">
-                          <h4 className="text-xs font-semibold text-[#111111] truncate">
+                          <h4 className="text-xs font-semibold text-[#F8F7F2] truncate">
                             {tool.name}
                           </h4>
-                          <span className="text-[10px] font-mono text-[#68655F] block truncate">
+                          <span className="text-[10px] font-mono text-[#A1A1AA] block truncate">
                             {tool.category}
                           </span>
                         </div>
                       </div>
 
                       {/* Small Live Stream Indicator with Green Dot */}
-                      <div className="mt-3 pt-2.5 border-t border-[rgba(0,0,0,0.06)] flex items-center justify-between text-[9px] font-mono">
-                        <span className="text-[#68655F] truncate max-w-[115px]">
+                      <div className="mt-3 pt-2.5 border-t border-[rgba(255,255,255,0.06)] flex items-center justify-between text-[9px] font-mono">
+                        <span className="text-[#A1A1AA] truncate max-w-[115px]">
                           {tool.streamLabel}
                         </span>
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
@@ -539,7 +539,7 @@ export default function Integrations() {
                           animate={{ opacity: 1, scale: 1, y: 0 }}
                           exit={{ opacity: 0, scale: 0.96, y: 8 }}
                           transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                          className="absolute left-1/2 -translate-x-1/2 -top-28 w-[210px] bg-[#171717] text-white p-3.5 rounded-2xl border border-[#333230] shadow-xl z-50 pointer-events-none text-left"
+                          className="absolute left-1/2 -translate-x-1/2 -top-28 w-[210px] bg-[#0E0E10] text-white p-3.5 rounded-2xl border border-[#333230] shadow-xl z-50 pointer-events-none text-left"
                         >
                           <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-[#2B2A28]">
                             <span className="text-[10px] font-mono uppercase tracking-wider text-[#A3A198] font-bold">
@@ -552,11 +552,11 @@ export default function Integrations() {
                           
                           <div className="space-y-1 text-[10px] font-mono text-[#E4E3DF]">
                             <div className="flex items-center justify-between">
-                              <span className="text-[#88867F]">Status:</span>
+                              <span className="text-[#71717A]">Status:</span>
                               <span className="font-semibold text-white">{tool.stats.primary}</span>
                             </div>
                             <div className="flex items-center justify-between">
-                              <span className="text-[#88867F]">Focus:</span>
+                              <span className="text-[#71717A]">Focus:</span>
                               <span>{tool.stats.secondary}</span>
                             </div>
                             <div className="text-[9px] text-[#A3A198] pt-1 border-t border-[#262624]">
@@ -578,7 +578,7 @@ export default function Integrations() {
             ========================================================================= */}
         <div className="lg:hidden space-y-6 max-w-md mx-auto">
           {/* Cadence Center Node (Mobile) */}
-          <div className="bg-[#111111] text-[#F8F7F2] p-6 rounded-3xl border border-[rgba(200,230,58,0.35)] shadow-lg text-center relative overflow-hidden">
+          <div className="bg-[#0E0E10] text-[#F8F7F2] p-6 rounded-3xl border border-[rgba(200,230,58,0.35)] shadow-lg text-center relative overflow-hidden">
             <div className="w-11 h-11 rounded-2xl bg-[#1D1D1C] border border-[#2E2E2A] flex items-center justify-center text-[#C8E63A] mx-auto mb-3">
               <Sparkles className="w-5 h-5 animate-pulse" />
             </div>
@@ -593,7 +593,7 @@ export default function Integrations() {
                 <span className="w-2 h-2 rounded-full bg-[#C8E63A] animate-ping" />
                 Research Areas
               </span>
-              <span className="text-[#88867F]">7 connected</span>
+              <span className="text-[#71717A]">7 connected</span>
             </div>
           </div>
 
@@ -602,23 +602,23 @@ export default function Integrations() {
             {tools.map((tool) => (
               <div
                 key={tool.id}
-                className="bg-white p-4 rounded-2xl border border-[rgba(0,0,0,0.08)] shadow-xs flex items-center justify-between text-left"
+                className="bg-[#121215] p-4 rounded-2xl border border-[rgba(255,255,255,0.08)] shadow-xs flex items-center justify-between text-left"
               >
                 <div className="flex items-center gap-3">
-                  <div className={`w-8 h-8 rounded-xl ${tool.accentBg} flex items-center justify-center text-[#111111] shrink-0`}>
+                  <div className={`w-8 h-8 rounded-xl ${tool.accentBg} flex items-center justify-center text-[#F8F7F2] shrink-0`}>
                     <BrandGlyph toolId={tool.id} className="w-4 h-4" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-semibold text-[#111111]">
+                    <h4 className="text-xs font-semibold text-[#F8F7F2]">
                       {tool.name}
                     </h4>
-                    <span className="text-[10px] font-mono text-[#68655F]">
+                    <span className="text-[10px] font-mono text-[#A1A1AA]">
                       {tool.category}
                     </span>
                   </div>
                 </div>
                 <div className="text-right">
-                  <span className="text-[9px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full font-medium">
+                  <span className="text-[9px] font-mono text-emerald-300 bg-emerald-500/10 px-2 py-0.5 rounded-full font-medium">
                     {tool.stats.primary}
                   </span>
                 </div>
@@ -630,14 +630,14 @@ export default function Integrations() {
         {/* =========================================================================
             BOTTOM STATEMENT ANIMATION (Cinematic Closing Reveal)
             ========================================================================= */}
-        <div className="mt-20 md:mt-24 pt-12 border-t border-[#E8E6DF] max-w-xl mx-auto text-center">
+        <div className="mt-20 md:mt-24 pt-12 border-t border-[#27272A] max-w-xl mx-auto text-center">
           {/* "One context layer." */}
           <motion.p
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="text-xs font-mono uppercase tracking-[0.2em] text-[#68655F]"
+            className="text-xs font-mono uppercase tracking-[0.2em] text-[#A1A1AA]"
           >
             One connected direction.
           </motion.p>
@@ -655,7 +655,7 @@ export default function Integrations() {
                   delay: 0.2 + wIdx * 0.07, 
                   ease: [0.22, 1, 0.36, 1] 
                 }}
-                className="text-3xl sm:text-4xl font-serif italic text-[#111111]"
+                className="text-3xl sm:text-4xl font-serif italic text-[#F8F7F2]"
               >
                 {word}
               </motion.span>

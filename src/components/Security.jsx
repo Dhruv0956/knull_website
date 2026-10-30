@@ -174,15 +174,15 @@ export default function Security() {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="py-28 md:py-36 bg-[#F8F7F2] border-b border-[#E8E6DF] overflow-hidden relative select-none"
+      className="py-28 md:py-36 bg-[#171717] border-b border-[#27272A] overflow-hidden relative select-none"
     >
       {/* Extremely subtle 56px engineering grid background */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-[0.04]"
         style={{
           backgroundImage: `
-            linear-gradient(to right, rgba(23, 23, 23, 1) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(23, 23, 23, 1) 1px, transparent 1px)
+            linear-gradient(to right, rgba(248,247,242, 1) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(248,247,242, 1) 1px, transparent 1px)
           `,
           backgroundSize: '56px 56px',
         }}
@@ -210,7 +210,7 @@ export default function Security() {
               className="flex items-center gap-2 mb-2"
             >
               <span className="w-2 h-2 rounded-full bg-[#C8E63A]" />
-              <span className="text-xs font-mono uppercase tracking-widest text-[#66635D]">
+              <span className="text-xs font-mono uppercase tracking-widest text-[#A1A1AA]">
                 TRUST &bull; BY DESIGN
               </span>
             </motion.div>
@@ -222,7 +222,7 @@ export default function Security() {
                   initial={{ opacity: 0, y: 35 }}
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 35 }}
                   transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                  className="text-5xl sm:text-6xl font-[550] tracking-[-0.035em] text-[#111111] leading-[0.96]"
+                  className="text-5xl sm:text-6xl font-[550] tracking-[-0.035em] text-[#F8F7F2] leading-[0.96]"
                 >
                   Learning you
                 </motion.h2>
@@ -233,7 +233,7 @@ export default function Security() {
                   initial={{ opacity: 0, y: 35 }}
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 35 }}
                   transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-                  className="text-5xl sm:text-6xl font-serif italic font-normal text-[#111111] leading-[0.96]"
+                  className="text-5xl sm:text-6xl font-serif italic font-normal text-[#F8F7F2] leading-[0.96]"
                 >
                   can check.
                 </motion.div>
@@ -245,7 +245,7 @@ export default function Security() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              className="text-base sm:text-lg text-[#66635D] leading-relaxed max-w-lg"
+              className="text-base sm:text-lg text-[#A1A1AA] leading-relaxed max-w-lg"
             >
               Trust comes from seeing how a system learned. BNI keeps the source of every finding, records how conclusions change, and holds corrections for human review. Privacy and controlled change are part of the design from the start.
             </motion.p>
@@ -255,14 +255,14 @@ export default function Security() {
               initial={{ opacity: 0, y: 15 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
               transition={{ duration: 0.5, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="p-4 rounded-2xl bg-white border border-[rgba(0,0,0,0.08)] shadow-xs flex items-center justify-between text-xs font-mono max-w-md"
+              className="p-4 rounded-2xl bg-[#121215] border border-[rgba(255,255,255,0.08)] shadow-xs flex items-center justify-between text-xs font-mono max-w-md"
             >
               <div className="flex items-center gap-2.5">
                 <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-[#111111] font-semibold">Design principles:</span>
-                <span className="text-emerald-800 font-medium">Traceable &amp; reviewable</span>
+                <span className="text-[#F8F7F2] font-semibold">Design principles:</span>
+                <span className="text-emerald-200 font-medium">Traceable &amp; reviewable</span>
               </div>
-              <span className="text-[#66635D] text-[11px]">
+              <span className="text-[#A1A1AA] text-[11px]">
                 {activationStep >= 4 ? "4/4 Pillars" : `${activationStep}/4 Pillars`}
               </span>
             </motion.div>
@@ -308,8 +308,8 @@ export default function Security() {
                   =================================================================== */}
               <motion.path
                 d="M 320 50 C 450 48, 540 98, 560 210 C 580 320, 520 400, 390 425 C 260 450, 140 410, 95 310 C 50 210, 120 70, 240 52 Z"
-                fill="rgba(255,255,255,0.35)"
-                stroke="rgba(0,0,0,0.13)"
+                fill="rgba(18,18,21,0.6)"
+                stroke="rgba(255,255,255,0.13)"
                 strokeWidth="1.2"
                 strokeDasharray="4 4"
                 initial={{ pathLength: 0, opacity: 0 }}
@@ -338,7 +338,7 @@ export default function Security() {
                     key={lbl.id}
                     d={lbl.path}
                     fill="none"
-                    stroke={isHovered ? "#C8E63A" : isActive ? "rgba(200,230,58,0.55)" : "rgba(0,0,0,0.10)"}
+                    stroke={isHovered ? "#C8E63A" : isActive ? "rgba(200,230,58,0.55)" : "rgba(255,255,255,0.10)"}
                     strokeWidth={isHovered ? 1.8 : 1.2}
                     strokeDasharray={isHovered ? "none" : "3 3"}
                     initial={{ pathLength: 0, opacity: 0 }}
@@ -404,7 +404,7 @@ export default function Security() {
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.9, y: -5 }}
                   transition={{ duration: 0.25 }}
-                  className="absolute z-40 bg-[#111111] text-[#C8E63A] border border-[#2B2A28] px-2.5 py-1 rounded-full text-[10px] font-mono shadow-md pointer-events-none"
+                  className="absolute z-40 bg-[#0E0E10] text-[#C8E63A] border border-[#2B2A28] px-2.5 py-1 rounded-full text-[10px] font-mono shadow-md pointer-events-none"
                   style={{
                     left: `${(deflectionEvent.x / 640) * 100 - 8}%`,
                     top: `${(deflectionEvent.y / 480) * 100 - 6}%`,
@@ -432,7 +432,7 @@ export default function Security() {
               }}
               className="absolute left-[45%] top-2 z-20 pointer-events-none text-center"
             >
-              <span className="text-[10px] font-mono text-[#66635D] bg-white/80 border border-[rgba(0,0,0,0.08)] px-2 py-0.5 rounded-full shadow-2xs">
+              <span className="text-[10px] font-mono text-[#A1A1AA] bg-[#121215]/80 border border-[rgba(255,255,255,0.08)] px-2 py-0.5 rounded-full shadow-2xs">
                 &ldquo;New evidence&rdquo;
               </span>
             </motion.div>
@@ -451,7 +451,7 @@ export default function Security() {
                 initial={{ opacity: 0, scale: 0.88 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.88 }}
                 transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className={`w-[230px] p-6 rounded-[28px] bg-[#111111] text-[#F8F7F2] border transition-all duration-400 shadow-[0_20px_60px_rgba(0,0,0,0.20)] flex flex-col items-center justify-center text-center relative ${
+                className={`w-[230px] p-6 rounded-[28px] bg-[#0E0E10] text-[#F8F7F2] border transition-all duration-400 shadow-[0_20px_60px_rgba(0,0,0,0.20)] flex flex-col items-center justify-center text-center relative ${
                   activationStep >= 4 
                     ? 'border-[rgba(200,230,58,0.35)]' 
                     : 'border-[#262624]'
@@ -482,7 +482,7 @@ export default function Security() {
                   <h3 className="text-xs font-bold tracking-[0.22em] uppercase font-sans text-white">
                     KNULL
                   </h3>
-                  <span className="text-[11px] font-mono text-[#88867F] mt-0.5">
+                  <span className="text-[11px] font-mono text-[#71717A] mt-0.5">
                     EVIDENCE RECORD
                   </span>
 
@@ -492,13 +492,13 @@ export default function Security() {
                       <span className="w-1.5 h-1.5 rounded-full bg-[#C8E63A] animate-pulse" />
                       <span>{activationStep >= 4 ? "Traceable" : "Linking"}</span>
                     </span>
-                    <span className="text-[#88867F]">
+                    <span className="text-[#71717A]">
                       {activationStep >= 4 ? "4/4 Active" : `${activationStep}/4 Active`}
                     </span>
                   </div>
 
                   {/* Subtitle tag */}
-                  <span className="text-[9px] font-mono text-[#66635D] mt-2 block uppercase tracking-wider">
+                  <span className="text-[9px] font-mono text-[#A1A1AA] mt-2 block uppercase tracking-wider">
                     Reviewable by design
                   </span>
                 </motion.div>
@@ -533,8 +533,8 @@ export default function Security() {
                   }}
                   className="flex items-center gap-1.5 select-none"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#111111]/30" />
-                  <span className="text-[10px] font-mono text-[#77746D] whitespace-nowrap">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0E0E10]/30" />
+                  <span className="text-[10px] font-mono text-[#71717A] whitespace-nowrap">
                     {pt.label}
                   </span>
                 </motion.div>
@@ -568,29 +568,29 @@ export default function Security() {
                     }}
                     transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
                     className={`p-3 rounded-2xl transition-all duration-200 ${
-                      isHovered ? 'bg-white shadow-md border border-[rgba(0,0,0,0.12)]' : 'bg-transparent'
+                      isHovered ? 'bg-[#121215] shadow-md border border-[rgba(255,255,255,0.12)]' : 'bg-transparent'
                     }`}
                   >
                     {/* Header with Lime Status Indicator */}
                     <div className="flex items-center gap-2 mb-1">
                       <span className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-                        isActive ? 'bg-[#C8E63A]' : 'bg-[rgba(0,0,0,0.2)]'
+                        isActive ? 'bg-[#C8E63A]' : 'bg-[rgba(255,255,255,0.2)]'
                       }`} />
-                      <h4 className="text-xs font-semibold text-[#111111] leading-tight">
-                        <span className="font-mono text-[10px] text-[#66635D] mr-1.5">{lbl.code}</span>
+                      <h4 className="text-xs font-semibold text-[#F8F7F2] leading-tight">
+                        <span className="font-mono text-[10px] text-[#A1A1AA] mr-1.5">{lbl.code}</span>
                         {lbl.title}
                       </h4>
                     </div>
 
                     {/* Short Explanation */}
-                    <p className="text-[11px] text-[#66635D] leading-snug">
+                    <p className="text-[11px] text-[#A1A1AA] leading-snug">
                       {isHovered ? lbl.expandedDesc : lbl.shortDesc}
                     </p>
 
                     {/* Connected status on hover */}
                     {isHovered && (
-                      <div className="mt-2 pt-1.5 border-t border-[rgba(0,0,0,0.06)] flex items-center gap-1 text-[9px] font-mono text-emerald-800 font-semibold">
-                        <Check className="w-2.5 h-2.5 text-emerald-600" />
+                      <div className="mt-2 pt-1.5 border-t border-[rgba(255,255,255,0.06)] flex items-center gap-1 text-[9px] font-mono text-emerald-200 font-semibold">
+                        <Check className="w-2.5 h-2.5 text-emerald-400" />
                         <span>Research pillar</span>
                       </div>
                     )}
@@ -609,30 +609,30 @@ export default function Security() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-16 md:mt-20 pt-8 border-t border-[#E8E6DF] flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-[#66635D]"
+          className="mt-16 md:mt-20 pt-8 border-t border-[#27272A] flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-[#A1A1AA]"
         >
-          <div className="flex items-center gap-2 text-[#111111] font-semibold">
+          <div className="flex items-center gap-2 text-[#F8F7F2] font-semibold">
             <span className="w-2 h-2 rounded-full bg-[#C8E63A]" />
             <span>HOW WE APPROACH TRUST:</span>
           </div>
 
           <div className="flex flex-wrap items-center gap-4 sm:gap-6">
-            <span className="flex items-center gap-1.5 hover:text-[#111111] transition-colors cursor-default">
+            <span className="flex items-center gap-1.5 hover:text-[#F8F7F2] transition-colors cursor-default">
               <span className="w-1 h-1 rounded-full bg-emerald-600" />
               SOURCES KEPT
             </span>
             <span className="text-[#DCDAD2] hidden sm:inline">&bull;</span>
-            <span className="flex items-center gap-1.5 hover:text-[#111111] transition-colors cursor-default">
+            <span className="flex items-center gap-1.5 hover:text-[#F8F7F2] transition-colors cursor-default">
               <span className="w-1 h-1 rounded-full bg-emerald-600" />
               UNCERTAINTY SHOWN
             </span>
             <span className="text-[#DCDAD2] hidden sm:inline">&bull;</span>
-            <span className="flex items-center gap-1.5 hover:text-[#111111] transition-colors cursor-default">
+            <span className="flex items-center gap-1.5 hover:text-[#F8F7F2] transition-colors cursor-default">
               <span className="w-1 h-1 rounded-full bg-emerald-600" />
               CHANGES REVIEWED
             </span>
             <span className="text-[#DCDAD2] hidden sm:inline">&bull;</span>
-            <span className="flex items-center gap-1.5 hover:text-[#111111] transition-colors cursor-default">
+            <span className="flex items-center gap-1.5 hover:text-[#F8F7F2] transition-colors cursor-default">
               <span className="w-1 h-1 rounded-full bg-emerald-600" />
               NO SILENT REWRITES
             </span>

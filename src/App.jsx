@@ -37,7 +37,7 @@ export default function App() {
 
   return (
     <ToastProvider>
-      <div className="min-h-screen bg-[#F8F7F2] text-[#171717] font-sans selection:bg-[#C8E63A] selection:text-[#171717] relative overflow-x-hidden">
+      <div className="min-h-screen bg-[#171717] text-[#171717] font-sans selection:bg-[#C8E63A] selection:text-[#171717] relative overflow-x-hidden">
         {/* Custom cursor on desktop */}
         <CustomCursor />
 

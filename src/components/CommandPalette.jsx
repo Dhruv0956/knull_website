@@ -83,11 +83,11 @@ export default function CommandPalette({ isOpen, onOpen, onClose, onOpenWorkspac
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.97, y: -8 }}
             transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-            className="relative w-full max-w-xl bg-[#F8F7F2] rounded-2xl border border-[#DCDAD2] shadow-2xl overflow-hidden z-10 flex flex-col font-sans"
+            className="relative w-full max-w-xl bg-[#171717] rounded-2xl border border-[#27272A] shadow-2xl overflow-hidden z-10 flex flex-col font-sans"
           >
             {/* Search Input Bar */}
-            <div className="flex items-center gap-3 px-4 py-3.5 border-b border-[#E8E6DF] bg-white">
-              <Search className="w-4 h-4 text-[#88867F] shrink-0" />
+            <div className="flex items-center gap-3 px-4 py-3.5 border-b border-[#27272A] bg-[#121215]">
+              <Search className="w-4 h-4 text-[#71717A] shrink-0" />
               <input
                 type="text"
                 value={query}
@@ -97,12 +97,12 @@ export default function CommandPalette({ isOpen, onOpen, onClose, onOpenWorkspac
                 }}
                 autoFocus
                 placeholder="Jump to a section, pillar or research area..."
-                className="w-full bg-transparent text-sm text-[#171717] placeholder-[#88867F] focus:outline-none"
+                className="w-full bg-transparent text-sm text-[#F8F7F2] placeholder-[#71717A] focus:outline-none"
               />
-              <span className="hidden sm:inline-block font-mono text-[10px] uppercase text-[#88867F] bg-[#F1F0EA] px-2 py-0.5 rounded border border-[#E8E6DF]">
+              <span className="hidden sm:inline-block font-mono text-[10px] uppercase text-[#71717A] bg-[#1F1F22] px-2 py-0.5 rounded border border-[#27272A]">
                 ESC to close
               </span>
-              <button onClick={onClose} className="text-[#88867F] hover:text-[#171717] p-1 cursor-pointer">
+              <button onClick={onClose} className="text-[#71717A] hover:text-[#F8F7F2] p-1 cursor-pointer">
                 <X className="w-4 h-4" />
               </button>
             </div>
@@ -110,7 +110,7 @@ export default function CommandPalette({ isOpen, onOpen, onClose, onOpenWorkspac
             {/* Results List */}
             <div data-lenis-prevent className="max-h-80 overflow-y-auto overscroll-contain p-2 space-y-1">
               {filtered.length === 0 ? (
-                <div className="p-8 text-center text-xs text-[#88867F]">
+                <div className="p-8 text-center text-xs text-[#71717A]">
                   No matching sections found for "{query}".
                 </div>
               ) : (
@@ -123,18 +123,18 @@ export default function CommandPalette({ isOpen, onOpen, onClose, onOpenWorkspac
                       onClick={() => selectItem(item)}
                       onMouseEnter={() => setSelectedIndex(idx)}
                       className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl cursor-pointer text-xs transition-colors ${
-                        isSelected ? 'bg-white text-[#171717] shadow-xs border border-[#DCDAD2]' : 'text-[#5F5D57] hover:bg-white/60'
+                        isSelected ? 'bg-[#121215] text-[#F8F7F2] shadow-xs border border-[#27272A]' : 'text-[#A1A1AA] hover:bg-[#121215]/60'
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <div className={`w-6 h-6 rounded-lg flex items-center justify-center ${isSelected ? 'bg-[#C8E63A] text-[#171717]' : 'bg-[#F1F0EA] text-[#5F5D57]'}`}>
+                        <div className={`w-6 h-6 rounded-lg flex items-center justify-center ${isSelected ? 'bg-[#C8E63A] text-[#171717]' : 'bg-[#1F1F22] text-[#5F5D57]'}`}>
                           <Icon className="w-3.5 h-3.5" />
                         </div>
-                        <span className="font-medium text-[#171717]">{item.title}</span>
+                        <span className="font-medium text-[#F8F7F2]">{item.title}</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="text-[10px] font-mono text-[#88867F]">{item.category}</span>
-                        {isSelected && <CornerDownLeft className="w-3 h-3 text-[#171717]" />}
+                        <span className="text-[10px] font-mono text-[#71717A]">{item.category}</span>
+                        {isSelected && <CornerDownLeft className="w-3 h-3 text-[#F8F7F2]" />}
                       </div>
                     </div>
                   );
@@ -143,12 +143,12 @@ export default function CommandPalette({ isOpen, onOpen, onClose, onOpenWorkspac
             </div>
 
             {/* Footer */}
-            <div className="px-4 py-2.5 bg-[#F1F0EA] border-t border-[#E8E6DF] flex items-center justify-between text-[11px] text-[#88867F] font-mono">
+            <div className="px-4 py-2.5 bg-[#1F1F22] border-t border-[#27272A] flex items-center justify-between text-[11px] text-[#71717A] font-mono">
               <div className="flex items-center gap-3">
                 <span>&uarr;&darr; Navigate</span>
                 <span>&crarr; Select</span>
               </div>
-              <span className="flex items-center gap-1.5 text-[#171717]">
+              <span className="flex items-center gap-1.5 text-[#F8F7F2]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#C8E63A]" />
                 Knull Research
               </span>

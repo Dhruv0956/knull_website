@@ -50,7 +50,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#171717] py-24 text-[#88867F] text-xs font-sans">
+    <footer className="bg-[#0E0E10] py-24 text-[#71717A] text-xs font-sans">
       <div className="max-w-[1240px] mx-auto px-6">
         
         <div className="grid grid-cols-2 md:grid-cols-6 gap-10 mb-20">
@@ -62,7 +62,7 @@ export default function Footer() {
               onClick={(e) => handleLinkClick(e, '#hero')}
               className="flex items-center gap-2.5 group cursor-pointer inline-flex"
             >
-              <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-[#171717] group-hover:bg-[#C8E63A] transition-colors">
+              <div className="w-8 h-8 rounded-lg bg-[#121215] flex items-center justify-center text-[#F8F7F2] group-hover:bg-[#C8E63A] group-hover:text-[#171717] transition-colors">
                 <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 stroke-current stroke-[2.2]" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M4 12h3l3-7 4 14 3-7h3" />
                 </svg>
@@ -71,10 +71,10 @@ export default function Footer() {
                 Knull
               </span>
             </a>
-            <p className="text-xs text-[#88867F] max-w-xs leading-relaxed font-normal">
+            <p className="text-xs text-[#71717A] max-w-xs leading-relaxed font-normal">
               An AI that doesn't just respond. It remembers, questions, discovers, and evolves with you. Knull is an AI research and engineering company pursuing adaptive, proprietary intelligence.
             </p>
-            <div className="pt-2 text-[11px] font-mono text-[#5F5D57]">
+            <div className="pt-2 text-[11px] font-mono text-[#A1A1AA]">
               San Francisco &bull; Distributed Research Labs
             </div>
           </div>
@@ -103,7 +103,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-[#333230] flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#5F5D57] font-mono">
+        <div className="pt-8 border-t border-[#333230] flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#A1A1AA] font-mono">
           <div>
             &copy; 2026 Knull Technologies Inc. All rights reserved.
           </div>

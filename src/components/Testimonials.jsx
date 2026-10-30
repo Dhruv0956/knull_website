@@ -147,7 +147,7 @@ export default function Testimonials() {
     <section 
       id="people"
       ref={containerRef}
-      className="py-28 md:py-36 bg-[#F8F7F2] border-b border-[#E8E6DF] overflow-hidden relative select-none"
+      className="py-28 md:py-36 bg-[#171717] border-b border-[#27272A] overflow-hidden relative select-none"
     >
       <div className="max-w-[1240px] mx-auto px-6 relative z-10">
         
@@ -164,7 +164,7 @@ export default function Testimonials() {
             className="flex items-center gap-2 mb-3.5"
           >
             <span className="w-2 h-2 rounded-full bg-[#C8E63A]" />
-            <span className="text-xs font-mono uppercase tracking-widest text-[#66635D]">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#A1A1AA]">
               RESEARCH PERSPECTIVES
             </span>
           </motion.div>
@@ -175,7 +175,7 @@ export default function Testimonials() {
               initial={{ opacity: 0, y: 35 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 35 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="text-5xl sm:text-6xl lg:text-7xl font-[550] tracking-[-0.035em] text-[#111111] leading-[0.96]"
+              className="text-5xl sm:text-6xl lg:text-7xl font-[550] tracking-[-0.035em] text-[#F8F7F2] leading-[0.96]"
             >
               Ideas we're
             </motion.h2>
@@ -186,7 +186,7 @@ export default function Testimonials() {
               initial={{ opacity: 0, y: 35 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 35 }}
               transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-              className="text-5xl sm:text-6xl lg:text-7xl font-serif italic font-normal text-[#111111] leading-[0.96]"
+              className="text-5xl sm:text-6xl lg:text-7xl font-serif italic font-normal text-[#F8F7F2] leading-[0.96]"
             >
               learning from.
             </motion.div>
@@ -197,7 +197,7 @@ export default function Testimonials() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-5 text-base sm:text-lg text-[#66635D] leading-relaxed max-w-xl"
+            className="mt-5 text-base sm:text-lg text-[#A1A1AA] leading-relaxed max-w-xl"
           >
             Two independent publications that inform our thinking. Knull didn't write them, and they don't prove our approach works. They help frame the questions we're pursuing.
           </motion.p>
@@ -214,12 +214,12 @@ export default function Testimonials() {
           initial={{ opacity: 0, scale: 0.97, y: 50 }}
           animate={isInView ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.97, y: 50 }}
           transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="bg-white rounded-[32px] border border-[rgba(0,0,0,0.08)] p-8 sm:p-14 lg:p-18 shadow-[0_20px_70px_rgba(0,0,0,0.035)] relative overflow-hidden transition-shadow duration-300 hover:shadow-[0_28px_85px_rgba(0,0,0,0.06)]"
+          className="bg-[#121215] rounded-[32px] border border-[rgba(255,255,255,0.08)] p-8 sm:p-14 lg:p-18 shadow-[0_20px_70px_rgba(0,0,0,0.035)] relative overflow-hidden transition-shadow duration-300 hover:shadow-[0_28px_85px_rgba(0,0,0,0.06)]"
         >
           {/* =======================================================================
               TOP BAR: Live Conversation Status & Timestamp
               ======================================================================= */}
-          <div className="flex items-center justify-between pb-6 mb-8 border-b border-[rgba(0,0,0,0.06)] text-xs font-mono">
+          <div className="flex items-center justify-between pb-6 mb-8 border-b border-[rgba(255,255,255,0.06)] text-xs font-mono">
             {/* Live Conversation Indicator with Gentle Pulse */}
             <div className="flex items-center gap-2.5">
               <span className="relative flex h-2.5 w-2.5">
@@ -237,14 +237,14 @@ export default function Testimonials() {
                 />
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#8CB800]" />
               </span>
-              <span className="tracking-widest uppercase font-semibold text-[#111111]">
+              <span className="tracking-widest uppercase font-semibold text-[#F8F7F2]">
                 INDEPENDENT RESEARCH
               </span>
             </div>
 
             {/* Conversation Duration Timestamp */}
-            <div className="flex items-center gap-3 text-[#66635D]">
-              <span className="bg-[#FAF9F5] px-2.5 py-1 rounded-md border border-[rgba(0,0,0,0.08)] font-semibold text-[#111111]">
+            <div className="flex items-center gap-3 text-[#A1A1AA]">
+              <span className="bg-[#171717] px-2.5 py-1 rounded-md border border-[rgba(255,255,255,0.08)] font-semibold text-[#F8F7F2]">
                 {current.duration}
               </span>
             </div>
@@ -286,7 +286,7 @@ export default function Testimonials() {
                 key={`sec-${current.id}`}
                 d={current.secondaryWavePath}
                 fill="none"
-                stroke="rgba(0,0,0,0.06)"
+                stroke="rgba(255,255,255,0.06)"
                 strokeWidth="1.2"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 0.8 }}
@@ -298,7 +298,7 @@ export default function Testimonials() {
                 key={`prim-${current.id}`}
                 d={current.waveformPath}
                 fill="none"
-                stroke="rgba(23,23,23,0.12)"
+                stroke="rgba(248,247,242,0.12)"
                 strokeWidth="1.6"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
@@ -348,8 +348,8 @@ export default function Testimonials() {
                       cx={marker.x} 
                       cy={marker.y} 
                       r={isHovered ? "5" : "3"} 
-                      fill={isHovered ? "#C8E63A" : "#171717"}
-                      stroke="#FFFFFF"
+                      fill={isHovered ? "#C8E63A" : "#F8F7F2"}
+                      stroke="#171717"
                       strokeWidth="1.5"
                       className="transition-all duration-200"
                     />
@@ -379,7 +379,7 @@ export default function Testimonials() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 4, scale: 0.95 }}
                   transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute bg-[#111111] text-white px-3 py-1.5 rounded-xl text-[10px] font-mono shadow-xl border border-[#333230] z-40 pointer-events-none -translate-x-1/2 whitespace-nowrap"
+                  className="absolute bg-[#0E0E10] text-white px-3 py-1.5 rounded-xl text-[10px] font-mono shadow-xl border border-[#333230] z-40 pointer-events-none -translate-x-1/2 whitespace-nowrap"
                   style={{
                     left: `${(activeMarker.x / 1000) * 100}%`,
                     top: `${activeMarker.y - 32}px`,
@@ -407,7 +407,7 @@ export default function Testimonials() {
                   animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                   exit={{ opacity: 0, x: -40, filter: "blur(4px)" }}
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                  className="text-3xl sm:text-4xl lg:text-[44px] font-[480] text-[#111111] leading-[1.12] tracking-[-0.025em] font-sans"
+                  className="text-3xl sm:text-4xl lg:text-[44px] font-[480] text-[#F8F7F2] leading-[1.12] tracking-[-0.025em] font-sans"
                 >
                   {current.quoteParts.map((part, pIdx) => {
                     if (part.highlight) {
@@ -416,8 +416,8 @@ export default function Testimonials() {
                           key={pIdx}
                           className={`relative inline-block transition-colors duration-500 font-[520] ${
                             highlightActive 
-                              ? 'text-[#111111] bg-[#C8E63A]/40 px-1 rounded' 
-                              : 'text-[#111111]'
+                              ? 'text-[#F8F7F2] bg-[#C8E63A]/40 px-1 rounded' 
+                              : 'text-[#F8F7F2]'
                           }`}
                         >
                           {part.text}
@@ -431,7 +431,7 @@ export default function Testimonials() {
             </div>
 
             {/* RIGHT: Customer Identity & Verification */}
-            <div className="lg:col-span-4 border-t lg:border-t-0 lg:border-l border-[rgba(0,0,0,0.08)] pt-6 lg:pt-0 lg:pl-10 text-left">
+            <div className="lg:col-span-4 border-t lg:border-t-0 lg:border-l border-[rgba(255,255,255,0.08)] pt-6 lg:pt-0 lg:pl-10 text-left">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={current.id}
@@ -446,38 +446,38 @@ export default function Testimonials() {
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                    className="w-13 h-13 rounded-full bg-[#111111] text-[#C8E63A] flex items-center justify-center font-mono font-bold text-sm tracking-wider shadow-sm border border-[#2B2A28]"
+                    className="w-13 h-13 rounded-full bg-[#0E0E10] text-[#C8E63A] flex items-center justify-center font-mono font-bold text-sm tracking-wider shadow-sm border border-[#2B2A28]"
                   >
                     {current.initials}
                   </motion.div>
 
                   {/* Customer Name & Role */}
                   <div>
-                    <h4 className="font-semibold text-lg text-[#111111] tracking-tight">
+                    <h4 className="font-semibold text-lg text-[#F8F7F2] tracking-tight">
                       {current.author}
                     </h4>
-                    <p className="text-sm text-[#66635D] font-normal leading-snug">
+                    <p className="text-sm text-[#A1A1AA] font-normal leading-snug">
                       {current.role}
                     </p>
                   </div>
 
                   {/* Monospace Verified Label */}
-                  <div className="pt-2 border-t border-[rgba(0,0,0,0.06)] flex items-center gap-1.5 text-[11px] font-mono text-[#88867F]">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                  <div className="pt-2 border-t border-[rgba(255,255,255,0.06)] flex items-center gap-1.5 text-[11px] font-mono text-[#71717A]">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
                     <span>{current.verifiedTag}</span>
                   </div>
 
                   {/* Key figures from the paper */}
                   <div className="pt-1 space-y-2.5">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#88867F] block">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#71717A] block">
                       Key figures
                     </span>
                     {current.facts.map((fact) => (
                       <div key={fact.value} className="flex items-baseline gap-2.5">
-                        <span className="font-mono text-sm font-semibold text-[#111111] whitespace-nowrap bg-[#C8E63A]/25 px-1.5 py-0.5 rounded">
+                        <span className="font-mono text-sm font-semibold text-[#F8F7F2] whitespace-nowrap bg-[#C8E63A]/25 px-1.5 py-0.5 rounded">
                           {fact.value}
                         </span>
-                        <span className="text-xs text-[#66635D] leading-snug">
+                        <span className="text-xs text-[#A1A1AA] leading-snug">
                           {fact.label}
                         </span>
                       </div>
@@ -491,11 +491,11 @@ export default function Testimonials() {
           {/* =======================================================================
               BOTTOM CONTROLS & CHAPTER NAVIGATION
               ======================================================================= */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-10 border-t border-[rgba(0,0,0,0.08)] mt-12">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-10 border-t border-[rgba(255,255,255,0.08)] mt-12">
             
             {/* Chapter Indicator with Segmented Progress Bar */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#111111]">
+              <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#F8F7F2]">
                 {current.chapterNumber} &bull; {current.chapterTitle}
               </span>
 
@@ -513,7 +513,7 @@ export default function Testimonials() {
                       className="group cursor-pointer py-1"
                       aria-label={`Jump to chapter ${item.chapterNumber}`}
                     >
-                      <div className="w-14 sm:w-16 h-1 rounded-full bg-[rgba(0,0,0,0.12)] overflow-hidden relative transition-all">
+                      <div className="w-14 sm:w-16 h-1 rounded-full bg-[rgba(255,255,255,0.12)] overflow-hidden relative transition-all">
                         {isActive && (
                           <motion.div
                             layoutId="activeChapterFill"
@@ -535,7 +535,7 @@ export default function Testimonials() {
                 onClick={prev}
                 whileTap={{ scale: 0.92 }}
                 whileHover={{ x: -3 }}
-                className="w-13 h-13 rounded-full border border-[rgba(0,0,0,0.10)] bg-white hover:bg-[#111111] hover:text-white text-[#111111] flex items-center justify-center transition-colors duration-200 cursor-pointer shadow-2xs group"
+                className="w-13 h-13 rounded-full border border-[rgba(255,255,255,0.10)] bg-[#121215] hover:bg-[#0E0E10] hover:text-white text-[#F8F7F2] flex items-center justify-center transition-colors duration-200 cursor-pointer shadow-2xs group"
                 aria-label="Previous publication"
               >
                 <ArrowLeft className="w-4.5 h-4.5 group-hover:-translate-x-0.5 transition-transform" />
@@ -546,7 +546,7 @@ export default function Testimonials() {
                 onClick={next}
                 whileTap={{ scale: 0.92 }}
                 whileHover={{ x: 3 }}
-                className="w-13 h-13 rounded-full border border-[rgba(0,0,0,0.10)] bg-white hover:bg-[#111111] hover:text-white text-[#111111] flex items-center justify-center transition-colors duration-200 cursor-pointer shadow-2xs group"
+                className="w-13 h-13 rounded-full border border-[rgba(255,255,255,0.10)] bg-[#121215] hover:bg-[#0E0E10] hover:text-white text-[#F8F7F2] flex items-center justify-center transition-colors duration-200 cursor-pointer shadow-2xs group"
                 aria-label="Next publication"
               >
                 <ArrowRight className="w-4.5 h-4.5 group-hover:translate-x-0.5 transition-transform" />

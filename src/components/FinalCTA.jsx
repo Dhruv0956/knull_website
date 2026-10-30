@@ -20,7 +20,7 @@ export default function FinalCTA({ onOpenWorkspace }) {
   return (
     <section 
       ref={containerRef}
-      className="py-32 md:py-44 bg-[#171717] text-[#F8F7F2] text-center relative overflow-hidden border-b border-[#333230]"
+      className="py-32 md:py-44 bg-[#0E0E10] text-[#F8F7F2] text-center relative overflow-hidden border-b border-[#333230]"
     >
       {/* Dynamic Scroll Parallax Ambient Glow */}
       <motion.div
@@ -35,7 +35,7 @@ export default function FinalCTA({ onOpenWorkspace }) {
         style={{ y: textY }}
         className="max-w-[1240px] mx-auto px-6 relative z-10 space-y-7"
       >
-        <span className="text-xs font-mono uppercase tracking-widest text-[#88867F] block">
+        <span className="text-xs font-mono uppercase tracking-widest text-[#71717A] block">
           EXPLORE KNULL
         </span>
 
@@ -45,7 +45,7 @@ export default function FinalCTA({ onOpenWorkspace }) {
           <span className="font-serif italic font-normal text-[#C8E63A]">doesn't end with an answer.</span>
         </h2>
 
-        <p className="text-lg sm:text-xl text-[#88867F] max-w-xl mx-auto font-normal leading-relaxed">
+        <p className="text-lg sm:text-xl text-[#71717A] max-w-xl mx-auto font-normal leading-relaxed">
           We're building toward AI that learns from experience, explores what it doesn't know, and develops a deeper understanding over time, moving us closer to knowing whether artificial sentience is possible.
         </p>
 
@@ -78,7 +78,7 @@ export default function FinalCTA({ onOpenWorkspace }) {
           </button>
         </div>
 
-        <p className="text-xs text-[#88867F] font-mono pt-4">
+        <p className="text-xs text-[#71717A] font-mono pt-4">
           Remembers &bull; Questions &bull; Discovers &bull; Evolves
         </p>
       </motion.div>

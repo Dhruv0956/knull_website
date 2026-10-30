@@ -86,13 +86,13 @@ export default function CustomCursor() {
               ? 'rgba(200, 230, 58, 0.15)'
               : cursorType === 'pointer'
               ? 'rgba(200, 230, 58, 0.22)'
-              : 'rgba(23, 23, 23, 0.04)',
+              : 'rgba(248,247,242, 0.04)',
           borderColor:
             cursorType === 'interactive'
               ? 'rgba(200, 230, 58, 0.65)'
               : cursorType === 'pointer'
-              ? '#171717'
-              : 'rgba(23, 23, 23, 0.22)',
+              ? '#F8F7F2'
+              : 'rgba(248,247,242, 0.22)',
           borderWidth: cursorType === 'pointer' ? '1.5px' : '1px',
           boxShadow:
             cursorType === 'interactive'
@@ -114,7 +114,7 @@ export default function CustomCursor() {
 
         {/* Micro text inside cursor when over interactive 3D cards */}
         {cursorType === 'interactive' && (
-          <span className="text-[8px] font-mono font-bold tracking-widest text-[#171717] uppercase select-none">
+          <span className="text-[8px] font-mono font-bold tracking-widest text-[#F8F7F2] uppercase select-none">
             DRAG
           </span>
         )}
@@ -131,7 +131,7 @@ export default function CustomCursor() {
           scale: isClicking ? 1.6 : cursorType === 'pointer' ? 0.6 : cursorType === 'interactive' ? 0 : 1,
           width: 5,
           height: 5,
-          backgroundColor: cursorType === 'pointer' ? '#C8E63A' : '#171717',
+          backgroundColor: cursorType === 'pointer' ? '#C8E63A' : '#F8F7F2',
           boxShadow: cursorType === 'pointer' ? '0 0 8px #C8E63A' : 'none',
         }}
         transition={{ duration: 0.12, ease: [0.22, 1, 0.36, 1] }}

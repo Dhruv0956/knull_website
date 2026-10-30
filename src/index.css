@@ -49,33 +49,33 @@ html.lenis, html.lenis body {
   height: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #F8F7F2;
+  background: #171717;
 }
 ::-webkit-scrollbar-thumb {
-  background: #DCDAD2;
+  background: #2E2E32;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #B8B5AB;
+  background: #3F3F46;
 }
 
 /* Very subtle 1px engineering grid (opacity ~0.08, used sparingly) */
 .cadence-subtle-grid {
   background-image: 
-    linear-gradient(to right, rgba(23, 23, 23, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(23, 23, 23, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(248, 247, 242, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(248, 247, 242, 0.04) 1px, transparent 1px);
   background-size: 64px 64px;
 }
 
 /* Subtle grain noise simulation */
 .cadence-grain {
-  background-image: radial-gradient(rgba(23, 23, 23, 0.04) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(248, 247, 242, 0.04) 1px, transparent 1px);
   background-size: 16px 16px;
 }
 
 /* Lime marker highlight */
 .lime-highlight {
-  background: linear-gradient(120deg, rgba(200, 230, 58, 0.55) 0%, rgba(200, 230, 58, 0.55) 100%);
+  background: linear-gradient(120deg, rgba(200, 230, 58, 0.3) 0%, rgba(200, 230, 58, 0.3) 100%);
   background-repeat: no-repeat;
   background-size: 100% 42%;
   background-position: 0 88%;

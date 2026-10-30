@@ -23,7 +23,7 @@ export default function Hero({ onOpenWorkspace }) {
     <section 
       ref={containerRef}
       id="hero" 
-      className="relative pt-32 pb-24 md:pt-44 md:pb-36 overflow-hidden bg-[#F8F7F2] border-b border-[#E8E6DF] cadence-subtle-grid"
+      className="relative pt-32 pb-24 md:pt-44 md:pb-36 overflow-hidden bg-[#171717] border-b border-[#27272A] cadence-subtle-grid"
     >
       {/* Decorative ambient background blur */}
       <motion.div
@@ -40,27 +40,27 @@ export default function Hero({ onOpenWorkspace }) {
           <div className="lg:col-span-6 space-y-7 text-left">
             
             {/* Redesigned Announcement Pill (Section 11) */}
-            <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-[#DCDAD2] text-xs shadow-xs hover:border-[#171717] transition-all cursor-pointer group">
+            <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-[#121215]/80 backdrop-blur-md border border-[#27272A] text-xs shadow-xs hover:border-[#3F3F46] transition-all cursor-pointer group">
               <span className="w-2 h-2 rounded-full bg-[#C8E63A]" />
-              <span className="font-mono text-[#5F5D57] text-[11px] font-medium tracking-tight">
+              <span className="font-mono text-[#A1A1AA] text-[11px] font-medium tracking-tight">
                 BEYOND ANSWERS, TOWARD UNDERSTANDING
               </span>
-              <ArrowRight className="w-3.5 h-3.5 text-[#5F5D57] transition-transform duration-200 group-hover:translate-x-1" />
+              <ArrowRight className="w-3.5 h-3.5 text-[#A1A1AA] transition-transform duration-200 group-hover:translate-x-1" />
             </div>
 
             {/* Editorial Contrast Headline (Section 4 & 5) */}
-            <h1 className="text-6xl sm:text-7xl lg:text-[100px] xl:text-[112px] font-[550] tracking-[-0.055em] text-[#171717] leading-[0.91]">
+            <h1 className="text-6xl sm:text-7xl lg:text-[100px] xl:text-[112px] font-[550] tracking-[-0.055em] text-[#F8F7F2] leading-[0.91]">
               <span className="block font-sans">KNULL</span>
-              <span className="block font-serif font-normal text-[#171717]">
+              <span className="block font-serif font-normal text-[#F8F7F2]">
                 Artificial <span className="italic">Individuals.</span>
               </span>
             </h1>
 
             {/* Subhead with clear storytelling */}
-            <p className="text-xl sm:text-2xl text-[#171717] max-w-lg leading-snug font-[550] tracking-tight">
+            <p className="text-xl sm:text-2xl text-[#F8F7F2] max-w-lg leading-snug font-[550] tracking-tight">
               An AI that doesn't just respond. It remembers, questions, discovers, and evolves with you.
             </p>
-            <p className="text-base sm:text-lg text-[#5F5D57] max-w-lg leading-relaxed font-normal">
+            <p className="text-base sm:text-lg text-[#A1A1AA] max-w-lg leading-relaxed font-normal">
               We're Knull, an AI research company working toward intelligence that learns from experience, questions what it knows, and helps people discover what they're missing. Artificial Human Intelligence [AHI] is where the journey begins.
             </p>
 
@@ -83,15 +83,15 @@ export default function Hero({ onOpenWorkspace }) {
                   setShowDemoModal(true);
                   addToast('Opening Knull research overview');
                 }}
-                className="group inline-flex items-center justify-center gap-2 bg-white text-[#171717] border border-[#DCDAD2] px-6 py-3.5 rounded-full text-sm font-medium hover:bg-[#F1F0EA] transition-colors cursor-pointer"
+                className="group inline-flex items-center justify-center gap-2 bg-[#121215] text-[#F8F7F2] border border-[#27272A] px-6 py-3.5 rounded-full text-sm font-medium hover:bg-[#1F1F22] transition-colors cursor-pointer"
               >
-                <Play className="w-3.5 h-3.5 text-[#5F5D57] transition-transform duration-200 group-hover:scale-110" />
+                <Play className="w-3.5 h-3.5 text-[#A1A1AA] transition-transform duration-200 group-hover:scale-110" />
                 <span>Research direction</span>
               </button>
             </div>
 
             {/* Subtle metadata footnote */}
-            <div className="pt-2 text-xs font-mono text-[#88867F] flex items-center gap-3">
+            <div className="pt-2 text-xs font-mono text-[#71717A] flex items-center gap-3">
               <span>Remembers</span>
               <span>&bull;</span>
               <span>Questions</span>
@@ -133,22 +133,22 @@ export default function Hero({ onOpenWorkspace }) {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 16 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="relative w-full max-w-3xl bg-[#FAF9F5] rounded-3xl border border-[#DCDAD2] p-6 sm:p-8 shadow-2xl z-10"
+              className="relative w-full max-w-3xl bg-[#171717] rounded-3xl border border-[#27272A] p-6 sm:p-8 shadow-2xl z-10"
             >
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-semibold text-lg text-[#171717]">Knull Overview &bull; Research Direction</h3>
+                <h3 className="font-semibold text-lg text-[#F8F7F2]">Knull Overview &bull; Research Direction</h3>
                 <button 
                   onClick={() => setShowDemoModal(false)}
-                  className="p-1.5 rounded-full text-[#88867F] hover:text-[#171717] cursor-pointer"
+                  className="p-1.5 rounded-full text-[#71717A] hover:text-[#F8F7F2] cursor-pointer"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
               
-              <div className="aspect-video w-full bg-[#171717] rounded-2xl flex flex-col items-center justify-center text-center p-8 text-[#F8F7F2] relative overflow-hidden">
+              <div className="aspect-video w-full bg-[#0E0E10] rounded-2xl flex flex-col items-center justify-center text-center p-8 text-[#F8F7F2] relative overflow-hidden">
                 <Sparkles className="w-10 h-10 text-[#C8E63A] mb-3 animate-pulse" />
                 <h4 className="text-xl font-semibold mb-2">Where AHI begins</h4>
-                <p className="text-xs text-[#88867F] max-w-md mb-6 leading-relaxed">
+                <p className="text-xs text-[#71717A] max-w-md mb-6 leading-relaxed">
                   AHI runs evidence-based investigations today. Our longer-term research explores bio-inspired intelligence, computational emotions, proactive discovery and verifiable learning: four pieces of an AI that builds on experience instead of starting over.
                 </p>
                 <button
