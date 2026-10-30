@@ -76,7 +76,7 @@ export default function App() {
             <UseCases />
             <Testimonials />
             <Security />
-            <FinalCTA onOpenWorkspace={handleOpenWorkspace} />
+            <FinalCTA />
             <Founder />
           </main>
 
