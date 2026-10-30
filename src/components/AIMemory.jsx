@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
-import { Search, Sparkles, FileText, ArrowRight, CornerDownLeft } from 'lucide-react';
+import { Search, Sparkles, FileText, CornerDownLeft } from 'lucide-react';
 import { useToast } from '../context/ToastContext';
 
 export default function AIMemory() {
@@ -9,7 +9,6 @@ export default function AIMemory() {
   const { addToast } = useToast();
   const [searchQuery, setSearchQuery] = useState("What context is still missing?");
   const [activeQuery, setActiveQuery] = useState("What context is still missing?");
-  const [isSearching, setIsSearching] = useState(false);
   const [hasSearched, setHasSearched] = useState(true);
 
   // Bidirectional continuous scroll parallax
@@ -28,12 +27,10 @@ export default function AIMemory() {
   ];
 
   const handleRunSearch = (q) => {
-    setIsSearching(true);
     setSearchQuery(q);
     setActiveQuery(q);
 
     setTimeout(() => {
-      setIsSearching(false);
       setHasSearched(true);
       addToast(`Showing pre-written example for: "${q}"`);
     }, 750);
@@ -91,24 +88,6 @@ export default function AIMemory() {
                 placeholder="Pick or type an example question..."
                 className="w-full bg-transparent text-sm sm:text-base text-[#F8F7F2] placeholder-[#71717A] focus:outline-none"
               />
-              <button
-                onClick={() => handleRunSearch(searchQuery)}
-                disabled={isSearching}
-                className="px-5 py-2.5 rounded-xl bg-[#0E0E10] text-[#FAF9F5] text-xs font-semibold hover:bg-black transition-colors shrink-0 flex items-center gap-1.5 cursor-pointer"
-              >
-                {isSearching ? (
-                  <div className="flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#C8E63A] animate-bounce" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#C8E63A] animate-bounce" style={{ animationDelay: '120ms' }} />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#C8E63A] animate-bounce" style={{ animationDelay: '240ms' }} />
-                  </div>
-                ) : (
-                  <>
-                    <span>Show</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </>
-                )}
-              </button>
             </div>
 
             {/* Clickable Example Prompts */}
