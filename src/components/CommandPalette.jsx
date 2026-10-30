@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Calendar, FileText, Sparkles, CheckSquare, CornerDownLeft, X } from 'lucide-react';
 import { smoothScrollTo, getLenis } from '../utils/scroll';
 
-export default function CommandPalette({ isOpen, onClose, onOpenWorkspace }) {
+export default function CommandPalette({ isOpen, onOpen, onClose, onOpenWorkspace }) {
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -42,7 +42,7 @@ export default function CommandPalette({ isOpen, onClose, onOpenWorkspace }) {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
         if (isOpen) onClose();
-        else onClose(false);
+        else onOpen();
       }
       if (!isOpen) return;
 
@@ -62,7 +62,7 @@ export default function CommandPalette({ isOpen, onClose, onOpenWorkspace }) {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, filtered, selectedIndex, onClose, selectItem]);
+  }, [isOpen, filtered, selectedIndex, onOpen, onClose, selectItem]);
 
   return (
     <AnimatePresence>

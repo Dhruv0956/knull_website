@@ -50,6 +50,7 @@ export default function App() {
         {/* Command Palette (Cmd + K) */}
         <CommandPalette
           isOpen={commandPaletteOpen}
+          onOpen={() => setCommandPaletteOpen(true)}
           onClose={() => setCommandPaletteOpen(false)}
           onOpenWorkspace={handleOpenWorkspace}
         />
