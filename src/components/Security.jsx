@@ -72,8 +72,8 @@ export default function Security() {
     {
       id: "governance",
       num: 4,
-      code: "VL",
-      title: "Verifiable Learning",
+      code: "AT",
+      title: "BNI-Based Artistic Thinking",
       shortDesc: "Understanding that can explain how it changed.",
       expandedDesc: "Sources, uncertainty and proposed corrections stay on record for human review.",
       // Lower-Right

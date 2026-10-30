@@ -67,7 +67,7 @@ export default function DuringMeeting() {
       enhanced: "A fluent answer can still be wrong. Reliable systems need to separate evidence from assumption, and say when they don't know.",
       decision: "Uncertainty should be tracked and shown, not hidden behind confident wording.",
       actionItem: "Keep sources, confidence and competing explanations attached to every conclusion.",
-      assignee: "Pillar 04 • Verifiable learning",
+      assignee: "Pillar 04 • BNI-based artistic thinking",
       ticketTag: "Problem #02",
       audioQuote: "Doubt is useful when it sends you looking for better evidence.",
     },

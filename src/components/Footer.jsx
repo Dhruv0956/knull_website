@@ -20,7 +20,7 @@ export default function Footer() {
         { label: "Bio-Inspired Intelligence", href: "#individuals" },
         { label: "Computational Emotions", href: "#individuals" },
         { label: "Proactive Discovery", href: "#individuals" },
-        { label: "Verifiable Learning", href: "#individuals" },
+        { label: "BNI-Based Artistic Thinking", href: "#individuals" },
       ],
     },
     {

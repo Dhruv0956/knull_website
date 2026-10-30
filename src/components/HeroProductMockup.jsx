@@ -284,7 +284,7 @@ export default function HeroProductMockup({ onOpenFullWorkspace }) {
                 {[
                   { task: "Question: Flag the conflict between Source C and the earlier finding", owner: "Doubt signal", due: "Done", done: true, tag: "Step #01", tagColor: "bg-indigo-500/10 text-indigo-300 border-indigo-500/25" },
                   { task: "Discover: Identify the missing long-term evidence", owner: "Curiosity signal", due: "Done", done: true, tag: "Step #02", tagColor: "bg-emerald-500/10 text-emerald-300 border-emerald-500/25" },
-                  { task: "Evolve: Propose a correction, held for human approval", owner: "Verifiable learning", due: "Pending", done: false, tag: "Step #03", tagColor: "bg-amber-500/10 text-amber-300 border-amber-500/25" },
+                  { task: "Evolve: Propose a correction, held for human approval", owner: "BNI-based artistic thinking", due: "Pending", done: false, tag: "Step #03", tagColor: "bg-amber-500/10 text-amber-300 border-amber-500/25" },
                 ].map((item, idx) => (
                   <div 
                     key={idx}
