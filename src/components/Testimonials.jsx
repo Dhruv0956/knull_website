@@ -467,7 +467,7 @@ export default function Testimonials() {
             {/* Chapter Indicator with Segmented Progress Bar */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
               <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#111111]">
-                {current.chapterNumber} &mdash; {current.chapterTitle}
+                {current.chapterNumber} &bull; {current.chapterTitle}
               </span>
 
               {/* 3-Segment Progress Bar */}

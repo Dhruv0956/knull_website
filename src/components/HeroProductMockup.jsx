@@ -207,7 +207,7 @@ export default function HeroProductMockup({ onOpenFullWorkspace }) {
                   </button>
                 </div>
                 <h2 className="text-xl sm:text-2xl font-[550] tracking-tight text-[#171717]">
-                  AHI &mdash; Investigation Loop
+                  AHI Investigation Loop
                 </h2>
               </div>
 
