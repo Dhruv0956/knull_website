@@ -26,7 +26,7 @@ export default function BeforeMeeting() {
       setScore(0);
       return;
     }
-    const stages = [0, 25, 48, 72, 92];
+    const stages = [0, 1, 2, 3, 4];
     let step = 0;
     const interval = setInterval(() => {
       if (step < stages.length) {
@@ -52,14 +52,14 @@ export default function BeforeMeeting() {
           <div className="flex items-center gap-2 mb-3">
             <span className="w-2 h-2 rounded-full bg-[#C8E63A]" />
             <span className="text-xs font-mono uppercase tracking-widest text-[#88867F]">
-              01 &bull; THE IDEA
+              02 &bull; THE IDEA
             </span>
           </div>
           <h2 className="text-5xl sm:text-6xl lg:text-7xl font-[550] tracking-[-0.04em] text-[#171717] leading-[0.95]">
-            Intelligence is <span className="font-serif italic font-normal">contextual.</span>
+            Intelligence is <span className="font-serif italic font-normal">shaped by experience.</span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-[#5F5D57] leading-relaxed">
-            Human intelligence is never truly detached from the individual using it. What someone knows, what they have experienced, what they are trying to achieve, what surrounds them and what happens after they act all influence the way they think.
+            People don't become wise by storing answers. Understanding grows from context, experience, relationships, feedback and adaptation. We think artificial intelligence can grow the same way, and that belief shapes our four pillars.
           </p>
         </div>
 
@@ -82,25 +82,25 @@ export default function BeforeMeeting() {
             >
               <div className="flex items-center justify-between pb-3 border-b border-[#E8E6DF] mb-4">
                 <span className="text-xs font-mono text-blue-700 font-semibold uppercase bg-blue-50 px-2.5 py-1 rounded-full border border-blue-200">
-                  Context &bull; What Someone Knows
+                  Experience &bull; Pillar 01
                 </span>
                 <span className="px-2.5 py-1 rounded-full bg-blue-600 text-white text-xs font-mono font-medium shadow-xs">
-                  Fundamental
+                  Bio-inspired
                 </span>
               </div>
               <h3 className="text-xl font-[550] text-[#171717]">
-                Context changes meaning &mdash; not just metadata
+                Learning that builds on what came before
               </h3>
               <div className="flex items-center gap-2 text-xs text-[#5F5D57] mt-2 font-mono">
                 <span className="w-5 h-5 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[9px] font-bold">
                   CX
                 </span>
-                <span>Active Objective</span>
+                <span>Context</span>
                 <span className="text-[#88867F]">&bull;</span>
                 <span className="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[9px] font-bold">
                   EX
                 </span>
-                <span>Lived Experience</span>
+                <span>Experience</span>
               </div>
             </motion.div>
 
@@ -116,12 +116,12 @@ export default function BeforeMeeting() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-violet-900 font-semibold text-xs bg-violet-50 px-2.5 py-1 rounded-full border border-violet-200">
                   <Sparkles className="w-3.5 h-3.5 text-violet-600" />
-                  <span>The Breakthrough Principle</span>
+                  <span>Computational Emotions</span>
                 </div>
-                <span className="text-[10px] font-mono text-[#88867F]">Knull Philosophy</span>
+                <span className="text-[10px] font-mono text-[#88867F]">Pillar 02</span>
               </div>
               <p className="text-xs text-[#4A4843] leading-relaxed">
-                The next breakthrough may not come from making intelligence bigger. <strong className="text-[#171717] bg-violet-50 px-1 rounded">It may come from making intelligence different.</strong>
+                Curiosity, doubt, surprise and empathy, modelled as signals that decide what deserves attention. <strong className="text-[#171717] bg-violet-50 px-1 rounded">Functional mechanisms, not feelings.</strong>
               </p>
             </motion.div>
 
@@ -137,15 +137,15 @@ export default function BeforeMeeting() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-amber-900 font-semibold text-xs bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200">
                   <AlertCircle className="w-3.5 h-3.5 text-amber-600" />
-                  <span>Behaviour &amp; Environment</span>
+                  <span>Relationships &amp; Feedback</span>
                 </div>
                 <span className="text-[10px] font-mono text-amber-700 bg-amber-100/60 px-2 py-0.5 rounded-full">
-                  Continuous Feedback
+                  Pillars 03 &amp; 04
                 </span>
               </div>
               <ul className="text-xs text-[#5F5D57] space-y-1.5 list-disc list-inside">
-                <li>What surrounds the system dictates operational relevance</li>
-                <li>What happens after action informs future cognitive pathways</li>
+                <li>Relationships between facts reveal what's missing or inconsistent</li>
+                <li>Feedback should change conclusions openly, with the reasons kept</li>
               </ul>
             </motion.div>
           </motion.div>
@@ -164,7 +164,7 @@ export default function BeforeMeeting() {
             <div className="relative z-10">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-mono uppercase tracking-wider text-[#88867F]">
-                  Cognitive Synthesis
+                  Connected Pillars
                 </span>
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
               </div>
@@ -172,15 +172,15 @@ export default function BeforeMeeting() {
               {/* Large Score Counter */}
               <div className="flex items-baseline gap-3 my-4">
                 <span className="text-7xl sm:text-8xl font-[550] tracking-tight text-[#171717]">
-                  {score}%
+                  {score}/4
                 </span>
                 <span className="text-xs font-mono text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full font-semibold uppercase border border-emerald-200">
-                  Contextual Grounding
+                  One System
                 </span>
               </div>
 
               <p className="text-xs text-[#5F5D57] leading-relaxed mb-6">
-                Intelligence developed around context, objectives, experience and behaviour rather than broad abstract generalization.
+                Each pillar supports the others. Memory gives curiosity something to work with, and verification keeps discovery honest.
               </p>
 
               {/* Progress bar with Gradient Lime-Emerald */}
@@ -188,7 +188,7 @@ export default function BeforeMeeting() {
                 <motion.div
                   className="bg-gradient-to-r from-[#C8E63A] to-[#10B981] h-full rounded-full shadow-[0_0_12px_rgba(16,185,129,0.4)]"
                   initial={{ width: 0 }}
-                  animate={{ width: `${score}%` }}
+                  animate={{ width: `${score * 25}%` }}
                   transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 />
               </div>
@@ -197,23 +197,23 @@ export default function BeforeMeeting() {
               <div className="space-y-2.5 text-xs font-medium text-[#171717]">
                 <div className="flex items-center gap-2.5 p-2 rounded-xl bg-emerald-50/50 border border-emerald-100">
                   <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span>Objective-driven reasoning active</span>
+                  <span>Experience shapes what gets remembered</span>
                 </div>
                 <div className="flex items-center gap-2.5 p-2 rounded-xl bg-blue-50/50 border border-blue-100">
                   <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
-                  <span>Experience incorporation online</span>
+                  <span>Appraisal signals guide what gets investigated</span>
                 </div>
                 <div className="flex items-center gap-2.5 p-2 rounded-xl bg-[#FAFDF0] border border-[#C8E63A]/40">
                   <CheckCircle2 className="w-4 h-4 text-[#171717] shrink-0" />
-                  <span>Non-generalized contextual boundary</span>
+                  <span>Evidence decides what gets updated</span>
                 </div>
               </div>
             </div>
 
             <div className="pt-6 border-t border-[#E8E6DF] flex items-center justify-between text-xs font-mono relative z-10">
-              <span className="text-[#88867F]">Detached generalization: 0%</span>
+              <span className="text-[#88867F]">Stage: active research</span>
               <span className="text-emerald-700 font-semibold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                100% Contextual
+                In progress
               </span>
             </div>
           </motion.div>

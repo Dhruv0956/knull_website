@@ -7,8 +7,8 @@ export default function AIMemory() {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: false, margin: '-60px' });
   const { addToast } = useToast();
-  const [searchQuery, setSearchQuery] = useState("Why does context change meaning?");
-  const [activeQuery, setActiveQuery] = useState("Why does context change meaning?");
+  const [searchQuery, setSearchQuery] = useState("What context is still missing?");
+  const [activeQuery, setActiveQuery] = useState("What context is still missing?");
   const [isSearching, setIsSearching] = useState(false);
   const [hasSearched, setHasSearched] = useState(true);
 
@@ -22,9 +22,9 @@ export default function AIMemory() {
   const lineOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.1, 0.35, 0.1]);
 
   const sampleQueries = [
-    "Why does context change meaning?",
-    "How do systems adapt to reality?",
-    "Why does experience matter?",
+    "What context is still missing?",
+    "How does AHI adapt when evidence conflicts?",
+    "Where did this finding come from?",
   ];
 
   const handleRunSearch = (q) => {
@@ -35,7 +35,7 @@ export default function AIMemory() {
     setTimeout(() => {
       setIsSearching(false);
       setHasSearched(true);
-      addToast(`Retrieved cited answers for: "${q}"`);
+      addToast(`Showing pre-written example for: "${q}"`);
     }, 750);
   };
 
@@ -48,14 +48,14 @@ export default function AIMemory() {
           <div className="flex items-center gap-2 mb-3">
             <span className="w-2 h-2 rounded-full bg-[#C8E63A]" />
             <span className="text-xs font-mono uppercase tracking-widest text-[#88867F]">
-              04 &bull; ACCUMULATED EXPERIENCE
+              04 &bull; AHI
             </span>
           </div>
           <h2 className="text-5xl sm:text-6xl lg:text-7xl font-[550] tracking-[-0.04em] text-[#171717] leading-[0.95]">
-            Experience <span className="font-serif italic font-normal">should matter.</span>
+            AHI <span className="font-serif italic font-normal">remembers why.</span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-[#5F5D57] leading-relaxed">
-            An intelligence that forgets everything is forced to repeatedly rediscover the world. Long-term advantage is not the interface. It is the accumulated experience of systems in reality.
+            AHI is our first research product. Today it runs evidence-based investigations: it gathers sources, tracks uncertainty and flags gaps in context. Next, we're researching long-term associative memory that connects evidence and past investigations over time.
           </p>
         </div>
 
@@ -88,7 +88,7 @@ export default function AIMemory() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleRunSearch(searchQuery)}
-                placeholder="Ask anything about your past conversations..."
+                placeholder="Pick or type an example question..."
                 className="w-full bg-transparent text-sm sm:text-base text-[#171717] placeholder-[#88867F] focus:outline-none"
               />
               <button
@@ -104,7 +104,7 @@ export default function AIMemory() {
                   </div>
                 ) : (
                   <>
-                    <span>Search</span>
+                    <span>Show</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </>
                 )}
@@ -113,7 +113,7 @@ export default function AIMemory() {
 
             {/* Clickable Example Prompts */}
             <div className="flex flex-wrap items-center gap-2 pt-1 text-xs">
-              <span className="text-[#88867F] font-mono text-[11px]">Example queries:</span>
+              <span className="text-[#88867F] font-mono text-[11px]">Illustrative examples, pre-written (not live AI output):</span>
               {sampleQueries.map((q) => (
                 <button
                   key={q}
@@ -144,20 +144,20 @@ export default function AIMemory() {
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 text-xs font-mono text-[#171717] font-semibold">
                     <span className="w-2 h-2 rounded-full bg-[#C8E63A]" />
-                    <span>Synthesized From Persistent Experience</span>
+                    <span>Example AHI response &bull; pre-written for illustration</span>
                   </div>
 
                   {activeQuery.toLowerCase().includes("context") ? (
                     <p className="text-sm sm:text-base text-[#171717] leading-relaxed font-sans">
-                      "Context is not metadata. Context changes meaning. Intelligence should understand why information matters here, now, and for this objective."
+                      "Two gaps stand out: there's no data beyond 12 months, and Source B doesn't explain how its sample was chosen. Both should be checked before relying on this conclusion."
                     </p>
                   ) : activeQuery.toLowerCase().includes("adapt") ? (
                     <p className="text-sm sm:text-base text-[#171717] leading-relaxed font-sans">
-                      "Intelligence should change when reality changes. Continuous incorporation of meaningful information produces an unbroken operational loop."
+                      "AHI doesn't overwrite the earlier finding. It records the conflict, keeps both explanations, and proposes a correction for human review."
                     </p>
                   ) : (
                     <p className="text-sm sm:text-base text-[#171717] leading-relaxed font-sans">
-                      "Experience should matter. An intelligence that forgets everything is forced to repeatedly rediscover the world. <span className="lime-highlight font-medium">Different environments should produce different intelligence</span> — this is not a flaw; it is the point."
+                      "This finding traces back to three sources and one earlier investigation. <span className="lime-highlight font-medium">Each step keeps its source, its confidence and what it replaced</span>, so the reasoning can be checked."
                     </p>
                   )}
                 </div>
@@ -165,25 +165,25 @@ export default function AIMemory() {
                 {/* Source Cards with Tooltips */}
                 <div className="pt-5 border-t border-[#E8E6DF] space-y-3">
                   <span className="text-[11px] font-mono text-[#88867F] uppercase block">
-                    Foundational Citations (Hover to inspect research node):
+                    What AHI connects (illustrative records):
                   </span>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
                     {[
                       {
-                        title: "Contextual Anchoring",
-                        date: "Pillar 01 &bull; Objective",
-                        snippet: "'Context is not metadata. Context changes meaning for active objectives.'",
+                        title: "Evidence & Source",
+                        date: "Record 01 &bull; Provenance",
+                        snippet: "Where a claim came from and how strong its support is.",
                       },
                       {
-                        title: "Adaptive Feedback Loop",
-                        date: "Pillar 02 &bull; Environment",
-                        snippet: "'Intelligence should change when reality changes. Incorporate information continuously.'",
+                        title: "Uncertainty & Competing Views",
+                        date: "Record 02 &bull; Confidence",
+                        snippet: "What's still unknown, and which explanations are still in play.",
                       },
                       {
-                        title: "Individuality as Design",
-                        date: "Pillar 03 &bull; Grounding",
-                        snippet: "'Different environments produce different intelligence. Not a flaw; the point.'",
+                        title: "Investigation History",
+                        date: "Record 03 &bull; Memory",
+                        snippet: "Past investigations, earlier conclusions and proposed corrections.",
                       },
                     ].map((source, i) => (
                       <motion.div

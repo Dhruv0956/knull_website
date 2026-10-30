@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { ToastProvider } from './context/ToastContext';
 import CustomCursor from './components/CustomCursor';
 import ScrollProgress from './components/ScrollProgress';
@@ -17,17 +16,13 @@ import Integrations from './components/Integrations';
 import UseCases from './components/UseCases';
 import Testimonials from './components/Testimonials';
 import Security from './components/Security';
-import Pricing from './components/Pricing';
 import FinalCTA from './components/FinalCTA';
 import Founder from './components/Founder';
 import Footer from './components/Footer';
-import MeetingWorkspace from './components/MeetingWorkspace';
-import { initLenis, getLenis } from './utils/scroll';
+import { initLenis, smoothScrollTo } from './utils/scroll';
 
 export default function App() {
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
-  const [workspaceOpen, setWorkspaceOpen] = useState(false);
-  const [workspaceMeetingId, setWorkspaceMeetingId] = useState('northwind');
 
   // Initialize Lenis smooth inertia scrolling
   useEffect(() => {
@@ -37,26 +32,8 @@ export default function App() {
     };
   }, []);
 
-  // Pause Lenis and lock body scroll when workspace view is open
-  useEffect(() => {
-    const lenis = getLenis();
-    if (workspaceOpen) {
-      lenis?.stop();
-      document.body.style.overflow = 'hidden';
-    } else {
-      lenis?.start();
-      document.body.style.overflow = '';
-    }
-  }, [workspaceOpen]);
-
-  const handleOpenWorkspace = (meetingId = 'northwind') => {
-    setWorkspaceMeetingId(meetingId);
-    setWorkspaceOpen(true);
-  };
-
-  const handleCloseWorkspace = () => {
-    setWorkspaceOpen(false);
-  };
+  // The simulated meeting workspace was removed; "Research" entry points now lead to the AHI section
+  const handleOpenWorkspace = () => smoothScrollTo('#memory', -80);
 
   return (
     <ToastProvider>
@@ -84,21 +61,13 @@ export default function App() {
         />
 
         {/* Smooth Landing Page Content Wrapper */}
-        <motion.div
-          animate={{
-            scale: workspaceOpen ? 0.985 : 1,
-            opacity: workspaceOpen ? 0.35 : 1,
-            filter: workspaceOpen ? 'blur(8px)' : 'blur(0px)',
-          }}
-          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className="origin-top"
-        >
+        <div className="origin-top">
           {/* Main Editorial Product Journey */}
           <main>
             <Hero onOpenWorkspace={handleOpenWorkspace} />
             <SocialProof />
-            <BeforeMeeting />
             <DuringMeeting />
+            <BeforeMeeting />
             <AfterMeeting />
             <AIMemory />
             <FeaturesSection />
@@ -106,25 +75,13 @@ export default function App() {
             <UseCases />
             <Testimonials />
             <Security />
-            <Pricing onOpenWorkspace={handleOpenWorkspace} />
             <FinalCTA onOpenWorkspace={handleOpenWorkspace} />
             <Founder />
           </main>
 
           {/* Dark Editorial Footer */}
           <Footer />
-        </motion.div>
-
-        {/* Full Interactive Application Workspace Modal with Smooth AnimatePresence */}
-        <AnimatePresence>
-          {workspaceOpen && (
-            <MeetingWorkspace
-              key="active-workspace-screen"
-              initialMeetingId={workspaceMeetingId}
-              onClose={handleCloseWorkspace}
-            />
-          )}
-        </AnimatePresence>
+        </div>
       </div>
     </ToastProvider>
   );

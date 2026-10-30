@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Calendar, FileText, Sparkles, CheckSquare, CornerDownLeft, X } from 'lucide-react';
 import { useToast } from '../context/ToastContext';
+import { smoothScrollTo } from '../utils/scroll';
 
 export default function CommandPalette({ isOpen, onClose, onOpenWorkspace }) {
   const [query, setQuery] = useState('');
@@ -9,13 +10,13 @@ export default function CommandPalette({ isOpen, onClose, onOpenWorkspace }) {
   const { addToast } = useToast();
 
   const items = [
-    { id: 'meet-1', title: 'Northwind × Acme — Product Strategy', category: 'Meeting', icon: Calendar, action: () => { onOpenWorkspace('northwind'); addToast('Opened Northwind × Acme meeting workspace'); } },
-    { id: 'meet-2', title: 'Q4 Engineering Planning & Infra', category: 'Meeting', icon: Calendar, action: () => { onOpenWorkspace('q4'); addToast('Opened Q4 Planning'); } },
-    { id: 'meet-3', title: 'Enterprise Discovery with Linear Team', category: 'Meeting', icon: Calendar, action: () => { onOpenWorkspace('discovery'); addToast('Opened Discovery call'); } },
-    { id: 'act-1', title: 'Draft follow-up email from yesterday\'s call', category: 'AI Action', icon: Sparkles, action: () => { addToast('Generated follow-up email draft'); } },
-    { id: 'act-2', title: 'Synthesize open questions across all sales calls', category: 'AI Memory', icon: Search, action: () => { addToast('Searching AI memory across 14 meetings...'); } },
-    { id: 'act-3', title: 'Review 4 outstanding action items', category: 'Tasks', icon: CheckSquare, action: () => { addToast('Filtered open action items'); } },
-    { id: 'act-4', title: 'Create blank meeting note', category: 'Note', icon: FileText, action: () => { onOpenWorkspace('new'); addToast('Created new blank note'); } },
+    { id: 'nav-problem', title: 'The Problem: why we\'re building Knull', category: 'Section', icon: FileText, action: () => smoothScrollTo('#problem', -80) },
+    { id: 'nav-vision', title: 'The Vision: our own architecture', category: 'Section', icon: FileText, action: () => smoothScrollTo('#vision', -80) },
+    { id: 'nav-ahi', title: 'AHI: evidence-driven investigation', category: 'Product', icon: Sparkles, action: () => onOpenWorkspace() },
+    { id: 'nav-pillars', title: 'The four pillars', category: 'Section', icon: CheckSquare, action: () => smoothScrollTo('#individuals', -80) },
+    { id: 'nav-architecture', title: 'Research architecture', category: 'Research', icon: Search, action: () => smoothScrollTo('#ecosystem', -80) },
+    { id: 'nav-perspectives', title: 'Research perspectives', category: 'Research', icon: Search, action: () => smoothScrollTo('#people', -80) },
+    { id: 'nav-founder', title: 'Founder', category: 'Company', icon: Calendar, action: () => smoothScrollTo('#founder', -80) },
   ];
 
   const filtered = items.filter(i => 
@@ -83,7 +84,7 @@ export default function CommandPalette({ isOpen, onClose, onOpenWorkspace }) {
                   setSelectedIndex(0);
                 }}
                 autoFocus
-                placeholder="Search research directives, cognitive memory, or explore..."
+                placeholder="Jump to a section, pillar or research area..."
                 className="w-full bg-transparent text-sm text-[#171717] placeholder-[#88867F] focus:outline-none"
               />
               <span className="hidden sm:inline-block font-mono text-[10px] uppercase text-[#88867F] bg-[#F1F0EA] px-2 py-0.5 rounded border border-[#E8E6DF]">
@@ -98,7 +99,7 @@ export default function CommandPalette({ isOpen, onClose, onOpenWorkspace }) {
             <div className="max-h-80 overflow-y-auto p-2 space-y-1">
               {filtered.length === 0 ? (
                 <div className="p-8 text-center text-xs text-[#88867F]">
-                  No matching meetings or commands found for "{query}".
+                  No matching sections found for "{query}".
                 </div>
               ) : (
                 filtered.map((item, idx) => {
@@ -140,7 +141,7 @@ export default function CommandPalette({ isOpen, onClose, onOpenWorkspace }) {
               </div>
               <span className="flex items-center gap-1.5 text-[#171717]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#C8E63A]" />
-                Knull Cognitive Engine
+                Knull Research
               </span>
             </div>
           </motion.div>

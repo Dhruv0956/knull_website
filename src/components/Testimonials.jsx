@@ -25,74 +25,52 @@ export default function Testimonials() {
   const quoteScrollY = useTransform(scrollYProgress, [0, 1], [3, -3]);
 
   // Existing authentic customer testimonials with distinct conversation signatures
+  // Independent publications that inform Knull's research. Knull did not author them.
   const testimonials = useMemo(() => [
     {
-      id: "elena",
+      id: "zhao-2023",
       chapterNumber: "01",
-      chapterTitle: "CONTEXT CHANGES MEANING",
-      duration: "Axiom 01",
+      chapterTitle: "BRAIN-INSPIRED AI AND AGI",
+      duration: "2023",
       quoteParts: [
-        { text: "Context is not metadata. Context changes " },
-        { text: "meaning", highlight: true },
-        { text: ". Intelligence should understand why information matters here, now, and for this objective." }
+        { text: "A review of how principles from the human brain have shaped AI, and what they could mean on the path toward " },
+        { text: "general intelligence", highlight: true },
+        { text: ". It informs how we think about bio-inspired learning and memory." }
       ],
-      author: "Elena Rostova",
-      role: "Lead Cognitive Researcher",
-      initials: "ER",
-      company: "KNULL LABS",
-      verifiedTag: "RESEARCH PERSPECTIVE · CONTEXT",
+      author: "When Brain-inspired AI Meets AGI",
+      role: "Zhao et al., 2023",
+      initials: "ZH",
+      company: "INDEPENDENT PUBLICATION",
+      verifiedTag: "INDEPENDENT PUBLICATION · NOT BY KNULL",
       waveformPath: "M 0 60 C 100 60, 150 25, 220 25 C 290 25, 320 90, 400 90 C 470 90, 520 35, 600 35 C 680 35, 720 80, 800 80 C 880 80, 930 60, 1000 60",
       secondaryWavePath: "M 0 60 C 80 60, 140 45, 200 45 C 280 45, 340 75, 420 75 C 500 75, 560 45, 650 45 C 730 45, 820 65, 900 65 C 950 65, 980 60, 1000 60",
       markers: [
-        { id: "m1", x: 220, y: 25, time: "Axiom 01", note: "Context changes meaning" },
-        { id: "m2", x: 520, y: 45, time: "Axiom 02", note: "Situational relevance" },
-        { id: "m3", x: 800, y: 80, time: "Axiom 03", note: "Objective alignment" },
+        { id: "m1", x: 220, y: 25, time: "Theme 01", note: "Brain-inspired design in AI" },
+        { id: "m2", x: 520, y: 45, time: "Theme 02", note: "Learning, memory and reasoning" },
+        { id: "m3", x: 800, y: 80, time: "Theme 03", note: "Open questions on the path to AGI" },
       ]
     },
     {
-      id: "marcus",
+      id: "fares-2022",
       chapterNumber: "02",
-      chapterTitle: "EXPERIENCE OVER RETRIEVAL",
-      duration: "Axiom 02",
+      chapterTitle: "HUMAN BRAIN AND AI",
+      duration: "2022",
       quoteParts: [
-        { text: "Experience should matter. An intelligence that forgets everything is forced to repeatedly " },
-        { text: "rediscover", highlight: true },
-        { text: " the world." }
+        { text: "An overview of how AI and brain-computer interfaces are being combined, from decoding neural signals to closed-loop systems. It informs how we think about the " },
+        { text: "relationship between biological and artificial intelligence", highlight: true },
+        { text: "." }
       ],
-      author: "Marcus Thorne",
-      role: "Autonomous Systems Researcher",
-      initials: "MT",
-      company: "KNULL CORE",
-      verifiedTag: "RESEARCH PERSPECTIVE · MEMORY",
+      author: "In the Realm of Hybrid Brain: Human Brain and AI",
+      role: "Fares et al., 2022",
+      initials: "FA",
+      company: "INDEPENDENT PUBLICATION",
+      verifiedTag: "INDEPENDENT PUBLICATION · NOT BY KNULL",
       waveformPath: "M 0 60 C 80 60, 120 16, 180 16 C 240 16, 280 100, 350 100 C 420 100, 460 22, 540 22 C 620 22, 680 92, 760 92 C 840 92, 920 60, 1000 60",
       secondaryWavePath: "M 0 60 C 90 60, 150 80, 230 80 C 310 80, 370 30, 450 30 C 530 30, 600 85, 690 85 C 770 85, 860 40, 940 40 C 970 40, 990 60, 1000 60",
       markers: [
-        { id: "m4", x: 180, y: 16, time: "Memory 01", note: "Persistent experience accumulation" },
-        { id: "m5", x: 460, y: 32, time: "Memory 02", note: "Overcoming stateless rediscovery" },
-        { id: "m6", x: 760, y: 92, time: "Memory 03", note: "Lived reality anchoring" },
-      ]
-    },
-    {
-      id: "chloe",
-      chapterNumber: "03",
-      chapterTitle: "INDIVIDUALITY IS THE POINT",
-      duration: "Axiom 03",
-      quoteParts: [
-        { text: "Different environments should produce different intelligence. This difference is not a flaw; it is the " },
-        { text: "entire point", highlight: true },
-        { text: "." }
-      ],
-      author: "Chloe Dubois",
-      role: "Foundational AI Architect",
-      initials: "CD",
-      company: "KNULL RESEARCH",
-      verifiedTag: "RESEARCH PERSPECTIVE · INDIVIDUALITY",
-      waveformPath: "M 0 60 C 120 60, 180 32, 280 32 C 380 32, 440 88, 560 88 C 660 88, 740 36, 840 36 C 920 36, 960 60, 1000 60",
-      secondaryWavePath: "M 0 60 C 140 60, 220 75, 340 75 C 460 75, 520 45, 660 45 C 780 45, 860 70, 940 70 C 970 70, 990 60, 1000 60",
-      markers: [
-        { id: "m7", x: 280, y: 32, time: "Design 01", note: "Environmental differentiation" },
-        { id: "m8", x: 560, y: 88, time: "Design 02", note: "Non-generalized intelligence" },
-        { id: "m9", x: 840, y: 36, time: "Design 03", note: "Artificial individuals in reality" },
+        { id: "m4", x: 180, y: 16, time: "Theme 01", note: "Brain-computer interfaces" },
+        { id: "m5", x: 460, y: 32, time: "Theme 02", note: "AI for neural signal decoding" },
+        { id: "m6", x: 760, y: 92, time: "Theme 03", note: "Closed-loop hybrid systems" },
       ]
     },
   ], []);
@@ -175,7 +153,7 @@ export default function Testimonials() {
           >
             <span className="w-2 h-2 rounded-full bg-[#C8E63A]" />
             <span className="text-xs font-mono uppercase tracking-widest text-[#66635D]">
-              PEOPLE &bull; RESEARCH PERSPECTIVES
+              RESEARCH PERSPECTIVES
             </span>
           </motion.div>
 
@@ -187,7 +165,7 @@ export default function Testimonials() {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="text-5xl sm:text-6xl lg:text-7xl font-[550] tracking-[-0.035em] text-[#111111] leading-[0.96]"
             >
-              Different intelligence
+              Ideas we're
             </motion.h2>
           </div>
 
@@ -198,7 +176,7 @@ export default function Testimonials() {
               transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
               className="text-5xl sm:text-6xl lg:text-7xl font-serif italic font-normal text-[#111111] leading-[0.96]"
             >
-              for different worlds.
+              learning from.
             </motion.div>
           </div>
 
@@ -209,7 +187,7 @@ export default function Testimonials() {
             transition={{ duration: 0.6, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
             className="mt-5 text-base sm:text-lg text-[#66635D] leading-relaxed max-w-xl"
           >
-            Human intelligence is never truly detached from the individual using it. What someone knows, what they have experienced, and what they are trying to achieve all shape cognition.
+            Two independent publications that inform our thinking. Knull didn't write them, and they don't prove our approach works. They help frame the questions we're pursuing.
           </motion.p>
         </div>
 
@@ -248,7 +226,7 @@ export default function Testimonials() {
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#8CB800]" />
               </span>
               <span className="tracking-widest uppercase font-semibold text-[#111111]">
-                CONVERSATION CAPTURED
+                INDEPENDENT RESEARCH
               </span>
             </div>
 
@@ -419,7 +397,6 @@ export default function Testimonials() {
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                   className="text-3xl sm:text-4xl lg:text-[44px] font-[480] text-[#111111] leading-[1.12] tracking-[-0.025em] font-sans"
                 >
-                  &ldquo;
                   {current.quoteParts.map((part, pIdx) => {
                     if (part.highlight) {
                       return (
@@ -437,7 +414,6 @@ export default function Testimonials() {
                     }
                     return <span key={pIdx}>{part.text}</span>;
                   })}
-                  &rdquo;
                 </motion.blockquote>
               </AnimatePresence>
             </div>
@@ -531,7 +507,7 @@ export default function Testimonials() {
                 whileTap={{ scale: 0.92 }}
                 whileHover={{ x: -3 }}
                 className="w-13 h-13 rounded-full border border-[rgba(0,0,0,0.10)] bg-white hover:bg-[#111111] hover:text-white text-[#111111] flex items-center justify-center transition-colors duration-200 cursor-pointer shadow-2xs group"
-                aria-label="Previous conversation"
+                aria-label="Previous publication"
               >
                 <ArrowLeft className="w-4.5 h-4.5 group-hover:-translate-x-0.5 transition-transform" />
               </motion.button>
@@ -542,7 +518,7 @@ export default function Testimonials() {
                 whileTap={{ scale: 0.92 }}
                 whileHover={{ x: 3 }}
                 className="w-13 h-13 rounded-full border border-[rgba(0,0,0,0.10)] bg-white hover:bg-[#111111] hover:text-white text-[#111111] flex items-center justify-center transition-colors duration-200 cursor-pointer shadow-2xs group"
-                aria-label="Next conversation"
+                aria-label="Next publication"
               >
                 <ArrowRight className="w-4.5 h-4.5 group-hover:translate-x-0.5 transition-transform" />
               </motion.button>

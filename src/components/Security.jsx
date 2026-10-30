@@ -33,9 +33,9 @@ export default function Security() {
     {
       id: "bots",
       num: 1,
-      title: "No Third-Party Bots",
-      shortDesc: "Audio captured locally. No bot joins your call.",
-      expandedDesc: "Local OS driver capture avoids client skepticism and zero bot permissions.",
+      title: "Evidence Provenance",
+      shortDesc: "Every finding keeps its source.",
+      expandedDesc: "Claims link back to where they came from, with the strength of support recorded.",
       // Upper-Left
       pos: { x: "4%", y: "10%" },
       path: "M 110 85 C 160 115, 200 150, 240 185",
@@ -45,9 +45,9 @@ export default function Security() {
     {
       id: "training",
       num: 2,
-      title: "Zero Model Training",
-      shortDesc: "Transcripts never train public AI models.",
-      expandedDesc: "Zero-retention model endpoints. Your proprietary data never trains external LLMs.",
+      title: "Reviewable Changes",
+      shortDesc: "Corrections wait for human approval.",
+      expandedDesc: "Proposed updates are held for review instead of silently rewriting what the system knew.",
       // Lower-Left
       pos: { x: "4%", y: "76%" },
       path: "M 110 380 C 160 350, 200 320, 240 295",
@@ -57,9 +57,9 @@ export default function Security() {
     {
       id: "encryption",
       num: 3,
-      title: "AES-256 Encryption",
-      shortDesc: "Encrypted at rest with dedicated customer keys.",
-      expandedDesc: "FIPS 140-2 validated KMS keys. Granular field-level encryption on all synthesis.",
+      title: "Investigation History",
+      shortDesc: "Past conclusions are kept, not erased.",
+      expandedDesc: "Earlier findings, competing explanations and the reasons for each change stay on record.",
       // Upper-Right
       pos: { x: "64%", y: "10%" },
       path: "M 530 85 C 480 115, 440 150, 400 185",
@@ -69,9 +69,9 @@ export default function Security() {
     {
       id: "governance",
       num: 4,
-      title: "Workspace Governance",
-      shortDesc: "Granular RBAC, Okta SSO & retention policies.",
-      expandedDesc: "Automated GDPR/CCPA purging, audit logs, and enterprise SCIM provisioning.",
+      title: "Privacy by Design",
+      shortDesc: "Handled with care from the start.",
+      expandedDesc: "Privacy and access control are design priorities as AHI develops. We don't claim formal certifications yet.",
       // Lower-Right
       pos: { x: "64%", y: "76%" },
       path: "M 530 380 C 480 350, 440 320, 400 295",
@@ -82,14 +82,14 @@ export default function Security() {
 
   // Floating Internal Conversation Particles (representing protected memory items)
   const conversationParticles = useMemo(() => [
-    { id: "p1", label: "Q3 pricing", x: 260, y: 120, dur: 4.5, delay: 0.2 },
-    { id: "p2", label: "launch date", x: 390, y: 110, dur: 5.2, delay: 0.8 },
-    { id: "p3", label: "customer feedback", x: 180, y: 220, dur: 4.8, delay: 0.5 },
-    { id: "p4", label: "action item", x: 440, y: 220, dur: 5.6, delay: 1.1 },
-    { id: "p5", label: "EU hosting", x: 200, y: 310, dur: 4.2, delay: 0.3 },
-    { id: "p6", label: "design review", x: 420, y: 320, dur: 5.0, delay: 0.9 },
-    { id: "p7", label: "audit log", x: 320, y: 360, dur: 4.6, delay: 0.6 },
-    { id: "p8", label: "SLA terms", x: 320, y: 90, dur: 5.4, delay: 1.3 },
+    { id: "p1", label: "source", x: 260, y: 120, dur: 4.5, delay: 0.2 },
+    { id: "p2", label: "evidence", x: 390, y: 110, dur: 5.2, delay: 0.8 },
+    { id: "p3", label: "uncertainty", x: 180, y: 220, dur: 4.8, delay: 0.5 },
+    { id: "p4", label: "past finding", x: 440, y: 220, dur: 5.6, delay: 1.1 },
+    { id: "p5", label: "assumption", x: 200, y: 310, dur: 4.2, delay: 0.3 },
+    { id: "p6", label: "correction", x: 420, y: 320, dur: 5.0, delay: 0.9 },
+    { id: "p7", label: "change history", x: 320, y: 360, dur: 4.6, delay: 0.6 },
+    { id: "p8", label: "human review", x: 320, y: 90, dur: 5.4, delay: 1.3 },
   ], []);
 
   // Step-by-step security activation upon entering view
@@ -122,7 +122,7 @@ export default function Security() {
       setDeflectionEvent({
         x: 540,
         y: 240,
-        label: "Strategic roadmap",
+        label: "Unreviewed change",
         key: Date.now(),
       });
 
@@ -207,7 +207,7 @@ export default function Security() {
             >
               <span className="w-2 h-2 rounded-full bg-[#C8E63A]" />
               <span className="text-xs font-mono uppercase tracking-widest text-[#66635D]">
-                SOVEREIGNTY &bull; BY DESIGN
+                TRUST &bull; BY DESIGN
               </span>
             </motion.div>
 
@@ -220,7 +220,7 @@ export default function Security() {
                   transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                   className="text-5xl sm:text-6xl font-[550] tracking-[-0.035em] text-[#111111] leading-[0.96]"
                 >
-                  Your intelligence
+                  Learning you
                 </motion.h2>
               </div>
 
@@ -231,7 +231,7 @@ export default function Security() {
                   transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
                   className="text-5xl sm:text-6xl font-serif italic font-normal text-[#111111] leading-[0.96]"
                 >
-                  stays sovereign.
+                  can check.
                 </motion.div>
               </div>
             </div>
@@ -243,7 +243,7 @@ export default function Security() {
               transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
               className="text-base sm:text-lg text-[#66635D] leading-relaxed max-w-lg"
             >
-              We built Knull knowing that an artificial individual develops proprietary experience, strategy, and understanding that must remain inside an isolated boundary.
+              Trust comes from seeing how a system learned. AHI keeps the source of every finding, records how conclusions change, and holds corrections for human review. Privacy and controlled change are part of the design from the start.
             </motion.p>
 
             {/* Live Boundary Reassurance Pill */}
@@ -255,11 +255,11 @@ export default function Security() {
             >
               <div className="flex items-center gap-2.5">
                 <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-[#111111] font-semibold">Boundary Status:</span>
-                <span className="text-emerald-800 font-medium">100% Enforced</span>
+                <span className="text-[#111111] font-semibold">Design principles:</span>
+                <span className="text-emerald-800 font-medium">Traceable &amp; reviewable</span>
               </div>
               <span className="text-[#66635D] text-[11px]">
-                {activationStep >= 4 ? "4/4 Layers Active" : `${activationStep}/4 Activating`}
+                {activationStep >= 4 ? "4/4 Principles" : `${activationStep}/4 Principles`}
               </span>
             </motion.div>
           </motion.div>
@@ -406,7 +406,7 @@ export default function Security() {
                     top: `${(deflectionEvent.y / 480) * 100 - 6}%`,
                   }}
                 >
-                  &larr; Stays within your control
+                  &larr; Held for review
                 </motion.div>
               )}
             </AnimatePresence>
@@ -429,7 +429,7 @@ export default function Security() {
               className="absolute left-[45%] top-2 z-20 pointer-events-none text-center"
             >
               <span className="text-[10px] font-mono text-[#66635D] bg-white/80 border border-[rgba(0,0,0,0.08)] px-2 py-0.5 rounded-full shadow-2xs">
-                &ldquo;Q3 pricing discussion&rdquo;
+                &ldquo;New evidence&rdquo;
               </span>
             </motion.div>
 
@@ -479,14 +479,14 @@ export default function Security() {
                     KNULL
                   </h3>
                   <span className="text-[11px] font-mono text-[#88867F] mt-0.5">
-                    COGNITIVE VAULT
+                    EVIDENCE RECORD
                   </span>
 
                   {/* Status Indicator */}
                   <div className="mt-3.5 pt-3 border-t border-[#262624] w-full flex items-center justify-between text-[10px] font-mono">
                     <span className="flex items-center gap-1.5 text-[#C8E63A]">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#C8E63A] animate-pulse" />
-                      <span>{activationStep >= 4 ? "Protected" : "Enforcing"}</span>
+                      <span>{activationStep >= 4 ? "Traceable" : "Linking"}</span>
                     </span>
                     <span className="text-[#88867F]">
                       {activationStep >= 4 ? "4/4 Active" : `${activationStep}/4 Active`}
@@ -495,7 +495,7 @@ export default function Security() {
 
                   {/* Subtitle tag */}
                   <span className="text-[9px] font-mono text-[#66635D] mt-2 block uppercase tracking-wider">
-                    Sovereign by default
+                    Reviewable by design
                   </span>
                 </motion.div>
               </motion.div>
@@ -586,7 +586,7 @@ export default function Security() {
                     {isHovered && (
                       <div className="mt-2 pt-1.5 border-t border-[rgba(0,0,0,0.06)] flex items-center gap-1 text-[9px] font-mono text-emerald-800 font-semibold">
                         <Check className="w-2.5 h-2.5 text-emerald-600" />
-                        <span>Enforced &bull; Active</span>
+                        <span>Design principle</span>
                       </div>
                     )}
                   </motion.div>
@@ -608,28 +608,28 @@ export default function Security() {
         >
           <div className="flex items-center gap-2 text-[#111111] font-semibold">
             <span className="w-2 h-2 rounded-full bg-[#C8E63A]" />
-            <span>ENTERPRISE COMPLIANCE:</span>
+            <span>HOW WE APPROACH TRUST:</span>
           </div>
 
           <div className="flex flex-wrap items-center gap-4 sm:gap-6">
             <span className="flex items-center gap-1.5 hover:text-[#111111] transition-colors cursor-default">
               <span className="w-1 h-1 rounded-full bg-emerald-600" />
-              SOC-2 TYPE II AUDITED
+              SOURCES KEPT
             </span>
             <span className="text-[#DCDAD2] hidden sm:inline">&bull;</span>
             <span className="flex items-center gap-1.5 hover:text-[#111111] transition-colors cursor-default">
               <span className="w-1 h-1 rounded-full bg-emerald-600" />
-              GDPR &amp; CCPA COMPLIANT
+              UNCERTAINTY SHOWN
             </span>
             <span className="text-[#DCDAD2] hidden sm:inline">&bull;</span>
             <span className="flex items-center gap-1.5 hover:text-[#111111] transition-colors cursor-default">
               <span className="w-1 h-1 rounded-full bg-emerald-600" />
-              HIPAA BAA AVAILABLE
+              CHANGES REVIEWED
             </span>
             <span className="text-[#DCDAD2] hidden sm:inline">&bull;</span>
             <span className="flex items-center gap-1.5 hover:text-[#111111] transition-colors cursor-default">
               <span className="w-1 h-1 rounded-full bg-emerald-600" />
-              AIR-GAPPED LOCAL OPTIONS
+              NO SILENT REWRITES
             </span>
           </div>
         </motion.div>

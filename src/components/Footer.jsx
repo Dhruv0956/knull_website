@@ -9,6 +9,7 @@ export default function Footer() {
         { label: "The Problem", href: "#problem" },
         { label: "The Idea", href: "#idea" },
         { label: "The Vision", href: "#vision" },
+        { label: "AHI", href: "#memory" },
         { label: "Artificial Individuals", href: "#individuals" },
         { label: "Applications", href: "#applications" },
       ],
@@ -16,27 +17,27 @@ export default function Footer() {
     {
       title: "Pillars",
       links: [
-        { label: "Context", href: "#individuals" },
-        { label: "Memory", href: "#individuals" },
-        { label: "Adaptation", href: "#individuals" },
-        { label: "Individuality", href: "#individuals" },
+        { label: "Bio-Inspired Intelligence", href: "#individuals" },
+        { label: "Computational Emotions", href: "#individuals" },
+        { label: "Proactive Discovery", href: "#individuals" },
+        { label: "Verifiable Learning", href: "#individuals" },
       ],
     },
     {
       title: "Company",
       links: [
         { label: "About Knull", href: "#hero" },
-        { label: "Perspectives", href: "#people" },
-        { label: "Ecosystem", href: "#ecosystem" },
-        { label: "Deployment", href: "#pricing" },
+        { label: "Founder", href: "#founder" },
+        { label: "Research Perspectives", href: "#people" },
+        { label: "Research Architecture", href: "#ecosystem" },
       ],
     },
     {
-      title: "Sovereignty",
+      title: "Trust",
       links: [
-        { label: "Privacy & Isolation", href: "#security" },
+        { label: "Evidence & Provenance", href: "#security" },
         { label: "Terms of Research", href: "#" },
-        { label: "Boundary Defense", href: "#security" },
+        { label: "Reviewable Changes", href: "#security" },
       ],
     },
   ];
@@ -71,7 +72,7 @@ export default function Footer() {
               </span>
             </a>
             <p className="text-xs text-[#88867F] max-w-xs leading-relaxed font-normal">
-              Knull is building a new direction for artificial intelligence — systems designed to develop intelligence around context, objectives, experience and behaviour.
+              An AI that doesn't just respond. It remembers, questions, discovers, and evolves with you. Knull is an AI research and engineering company pursuing adaptive, proprietary intelligence.
             </p>
             <div className="pt-2 text-[11px] font-mono text-[#5F5D57]">
               San Francisco &bull; Distributed Research Labs
@@ -109,10 +110,9 @@ export default function Footer() {
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-1.5 text-[#C8E63A]">
               <span className="w-1.5 h-1.5 rounded-full bg-[#C8E63A] animate-pulse" />
-              All Systems Operational
+              Research in progress
             </span>
-            <span>Zero Public Training</span>
-            <span>Sovereign Boundary</span>
+            <span>AHI &bull; First research product</span>
           </div>
         </div>
       </div>

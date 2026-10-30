@@ -137,7 +137,7 @@ export default function Navbar({ onOpenCommandPalette, onOpenWorkspace }) {
             className="hidden md:flex items-center gap-1.5 text-xs font-medium text-[#171717] bg-white/70 hover:bg-[#F1F0EA] border border-[#DCDAD2] px-3.5 py-1.5 rounded-full transition-all cursor-pointer hover:shadow-xs"
           >
             <LayoutGrid className="w-3.5 h-3.5" />
-            <span>Research</span>
+            <span>AHI</span>
           </button>
 
           {/* Primary CTA button with Accent */}
@@ -192,7 +192,7 @@ export default function Navbar({ onOpenCommandPalette, onOpenWorkspace }) {
                 }}
                 className="w-full text-left p-2.5 font-medium text-[#171717] hover:bg-[#F1F0EA] rounded-xl cursor-pointer flex items-center justify-between"
               >
-                <span>Explore Research Space</span>
+                <span>Meet AHI</span>
                 <LayoutGrid className="w-4 h-4 text-[#5F5D57]" />
               </button>
               <button

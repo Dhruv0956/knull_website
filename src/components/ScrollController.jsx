@@ -5,12 +5,11 @@ import { smoothScrollTo } from '../utils/scroll';
 
 const SECTIONS = [
   { id: 'hero', label: 'Top' },
-  { id: 'product', label: 'Product' },
-  { id: 'before', label: 'Before' },
-  { id: 'during', label: 'During' },
-  { id: 'after', label: 'After' },
-  { id: 'memory', label: 'Memory' },
-  { id: 'pricing', label: 'Pricing' },
+  { id: 'problem', label: 'Problem' },
+  { id: 'idea', label: 'Idea' },
+  { id: 'vision', label: 'Vision' },
+  { id: 'memory', label: 'AHI' },
+  { id: 'individuals', label: 'Pillars' },
 ];
 
 export default function ScrollController() {
@@ -53,7 +52,7 @@ export default function ScrollController() {
       const nextId = SECTIONS[currentSectionIndex + 1].id;
       smoothScrollTo(`#${nextId}`, -80);
     } else {
-      smoothScrollTo('#pricing', -80);
+      smoothScrollTo('#founder', -80);
     }
   };
 
@@ -103,7 +102,7 @@ export default function ScrollController() {
               </svg>
             </div>
             <span className="text-[#171717] font-semibold text-[11px]">
-              {SECTIONS[currentSectionIndex]?.label || 'Cadence'}
+              {SECTIONS[currentSectionIndex]?.label || 'Knull'}
             </span>
             <span className="text-[#88867F] text-[10px]">
               {percent}%

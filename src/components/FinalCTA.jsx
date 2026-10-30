@@ -41,12 +41,12 @@ export default function FinalCTA({ onOpenWorkspace }) {
 
         {/* Headline with Serif Emphasis */}
         <h2 className="text-5xl sm:text-7xl lg:text-8xl font-[550] tracking-[-0.045em] text-[#F8F7F2] leading-[0.94] max-w-4xl mx-auto">
-          Build intelligence that <br className="hidden sm:inline" />
-          <span className="font-serif italic font-normal text-[#C8E63A]">understands.</span>
+          The future of intelligence <br className="hidden sm:inline" />
+          <span className="font-serif italic font-normal text-[#C8E63A]">doesn't end with an answer.</span>
         </h2>
 
         <p className="text-lg sm:text-xl text-[#88867F] max-w-xl mx-auto font-normal leading-relaxed">
-          Systems designed to develop intelligence around context, objectives, experience and behaviour.
+          We're building toward AI that learns from experience, explores what it doesn't know, and develops a deeper understanding over time.
         </p>
 
         {/* Lime Primary CTA */}
@@ -68,18 +68,18 @@ export default function FinalCTA({ onOpenWorkspace }) {
               if (onOpenWorkspace) {
                 onOpenWorkspace('northwind');
               } else {
-                addToast('Opening Knull research environment');
+                addToast('Opening AHI');
               }
             }}
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-transparent text-[#F8F7F2] border border-[#5F5D57] hover:border-[#F8F7F2] px-7 py-4 rounded-full text-sm font-medium transition-colors cursor-pointer"
           >
             <Sparkles className="w-4 h-4 text-[#C8E63A]" />
-            <span>Research direction</span>
+            <span>Meet AHI</span>
           </button>
         </div>
 
         <p className="text-xs text-[#88867F] font-mono pt-4">
-          Context &bull; Objectives &bull; Experience &bull; Behaviour
+          Remembers &bull; Questions &bull; Discovers &bull; Evolves
         </p>
       </motion.div>
     </section>

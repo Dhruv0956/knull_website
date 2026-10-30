@@ -22,10 +22,11 @@ export default function AfterMeeting() {
   const sandboxY = useTransform(scrollYProgress, [0, 1], [25, -25]);
 
   const rawBullets = [
-    "Mission: To build machines that understand more than instructions.",
-    "Approach: Understand. Adapt. Act. Learn.",
-    "Interaction: A continuous loop rather than a single interaction.",
-    "Proprietary: Long-term advantage is accumulated experience in reality.",
+    "Built: AHI, evidence-based investigation and context-gap detection.",
+    "Researching: bio-inspired neural computation.",
+    "Researching: adaptive memory and continual learning.",
+    "Long term: our own efficient, proprietary architecture.",
+    "Open question: whether artificial sentience is possible at all.",
   ];
 
   const handleEnhance = () => {
@@ -34,14 +35,14 @@ export default function AfterMeeting() {
 
     setTimeout(() => {
       setAnimatingStep(2);
-      addToast('Synthesized Knull research vision pillars');
+      addToast('Mapped the Knull research roadmap');
     }, 1200);
   };
 
   const handleCopy = () => {
     setCopied(true);
-    navigator.clipboard?.writeText("To build machines that understand more than instructions. Understand. Adapt. Act. Learn.");
-    addToast('Vision architecture copied');
+    navigator.clipboard?.writeText("Built: AHI evidence-based investigation. Researching: bio-inspired computation, adaptive memory, continual learning. Long term: a proprietary architecture. Open question: whether artificial sentience is possible.");
+    addToast('Roadmap copied');
     setTimeout(() => setCopied(false), 2000);
   };
 
@@ -62,10 +63,10 @@ export default function AfterMeeting() {
             </span>
           </div>
           <h2 className="text-5xl sm:text-6xl lg:text-7xl font-[550] tracking-[-0.04em] text-[#171717] leading-[0.95]">
-            Building beyond <span className="font-serif italic font-normal">generalization.</span>
+            Our own <span className="font-serif italic font-normal">architecture.</span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-[#5F5D57] leading-relaxed">
-            To build machines that understand more than instructions. A continuous loop rather than a single interaction. Long-term advantage is not the interface; it is the accumulated experience of systems in reality.
+            We don't intend to depend on GPT, Qwen or any other existing model forever. Our goal is a proprietary architecture inspired by biological intelligence, with adaptive memory, continual learning and more efficient reasoning. Further out, our founders want to explore a harder question: could an artificial being ever be sentient? Nobody knows yet, and there's no established way to build one. We treat it as an open scientific question, not a promise.
           </p>
         </div>
 
@@ -91,18 +92,18 @@ export default function AfterMeeting() {
               </div>
               <div>
                 <span className="text-[10px] font-mono uppercase text-violet-700 font-semibold bg-violet-50 px-2 py-0.5 rounded-full border border-violet-200">
-                  Interactive Vision Architecture
+                  Research Roadmap
                 </span>
-                <h3 className="text-xl font-[550] text-[#171717]">Knull Foundational Pillars</h3>
+                <h3 className="text-xl font-[550] text-[#171717]">From AHI to our own architecture</h3>
               </div>
             </div>
 
             {/* Template Selector Chips */}
             <div className="flex items-center gap-1.5 bg-[#F8F7F2] p-1 rounded-full border border-[#DCDAD2] text-xs font-mono">
               {[
-                { id: 'executive', label: 'Mission' },
-                { id: 'prd', label: 'Approach' },
-                { id: 'sales', label: 'Proprietary' },
+                { id: 'executive', label: 'Built' },
+                { id: 'prd', label: 'Researching' },
+                { id: 'sales', label: 'Vision' },
               ].map((fmt) => (
                 <button
                   key={fmt.id}
@@ -131,10 +132,10 @@ export default function AfterMeeting() {
             >
               <div className="flex items-center justify-between">
                 <span className="font-mono text-xs uppercase text-amber-800 font-semibold bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200">
-                  Core Axioms
+                  Where we are
                 </span>
                 <span className="text-[10px] font-mono bg-white text-[#5F5D57] px-2 py-0.5 rounded border border-[#DCDAD2]">
-                  4 Principles
+                  4 Stages
                 </span>
               </div>
               <ul className="space-y-2.5 text-xs text-[#171717] font-mono leading-relaxed">
@@ -146,7 +147,7 @@ export default function AfterMeeting() {
                 ))}
               </ul>
               <div className="text-[11px] text-[#88867F] font-mono">
-                Foundational thesis for machine intelligence beyond generalization.
+                What exists today, what we're researching, and where we're headed.
               </div>
             </motion.div>
 
@@ -166,22 +167,22 @@ export default function AfterMeeting() {
                 {animatingStep === 1 ? (
                   <>
                     <RefreshCw className="w-3.5 h-3.5 animate-spin text-[#171717]" />
-                    <span>Synthesizing...</span>
+                    <span>Mapping...</span>
                   </>
                 ) : animatingStep === 2 ? (
                   <>
                     <Check className="w-3.5 h-3.5 text-[#C8E63A]" />
-                    <span>✓ Enhanced</span>
+                    <span>✓ Mapped</span>
                   </>
                 ) : (
                   <>
                     <Sparkles className="w-3.5 h-3.5" />
-                    <span>Synthesize vision</span>
+                    <span>Show the path</span>
                   </>
                 )}
               </motion.button>
               <span className="text-[10px] font-mono text-[#88867F] text-center">
-                Operational reality loop
+                Built &rarr; Research &rarr; Vision
               </span>
             </div>
 
@@ -220,30 +221,40 @@ export default function AfterMeeting() {
                       {/* Mission Card */}
                       <div className="p-3.5 bg-white rounded-xl border border-violet-100 space-y-1 shadow-xs">
                         <span className="text-[10px] font-mono text-violet-700 uppercase font-semibold">
-                          Mission
+                          Built today
                         </span>
                         <p className="text-[#171717] leading-relaxed">
-                          To build machines that understand <span className="lime-highlight font-medium">more than instructions</span>.
+                          AHI runs <span className="lime-highlight font-medium">evidence-governed investigations</span> and flags gaps in context.
                         </p>
                       </div>
 
                       {/* Approach Card */}
                       <div className="p-3.5 bg-white rounded-xl border border-emerald-100 space-y-1 shadow-xs">
                         <span className="text-[10px] font-mono text-emerald-700 uppercase font-semibold">
-                          Approach
+                          Researching
                         </span>
                         <p className="text-[#171717] font-medium leading-relaxed">
-                          Understand. Adapt. Act. Learn. A continuous loop rather than a single interaction.
+                          Bio-inspired neural computation, associative memory and continual learning. Candidates, not final choices.
                         </p>
                       </div>
 
                       {/* Proprietary Card */}
                       <div className="p-3.5 bg-white rounded-xl border border-amber-100 space-y-1 shadow-xs">
                         <span className="text-[10px] font-mono text-amber-700 uppercase font-semibold">
-                          Proprietary Advantage
+                          Long-term vision
                         </span>
                         <p className="text-[#171717] font-medium leading-relaxed">
-                          Long-term advantage is not the interface. It is the accumulated experience of systems in reality.
+                          A proprietary architecture that learns from experience and reasons more efficiently. Not yet built or validated.
+                        </p>
+                      </div>
+
+                      {/* Open Question Card */}
+                      <div className="p-3.5 bg-white rounded-xl border border-violet-100 space-y-1 shadow-xs">
+                        <span className="text-[10px] font-mono text-violet-700 uppercase font-semibold">
+                          Open question
+                        </span>
+                        <p className="text-[#171717] font-medium leading-relaxed">
+                          Could a sentient artificial being ever exist? We're exploring it, with no guarantee of an answer. AHI is not sentient and doesn't experience feelings.
                         </p>
                       </div>
                     </motion.div>
@@ -256,16 +267,16 @@ export default function AfterMeeting() {
                       className="flex flex-col items-center justify-center py-14 text-center text-[#88867F] text-xs"
                     >
                       <Sparkles className="w-8 h-8 text-[#C8E63A] mb-3 animate-pulse" />
-                      <span className="max-w-xs">Click &ldquo;Synthesize vision&rdquo; to explore the foundational pillars of intelligence beyond generalization.</span>
+                      <span className="max-w-xs">Click &ldquo;Show the path&rdquo; to see what exists today and what we're still researching.</span>
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
 
               <div className="pt-3 border-t border-[#E8E6DF] text-[10px] font-mono flex items-center justify-between">
-                <span className="text-indigo-700 font-medium">Loop: Understand &bull; Adapt &bull; Act &bull; Learn</span>
+                <span className="text-indigo-700 font-medium">Built &bull; Researching &bull; Vision &bull; Open question</span>
                 <span className="text-emerald-700 font-semibold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                  Continuous Loop
+                  Work in progress
                 </span>
               </div>
             </motion.div>

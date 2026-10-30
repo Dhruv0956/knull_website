@@ -42,58 +42,58 @@ export default function DuringMeeting() {
 
   const comparisons = [
     {
-      id: "limit",
-      title: "Limit of Generalization",
-      typed: "generalization creates power and distance",
-      category: "Limit of Generalization",
+      id: "memory",
+      title: "Memory",
+      typed: "why does every session start from scratch?",
+      category: "Memory",
       categoryColor: "bg-amber-50 text-amber-900 border-amber-200",
       speaker: "Knull Research",
-      role: "Cognitive Architecture",
-      initials: "LG",
+      role: "Open problem",
+      initials: "ME",
       avatarBg: "bg-indigo-600",
-      timestamp: "Thesis #01",
-      enhanced: "Generalization creates power. Generalization also creates distance. To generalize is to abstract.",
-      decision: "Scale without contextual grounding creates abstraction layers disconnected from reality.",
-      actionItem: "Re-anchor system reasoning to individual objectives and lived context.",
-      assignee: "Knull Core • Foundational",
-      ticketTag: "Thesis #01",
-      audioQuote: "Generalization creates power. Generalization also creates distance. To generalize is to abstract.",
+      timestamp: "Problem #01",
+      enhanced: "Useful intelligence should build on what it has already learned, instead of treating each interaction as a new beginning.",
+      decision: "Memory needs to be selective, connected and traceable, not just a longer context window.",
+      actionItem: "Research long-term associative memory that links evidence, findings and past investigations.",
+      assignee: "Pillar 01 • Bio-inspired intelligence",
+      ticketTag: "Problem #01",
+      audioQuote: "Remembering is more than storing. It means knowing what to keep, and why.",
     },
     {
-      id: "agi",
-      title: "The AGI Question",
-      typed: "what does 'General' actually mean?",
-      category: "The AGI Question",
+      id: "uncertainty",
+      title: "Uncertainty",
+      typed: "how sure should this answer be?",
+      category: "Uncertainty",
       categoryColor: "bg-blue-50 text-blue-900 border-blue-200",
       speaker: "Knull Research",
-      role: "Foundational Inquiry",
-      initials: "AQ",
+      role: "Open problem",
+      initials: "UN",
       avatarBg: "bg-emerald-600",
-      timestamp: "Thesis #02",
-      enhanced: "What does 'General' actually mean? Broad capability alone does not answer a deeper question: What kind of intelligence should exist inside such a system?",
-      decision: "Broad capability alone is insufficient. Systems must develop depth around context and behavior.",
-      actionItem: "Design architectures around persistent experience rather than generic interaction.",
-      assignee: "Knull Core • Directional",
-      ticketTag: "Thesis #02",
-      audioQuote: "Broad capability alone does not answer a deeper question: What kind of intelligence should exist inside such a system?",
+      timestamp: "Problem #02",
+      enhanced: "A fluent answer can still be wrong. Reliable systems need to separate evidence from assumption, and say when they don't know.",
+      decision: "Uncertainty should be tracked and shown, not hidden behind confident wording.",
+      actionItem: "Keep sources, confidence and competing explanations attached to every conclusion.",
+      assignee: "Pillar 04 • Verifiable learning",
+      ticketTag: "Problem #02",
+      audioQuote: "Doubt is useful when it sends you looking for better evidence.",
     },
     {
-      id: "different",
-      title: "Intelligence Different",
-      typed: "breakthrough from different not bigger",
-      category: "Alternative Destination",
+      id: "discovery",
+      title: "Discovery",
+      typed: "what should we be asking?",
+      category: "Discovery",
       categoryColor: "bg-violet-50 text-violet-900 border-violet-200",
       speaker: "Knull Research",
-      role: "Research Direction",
-      initials: "ID",
+      role: "Open problem",
+      initials: "DI",
       avatarBg: "bg-purple-600",
-      timestamp: "Thesis #03",
-      enhanced: "The next breakthrough may not come from making intelligence bigger. It may come from making intelligence different.",
-      decision: "Pivot AI research direction toward Artificial Individuals built around context and experience.",
-      actionItem: "Deploy systems designed to develop intelligence around objectives, experience and behaviour.",
-      assignee: "Knull Core • Destination",
-      ticketTag: "Thesis #03",
-      audioQuote: "The next breakthrough may not come from making intelligence bigger. It may come from making intelligence different.",
+      timestamp: "Problem #03",
+      enhanced: "Most AI waits for the right question. Often the most valuable step is noticing what's missing, inconsistent or overlooked.",
+      decision: "Useful independent investigation is still an open research problem, and one we think matters.",
+      actionItem: "Detect context gaps and contradictions, then suggest what's worth investigating next.",
+      assignee: "Pillar 03 • Proactive discovery",
+      ticketTag: "Problem #03",
+      audioQuote: "The question nobody thought to ask is often the one that matters.",
     },
   ];
 
@@ -111,13 +111,13 @@ export default function DuringMeeting() {
   const togglePlayback = () => {
     setIsPlaying(!isPlaying);
     if (!isPlaying) {
-      addToast(`Exploring thesis: ${comparisons[activeItemIndex].category}`);
+      addToast(`Exploring problem: ${comparisons[activeItemIndex].category}`);
     }
   };
 
   const handleSelectMoment = (idx) => {
     setActiveItemIndex(idx);
-    addToast(`Switched perspective to ${comparisons[idx].category}`);
+    addToast(`Viewing: ${comparisons[idx].category}`);
   };
 
   const current = comparisons[activeItemIndex];
@@ -139,14 +139,14 @@ export default function DuringMeeting() {
           <div className="flex items-center gap-2 mb-3">
             <span className="w-2 h-2 rounded-full bg-[#C8E63A]" />
             <span className="text-xs font-mono uppercase tracking-widest text-[#88867F]">
-              02 &bull; THE PROBLEM
+              01 &bull; THE PROBLEM
             </span>
           </div>
           <h2 className="text-5xl sm:text-6xl lg:text-7xl font-[550] tracking-[-0.04em] text-[#171717] leading-[0.95]">
-            Beyond <span className="font-serif italic font-normal">generalization.</span>
+            Answers aren't <span className="font-serif italic font-normal">understanding.</span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-[#5F5D57] leading-relaxed">
-            General intelligence may be the wrong destination. Generalization creates power. Generalization also creates distance. To generalize is to abstract.
+            Today's AI is remarkably capable. But turning answers into reliable understanding is still hard: building on what it learned before, knowing when it's unsure, and noticing what nobody asked about. We want to explore a different approach.
           </p>
         </div>
 
@@ -167,13 +167,13 @@ export default function DuringMeeting() {
                 }`}
               >
                 {isPlaying ? <Pause className="w-3.5 h-3.5 fill-current" /> : <Play className="w-3.5 h-3.5 fill-current" />}
-                <span>{isPlaying ? 'Pause Audio' : 'Play Audio Snippet'}</span>
+                <span>{isPlaying ? 'Pause' : 'Play'}</span>
               </button>
 
               <div className="flex items-center gap-2 bg-[#F8F7F2] px-3 py-1.5 rounded-xl border border-[#E8E6DF]">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span className="text-xs font-mono font-bold text-[#171717]">
-                  Cognitive Research Stream
+                  Open Research Problems
                 </span>
               </div>
 
@@ -186,7 +186,7 @@ export default function DuringMeeting() {
                   {current.speaker}
                 </span>
                 <span className="text-[10px] text-emerald-700 font-mono font-medium hidden sm:inline">
-                  (Active Focus)
+                  (In focus)
                 </span>
               </div>
             </div>
@@ -211,7 +211,7 @@ export default function DuringMeeting() {
                   />
                 ))}
                 <span className="ml-2 text-xs font-mono font-semibold text-[#171717]">
-                  Loop #{playbackTime}
+                  #{playbackTime}
                 </span>
               </div>
 
@@ -219,11 +219,11 @@ export default function DuringMeeting() {
               <div className="flex items-center gap-2 text-xs font-mono">
                 <span className="flex items-center gap-1.5 text-emerald-800 font-medium bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                  <span className="hidden sm:inline">Individualized</span>
+                  <span className="hidden sm:inline">Researching</span>
                 </span>
                 <span className="flex items-center gap-1 text-[#88867F] bg-[#FAF9F5] px-2.5 py-1 rounded-lg border border-[#DCDAD2]">
                   <Zap className="w-3 h-3 text-amber-500" />
-                  <span>Zero Distance</span>
+                  <span>Unsolved</span>
                 </span>
               </div>
             </div>
@@ -237,7 +237,7 @@ export default function DuringMeeting() {
           <div className="flex items-center gap-2">
             <Radio className="w-4 h-4 text-emerald-600 animate-pulse" />
             <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#171717]">
-              Inspect Live Moment:
+              Explore a problem:
             </span>
           </div>
 
@@ -296,7 +296,7 @@ export default function DuringMeeting() {
                   <div className="flex items-center gap-2">
                     <div className="w-2.5 h-2.5 rounded-full bg-amber-500" />
                     <span className="text-xs font-mono uppercase text-amber-950 font-bold bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200">
-                      The AGI Dilemma
+                      Open Questions
                     </span>
                   </div>
                   <span className="text-[10px] font-mono text-[#88867F] bg-[#FAF9F5] px-2.5 py-1 rounded-md border border-[#DCDAD2] flex items-center gap-1">
@@ -307,7 +307,7 @@ export default function DuringMeeting() {
 
                 {/* Micro Subheading */}
                 <p className="text-xs text-[#5F5D57] mb-4">
-                  Broad capability alone does not answer what kind of intelligence should exist inside such systems:
+                  Three gaps between producing an answer and developing understanding:
                 </p>
 
                 {/* Selectable Jotted Fragments */}
@@ -356,8 +356,8 @@ export default function DuringMeeting() {
 
               {/* Card Footer Helper */}
               <div className="pt-4 mt-6 text-xs text-[#88867F] font-mono flex items-center justify-between border-t border-[#E8E6DF]">
-                <span>Status: Capture Active</span>
-                <span className="text-amber-800 font-semibold">Click note to preview</span>
+                <span>3 open problems</span>
+                <span className="text-amber-800 font-semibold">Select one to explore</span>
               </div>
             </div>
           </motion.div>
@@ -379,11 +379,11 @@ export default function DuringMeeting() {
 
             <div className="space-y-1.5">
               <span className="text-[10px] font-mono uppercase tracking-wider font-bold text-[#171717] block bg-white px-2.5 py-1 rounded-full border border-[#DCDAD2] shadow-xs">
-                Context Bridge
+                Our Approach
               </span>
               <div className="w-16 h-0.5 bg-gradient-to-r from-amber-400 via-[#C8E63A] to-emerald-500 mx-auto rounded-full" />
               <span className="text-[9px] font-mono text-[#88867F] block">
-                Local Speech &bull; Matched
+                Question &rarr; Research
               </span>
             </div>
           </div>
@@ -421,7 +421,7 @@ export default function DuringMeeting() {
 
                   <span className="text-[10px] font-mono text-emerald-900 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full font-semibold flex items-center gap-1.5 shadow-xs">
                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                    Synthesized
+                    Research focus
                   </span>
                 </div>
 
@@ -439,7 +439,7 @@ export default function DuringMeeting() {
                     <div className="p-4 rounded-2xl bg-gradient-to-br from-[#FAFDF0] to-white border border-[#C8E63A]/80 space-y-1.5 shadow-xs">
                       <span className="text-[10px] font-mono text-[#5F5D57] uppercase tracking-wider font-semibold flex items-center gap-1.5">
                         <Sparkles className="w-3.5 h-3.5 text-[#8CB800]" />
-                        Knull Directional Thesis
+                        Why it matters
                       </span>
                       <p className="text-xs sm:text-sm text-[#171717] leading-relaxed font-sans font-medium">
                         {current.enhanced}
@@ -449,7 +449,7 @@ export default function DuringMeeting() {
                     {/* Agreed Decision */}
                     <div className="p-3 rounded-xl bg-[#FAF9F5] border border-[#E8E6DF] space-y-1 text-xs">
                       <span className="text-[10px] font-mono text-emerald-700 font-bold uppercase tracking-wider block">
-                        Core Finding:
+                        What we think:
                       </span>
                       <p className="text-[#171717] font-medium leading-snug">
                         {current.decision}
@@ -488,7 +488,7 @@ export default function DuringMeeting() {
                   <ArrowUpRight className="w-3 h-3" />
                   Knull Core Research
                 </span>
-                <span className="text-emerald-700 font-bold">100% Context Fidelity</span>
+                <span className="text-emerald-700 font-bold">Open research</span>
               </div>
             </div>
           </motion.div>

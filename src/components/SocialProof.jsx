@@ -2,19 +2,17 @@ import React from 'react';
 
 export default function SocialProof() {
   const teams = [
-    { name: "Context", symbol: "CTX" },
-    { name: "Objectives", symbol: "OBJ" },
-    { name: "Experience", symbol: "EXP" },
-    { name: "Behaviour", symbol: "BHV" },
-    { name: "Adaptation", symbol: "ADP" },
-    { name: "Individuality", symbol: "IND" },
+    { name: "Bio-Inspired Intelligence", symbol: "BI" },
+    { name: "Computational Emotions", symbol: "CE" },
+    { name: "Proactive Discovery", symbol: "PD" },
+    { name: "Verifiable Learning", symbol: "VL" },
   ];
 
   return (
     <section className="py-14 bg-white border-b border-[#E8E6DF]">
       <div className="max-w-[1240px] mx-auto px-6 text-center">
         <span className="text-xs font-mono uppercase tracking-widest text-[#88867F] block mb-8">
-          Architected around foundational cognitive dimensions
+          Four connected research pillars
         </span>
 
         {/* Minimalist Monochrome Logo Strip */}
@@ -33,7 +31,7 @@ export default function SocialProof() {
         </div>
         
         <span className="text-[10px] font-mono text-[#88867F] block mt-4">
-          A continuous loop rather than a single interaction
+          Remembers &bull; Questions &bull; Discovers &bull; Evolves
         </span>
       </div>
     </section>

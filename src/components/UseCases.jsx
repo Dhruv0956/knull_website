@@ -3,81 +3,81 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Briefcase, Code, Compass, UserCheck, Shield, TrendingUp, Sparkles, CheckCircle2 } from 'lucide-react';
 
 export default function UseCases() {
-  const [activeTab, setActiveTab] = useState('sales');
+  const [activeTab, setActiveTab] = useState('systems');
 
   const tabs = [
-    { id: 'science', label: 'Scientific Discovery', icon: Compass, color: 'text-emerald-400' },
-    { id: 'systems', label: 'Complex Systems', icon: Code, color: 'text-blue-400' },
-    { id: 'governance', label: 'Strategic Governance', icon: Briefcase, color: 'text-violet-400' },
-    { id: 'autonomous', label: 'Autonomous Agents', icon: Shield, color: 'text-amber-400' },
-    { id: 'interaction', label: 'Human Interaction', icon: UserCheck, color: 'text-indigo-400' },
+    { id: 'systems', label: 'Complex Investigations', icon: Code, color: 'text-blue-400' },
+    { id: 'science', label: 'Scientific Research', icon: Compass, color: 'text-emerald-400' },
+    { id: 'governance', label: 'Analysis & Decisions', icon: Briefcase, color: 'text-violet-400' },
+    { id: 'interaction', label: 'Personal Adaptive Intelligence', icon: UserCheck, color: 'text-indigo-400' },
+    { id: 'autonomous', label: 'Autonomous Research', icon: Shield, color: 'text-amber-400' },
   ];
 
   const contentMap = {
     science: {
-      headline: "Ground intelligence in empirical context and scientific hypotheses.",
-      tag: "Autonomous Research",
+      headline: "Help researchers see what the evidence doesn't cover yet.",
+      tag: "Envisioned",
       badgeColor: "bg-emerald-50 text-emerald-800 border-emerald-200",
       metricBadge: "bg-emerald-50 text-emerald-800 border-emerald-200",
       bullets: [
-        "Contextualizes empirical findings against domain-specific historical observations.",
-        "Identifies unexpected variance rather than smoothing it into generalized abstractions.",
-        "Formulates hypothesis iterations based on continuous experimental loops.",
+        "Keep track of findings, their sources and how confident each one is.",
+        "Flag when a new result contradicts an earlier conclusion.",
+        "Suggest directions worth investigating next.",
       ],
-      metric: "Zero detached assumptions",
-      metricSub: "100% grounded in experimental reality.",
+      metric: "Envisioned",
+      metricSub: "Builds on AHI's investigation work. Not yet a product.",
     },
     systems: {
-      headline: "Preserve operational architecture context across complex engineering domains.",
-      tag: "Systems Architecture",
+      headline: "Work through complex questions with evidence attached at every step.",
+      tag: "Demonstrated in prototype",
       badgeColor: "bg-blue-50 text-blue-800 border-blue-200",
       metricBadge: "bg-blue-50 text-blue-800 border-blue-200",
       bullets: [
-        "Understands why historical constraints exist within active system topography.",
-        "Adapts to architectural reality shifts rather than following static instructions.",
-        "Prevents rediscovery of resolved edge cases and structural trade-offs.",
+        "Gather evidence and record where each piece came from.",
+        "Detect gaps in context before a conclusion is drawn.",
+        "Keep competing explanations open until the evidence decides.",
       ],
-      metric: "100% context retention",
-      metricSub: "Eliminates repeated exploration of solved problems.",
+      metric: "Prototype",
+      metricSub: "Specific evidence-based investigations run in AHI today.",
     },
     governance: {
-      headline: "Align high-stakes decisions with institutional memory and objective context.",
-      tag: "Strategic Governance",
+      headline: "Support decisions with reasoning you can inspect.",
+      tag: "Envisioned",
       badgeColor: "bg-violet-50 text-violet-800 border-violet-200",
       metricBadge: "bg-violet-50 text-violet-800 border-violet-200",
       bullets: [
-        "Evaluates strategic options against accumulated organizational experience.",
-        "Tracks goal alignment and objective drift across multi-horizon initiatives.",
-        "Preserves the institutional memory of how critical decisions were shaped.",
+        "Separate evidence from assumptions in every recommendation.",
+        "Show uncertainty instead of hiding it.",
+        "Record why a recommendation changed, and who approved it.",
       ],
-      metric: "Total objective alignment",
-      metricSub: "Unbroken institutional memory across decision cycles.",
+      metric: "Envisioned",
+      metricSub: "Depends on our verifiable learning research.",
     },
     autonomous: {
-      headline: "Deploy artificial individuals with persistent memory and environmental awareness.",
-      tag: "Agentic Systems",
+      headline: "Systems that investigate open questions, with people in the loop.",
+      tag: "Long-term vision",
       badgeColor: "bg-amber-50 text-amber-800 border-amber-200",
       metricBadge: "bg-amber-50 text-amber-800 border-amber-200",
       bullets: [
-        "Operates with continuous memory rather than stateless prompt-response.",
-        "Different environments produce tailored intelligence suited for specific goals.",
-        "Incorporates live telemetry to act and learn within dynamic operational loops.",
+        "Identify unexplored possibilities and missing information.",
+        "Plan and run investigations within agreed limits.",
+        "Bring findings back for human review before anything changes.",
       ],
-      metric: "Persistent operational loop",
-      metricSub: "Zero context loss across continuous deployment.",
+      metric: "Long term",
+      metricSub: "General autonomous discovery is a research goal, not a current capability.",
     },
     interaction: {
-      headline: "Develop systems that understand human behaviour and individual nuance.",
-      tag: "Adaptive Interaction",
+      headline: "An AI that learns with you over time.",
+      tag: "Long-term vision",
       badgeColor: "bg-indigo-50 text-indigo-800 border-indigo-200",
       metricBadge: "bg-indigo-50 text-indigo-800 border-indigo-200",
       bullets: [
-        "Human intelligence is never truly detached from the individual using it.",
-        "Adapts to individual working styles, experience levels, and current objectives.",
-        "Builds collaboration around context rather than generic instructions.",
+        "Remember what matters to you, and why.",
+        "Adapt to your goals, context and way of working.",
+        "Respond to your actual needs, using empathy as a functional signal, not a feeling.",
       ],
-      metric: "Nuanced individual fit",
-      metricSub: "Tailored intelligence designed around human behaviour.",
+      metric: "Long term",
+      metricSub: "Needs long-term memory and continual learning first.",
     },
   };
 
@@ -95,8 +95,11 @@ export default function UseCases() {
             </span>
           </div>
           <h2 className="text-4xl sm:text-5xl font-[550] tracking-tight text-[#171717]">
-            Purpose-built for every domain.
+            Where this could lead.
           </h2>
+          <p className="mt-4 text-base sm:text-lg text-[#5F5D57] leading-relaxed">
+            One workflow is demonstrated in our prototype today. The others are where we hope the research leads.
+          </p>
         </div>
 
         {/* Tab Pills */}
@@ -159,7 +162,7 @@ export default function UseCases() {
 
             <div className="lg:col-span-4 bg-white p-7 sm:p-8 rounded-2xl border border-[#DCDAD2] text-center space-y-3 shadow-xs">
               <span className="text-[10px] font-mono text-[#88867F] uppercase tracking-wider block">
-                Impact Outcome
+                Status
               </span>
               <div className={`text-xl sm:text-2xl font-[550] py-2 px-3 rounded-xl border font-sans ${current.metricBadge}`}>
                 {current.metric}

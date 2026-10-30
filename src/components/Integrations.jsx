@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 import { motion, useInView, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { 
   Sparkles, 
@@ -15,66 +15,11 @@ import {
 } from 'lucide-react';
 import { useToast } from '../context/ToastContext';
 
-// Vector Brand Glyphs with authentic, minimal brand geometry
+// Research-area icons (replaced third-party brand logos)
+const AREA_ICONS = { neural: RefreshCw, memory: Database, appraisal: Radio, investigation: Zap, evidence: GitCommit, efficiency: Layers, review: ShieldCheck };
 const BrandGlyph = ({ toolId, className = "w-5 h-5" }) => {
-  switch (toolId) {
-    case 'zoom':
-      return (
-        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5" />
-          <rect x="2" y="6" width="14" height="12" rx="3" />
-        </svg>
-      );
-    case 'slack':
-      return (
-        <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-          <path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/>
-        </svg>
-      );
-    case 'google-meet':
-      return (
-        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <rect width="18" height="18" x="3" y="3" rx="2" />
-          <path d="m15 10 4-2.5v9L15 14" />
-          <path d="M7 10h5" />
-          <path d="M7 14h3" />
-        </svg>
-      );
-    case 'microsoft-teams':
-      return (
-        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-          <circle cx="9" cy="7" r="4" />
-          <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-        </svg>
-      );
-    case 'notion':
-      return (
-        <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-          <path d="M4.459 4.208c.746.606 1.026.56 2.428.466l11.758-.84c.513-.047.886-.42 1.026-.886.14-.467-.093-.933-.56-1.12L16.27.382c-.653-.326-1.4-.373-2.006-.093L3.106 5.42c-.56.28-.887.84-.793 1.447l2.146 14.557c.094.606.56 1.073 1.167 1.166l12.458 1.4c.607.094 1.167-.28 1.354-.84l2.053-12.784c.093-.606-.28-1.167-.84-1.353l-1.493-.42-14.697 1.072zm3.36 4.386l7.84-.56c.42 0 .746.327.7.747l-.607 4.013c-.046.373-.373.653-.746.653l-1.353-.093v3.78c0 .42-.327.746-.747.746h-1.68c-.42 0-.746-.326-.746-.746v-3.92l-1.96.14c-.42.047-.793-.28-.84-.7l-.466-3.407c-.047-.42.28-.747.7-.747z"/>
-        </svg>
-      );
-    case 'linear':
-      return (
-        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="10" />
-          <line x1="12" y1="8" x2="12" y2="12" />
-          <line x1="12" y1="16" x2="12.01" y2="16" />
-          <path d="M8 12h8" />
-        </svg>
-      );
-    case 'jira':
-      return (
-        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 2L2 7l10 5 10-5-10-5z" />
-          <path d="M2 17l10 5 10-5" />
-          <path d="M2 12l10 5 10-5" />
-        </svg>
-      );
-    default:
-      return <Layers className={className} />;
-  }
+  const Icon = AREA_ICONS[toolId] || Layers;
+  return <Icon className={className} />;
 };
 
 export default function Integrations() {
@@ -83,29 +28,21 @@ export default function Integrations() {
   const isInView = useInView(containerRef, { once: false, amount: 0.15 });
 
   const [hoveredToolId, setHoveredToolId] = useState(null);
-  const [ingestCounter, setIngestCounter] = useState(148);
 
-  // Smooth counter increment simulation for living feel
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIngestCounter(prev => prev + 1);
-    }, 2800);
-    return () => clearInterval(interval);
-  }, []);
 
   // Seven ecosystem tools with precise relative coordinates surrounding center Cadence (50%, 50%)
   // Canvas coordinate space: 1000 x 640
   // Cadence Center: (500, 320)
   const tools = useMemo(() => [
     {
-      id: "zoom",
-      name: "Zoom",
-      category: "Video & Audio",
-      streamLabel: "48kHz Meeting Streams",
-      initials: "ZM",
+      id: "neural",
+      name: "Neural Learning",
+      category: "Adaptation",
+      streamLabel: "Bio-inspired networks",
+      initials: "NL",
       color: "text-blue-600",
       accentBg: "bg-blue-50 border-blue-200",
-      stats: { primary: "3 active rooms", secondary: "108 mins ingested", detail: "48kHz diarization online" },
+      stats: { primary: "Researching", secondary: "Recurrent, spiking, liquid", detail: "Candidate architectures" },
       // Top Center: (50%, 9%) -> (500, 58)
       pctX: 50,
       pctY: 9,
@@ -118,14 +55,14 @@ export default function Integrations() {
       offset2: "1.3s"
     },
     {
-      id: "slack",
-      name: "Slack",
-      category: "Team Feed",
-      streamLabel: "Channels & Huddles",
-      initials: "SL",
+      id: "memory",
+      name: "Memory",
+      category: "Associative, long-term",
+      streamLabel: "Links across experience",
+      initials: "AM",
       color: "text-emerald-700",
       accentBg: "bg-emerald-50 border-emerald-200",
-      stats: { primary: "18 channels synced", secondary: "42 live references", detail: "7 active projects" },
+      stats: { primary: "Researching", secondary: "Associative recall", detail: "Builds on past investigations" },
       // Top Left: (14%, 22%) -> (140, 140)
       pctX: 14,
       pctY: 22,
@@ -138,14 +75,14 @@ export default function Integrations() {
       offset2: "1.4s"
     },
     {
-      id: "google-meet",
-      name: "Google Meet",
-      category: "Video & Audio",
-      streamLabel: "Native Browser Streams",
-      initials: "GM",
+      id: "appraisal",
+      name: "Appraisal",
+      category: "Computational signals",
+      streamLabel: "Curiosity, doubt, surprise",
+      initials: "AS",
       color: "text-teal-700",
       accentBg: "bg-teal-50 border-teal-200",
-      stats: { primary: "Calendar integrated", secondary: "14 scheduled today", detail: "Zero bots required" },
+      stats: { primary: "Researching", secondary: "Guides attention", detail: "Functional signals, not feelings" },
       // Top Right: (86%, 22%) -> (860, 140)
       pctX: 86,
       pctY: 22,
@@ -158,14 +95,14 @@ export default function Integrations() {
       offset2: "1.35s"
     },
     {
-      id: "notion",
-      name: "Notion",
-      category: "Knowledge Base",
-      streamLabel: "Docs, PRDs & Specs",
-      initials: "NT",
+      id: "investigation",
+      name: "Investigation",
+      category: "Discovery",
+      streamLabel: "Context-gap detection",
+      initials: "IN",
       color: "text-neutral-900",
       accentBg: "bg-stone-50 border-stone-200",
-      stats: { primary: "34 workspace pages", secondary: "Specs & PRDs indexed", detail: "Real-time 2-way sync" },
+      stats: { primary: "Prototype in AHI", secondary: "Evidence-based", detail: "Specific investigations today" },
       // Bottom Left: (14%, 72%) -> (140, 460)
       pctX: 14,
       pctY: 72,
@@ -178,14 +115,14 @@ export default function Integrations() {
       offset2: "1.5s"
     },
     {
-      id: "linear",
-      name: "Linear",
-      category: "Issue Tracker",
-      streamLabel: "Sprint Cycles & Issues",
-      initials: "LN",
+      id: "evidence",
+      name: "Evidence",
+      category: "Validation",
+      streamLabel: "Sources & uncertainty",
+      initials: "EV",
       color: "text-violet-700",
       accentBg: "bg-violet-50 border-violet-200",
-      stats: { primary: "Cycle 42 connected", secondary: "19 action items synced", detail: "Auto-creates #TICKETS" },
+      stats: { primary: "Prototype in AHI", secondary: "Provenance tracking", detail: "Competing explanations kept" },
       // Bottom Right: (86%, 72%) -> (860, 460)
       pctX: 86,
       pctY: 72,
@@ -198,14 +135,14 @@ export default function Integrations() {
       offset2: "1.45s"
     },
     {
-      id: "microsoft-teams",
-      name: "Microsoft Teams",
-      category: "Enterprise Tenant",
-      streamLabel: "Corporate Tenancy",
-      initials: "MS",
+      id: "efficiency",
+      name: "Efficiency",
+      category: "Efficient compute",
+      streamLabel: "Leaner reasoning",
+      initials: "EC",
       color: "text-indigo-700",
       accentBg: "bg-indigo-50 border-indigo-200",
-      stats: { primary: "Tenant SSO verified", secondary: "26 channels mapped", detail: "E3/E5 compliance lock" },
+      stats: { primary: "Researching", secondary: "Efficiency goal", detail: "No benchmarks published yet" },
       // Bottom Mid-Left: (36%, 89%) -> (360, 570)
       pctX: 36,
       pctY: 89,
@@ -218,14 +155,14 @@ export default function Integrations() {
       offset2: "1.4s"
     },
     {
-      id: "jira",
-      name: "Jira",
-      category: "Enterprise Issues",
-      streamLabel: "Backlog & Epics",
-      initials: "JR",
+      id: "review",
+      name: "Human Review",
+      category: "Controlled change",
+      streamLabel: "Approval before updates",
+      initials: "HR",
       color: "text-blue-800",
       accentBg: "bg-sky-50 border-sky-200",
-      stats: { primary: "Sprint 14 backlog", secondary: "Epics auto-linked", detail: "JQL context queries" },
+      stats: { primary: "Design principle", secondary: "Corrections reviewed", detail: "No silent rewrites" },
       // Bottom Mid-Right: (64%, 89%) -> (640, 570)
       pctX: 64,
       pctY: 89,
@@ -273,7 +210,7 @@ export default function Integrations() {
           >
             <span className="w-2 h-2 rounded-full bg-[#C8E63A]" />
             <span className="text-xs font-mono uppercase tracking-widest text-[#68655F]">
-              ECOSYSTEM
+              RESEARCH ARCHITECTURE
             </span>
           </motion.div>
 
@@ -285,7 +222,7 @@ export default function Integrations() {
               transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
               className="text-5xl sm:text-6xl lg:text-7xl font-[550] tracking-[-0.035em] text-[#111111] leading-[0.96]"
             >
-              Your workflow,
+              How the research
             </motion.h2>
           </div>
 
@@ -296,7 +233,7 @@ export default function Integrations() {
               transition={{ duration: 0.75, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
               className="text-5xl sm:text-6xl lg:text-7xl font-serif italic font-normal text-[#111111] leading-[0.96]"
             >
-              connected.
+              fits together.
             </motion.div>
           </div>
 
@@ -307,7 +244,7 @@ export default function Integrations() {
             transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="mt-5 text-base sm:text-lg text-[#68655F] leading-relaxed max-w-xl mx-auto"
           >
-            Knull connects the environments where decisions happen, bringing conversations, context and experience into one intelligent workspace.
+            A map of the research areas we're working on and how we expect them to connect. These are research components, not finished products or third-party integrations.
           </motion.p>
         </div>
 
@@ -503,17 +440,17 @@ export default function Integrations() {
 
                 {/* Context Layer Subtitle */}
                 <span className="text-xs font-mono text-[#A3A198] mt-0.5 font-medium">
-                  Context Layer
+                  Research Core
                 </span>
 
                 {/* Continuous Ingest Status Feed */}
                 <div className="mt-4 pt-3 border-t border-[#262624] w-full flex items-center justify-between text-[10px] font-mono">
                   <span className="flex items-center gap-1.5 text-[#C8E63A] font-semibold">
                     <span className="w-2 h-2 rounded-full bg-[#C8E63A] animate-ping" />
-                    <span>7 Feeds Live</span>
+                    <span>7 Research Areas</span>
                   </span>
                   <span className="text-[#88867F] font-mono">
-                    +{ingestCounter} ops/s
+                    In progress
                   </span>
                 </div>
               </motion.div>
@@ -609,17 +546,17 @@ export default function Integrations() {
                               {tool.name}
                             </span>
                             <span className="text-[9px] font-mono text-[#C8E63A] flex items-center gap-1 font-semibold">
-                              <Check className="w-2.5 h-2.5" /> Connected
+                              <Check className="w-2.5 h-2.5" /> Research area
                             </span>
                           </div>
                           
                           <div className="space-y-1 text-[10px] font-mono text-[#E4E3DF]">
                             <div className="flex items-center justify-between">
-                              <span className="text-[#88867F]">Context Stream:</span>
+                              <span className="text-[#88867F]">Status:</span>
                               <span className="font-semibold text-white">{tool.stats.primary}</span>
                             </div>
                             <div className="flex items-center justify-between">
-                              <span className="text-[#88867F]">Throughput:</span>
+                              <span className="text-[#88867F]">Focus:</span>
                               <span>{tool.stats.secondary}</span>
                             </div>
                             <div className="text-[9px] text-[#A3A198] pt-1 border-t border-[#262624]">
@@ -649,14 +586,14 @@ export default function Integrations() {
               KNULL
             </h3>
             <span className="text-xs font-mono text-[#A3A198]">
-              Context Layer
+              Research Core
             </span>
             <div className="mt-3.5 pt-3 border-t border-[#262624] flex items-center justify-between text-[11px] font-mono">
               <span className="text-[#C8E63A] flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-[#C8E63A] animate-ping" />
-                Active Feeds
+                Research Areas
               </span>
-              <span className="text-[#88867F]">7 tools ingested</span>
+              <span className="text-[#88867F]">7 connected</span>
             </div>
           </div>
 
@@ -682,7 +619,7 @@ export default function Integrations() {
                 </div>
                 <div className="text-right">
                   <span className="text-[9px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full font-medium">
-                    Streaming
+                    {tool.stats.primary}
                   </span>
                 </div>
               </div>
@@ -702,12 +639,12 @@ export default function Integrations() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="text-xs font-mono uppercase tracking-[0.2em] text-[#68655F]"
           >
-            One context layer.
+            One connected direction.
           </motion.p>
 
           {/* "Everything stays connected." Word-by-word reveal in editorial serif */}
           <div className="mt-3 flex items-center justify-center gap-2 flex-wrap">
-            {["Everything", "stays", "connected."].map((word, wIdx) => (
+            {["Built", "to", "work", "together."].map((word, wIdx) => (
               <motion.span
                 key={wIdx}
                 initial={{ opacity: 0, y: 15 }}
