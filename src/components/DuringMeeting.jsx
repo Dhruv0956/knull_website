@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, useInView, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { 
   Sparkles, 
   ArrowRight, 
-  Play, 
-  Pause, 
   Mic, 
   Volume2, 
   CheckCircle2, 
@@ -12,8 +10,6 @@ import {
   Share2, 
   Layers, 
   ArrowUpRight,
-  ShieldCheck,
-  Zap,
   CornerDownRight,
   Check,
   Radio,
@@ -27,8 +23,6 @@ export default function DuringMeeting() {
   const { addToast } = useToast();
   
   const [activeItemIndex, setActiveItemIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [playbackTime, setPlaybackTime] = useState(28); // seconds
 
   // Smooth vertical parallax without crooked rotation tilts
   const { scrollYProgress } = useScroll({
@@ -97,24 +91,6 @@ export default function DuringMeeting() {
     },
   ];
 
-  // Audio playback ticker simulation
-  useEffect(() => {
-    let timer;
-    if (isPlaying) {
-      timer = setInterval(() => {
-        setPlaybackTime((prev) => (prev >= 42 ? 28 : prev + 1));
-      }, 1000);
-    }
-    return () => clearInterval(timer);
-  }, [isPlaying]);
-
-  const togglePlayback = () => {
-    setIsPlaying(!isPlaying);
-    if (!isPlaying) {
-      addToast(`Exploring problem: ${comparisons[activeItemIndex].category}`);
-    }
-  };
-
   const handleSelectMoment = (idx) => {
     setActiveItemIndex(idx);
     addToast(`Viewing: ${comparisons[idx].category}`);
@@ -148,86 +124,6 @@ export default function DuringMeeting() {
           <p className="mt-4 text-base sm:text-lg text-[#A1A1AA] leading-relaxed">
             Today's AI is remarkably capable. But turning answers into reliable understanding is still hard: building on what it learned before, knowing when it's unsure, and noticing what nobody asked about. We want to explore a different approach.
           </p>
-        </div>
-
-        {/* =========================================================================
-            TOP: Precision Audio Capture Console (Ultra-Clean, Organized Layout)
-            ========================================================================= */}
-        <div className="bg-[#121215] p-4 sm:px-6 sm:py-4.5 rounded-2xl border border-[#27272A] shadow-[0_8px_30px_rgba(248,247,242,0.03)] mb-8">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-            
-            {/* Left: Playback Controls & Live Stream Status */}
-            <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-              <button
-                onClick={togglePlayback}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer shadow-xs ${
-                  isPlaying 
-                    ? 'bg-[#0E0E10] text-[#C8E63A] ring-2 ring-[#C8E63A]/50' 
-                    : 'bg-[#C8E63A] text-[#171717] hover:bg-[#B8D62E]'
-                }`}
-              >
-                {isPlaying ? <Pause className="w-3.5 h-3.5 fill-current" /> : <Play className="w-3.5 h-3.5 fill-current" />}
-                <span>{isPlaying ? 'Pause' : 'Play'}</span>
-              </button>
-
-              <div className="flex items-center gap-2 bg-[#171717] px-3 py-1.5 rounded-xl border border-[#27272A]">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-xs font-mono font-bold text-[#F8F7F2]">
-                  Open Research Problems
-                </span>
-              </div>
-
-              {/* Active Speaker Badge */}
-              <div className="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/25 px-3 py-1.5 rounded-xl">
-                <span className={`w-4 h-4 rounded-full ${current.avatarBg} text-white flex items-center justify-center text-[9px] font-bold`}>
-                  {current.initials}
-                </span>
-                <span className="text-xs font-mono text-emerald-200 font-semibold">
-                  {current.speaker}
-                </span>
-                <span className="text-[10px] text-emerald-300 font-mono font-medium hidden sm:inline">
-                  (In focus)
-                </span>
-              </div>
-            </div>
-
-            {/* Center / Right: Waveform & Privacy Guarantees */}
-            <div className="flex flex-wrap items-center justify-between lg:justify-end gap-3 sm:gap-5">
-              {/* Responsive Waveform Visualizer */}
-              <div className="flex items-center gap-1 h-6 px-3 bg-[#171717] rounded-xl border border-[#27272A]">
-                {[35, 75, 45, 95, 60, 85, 40, 90, 70, 50, 80, 100, 65, 45, 90, 30].map((h, i) => (
-                  <span
-                    key={i}
-                    className={`w-[2.5px] rounded-full transition-all duration-150 ${
-                      isPlaying 
-                        ? 'bg-emerald-600 animate-pulse' 
-                        : 'bg-[#0E0E10]/40'
-                    }`}
-                    style={{
-                      height: isPlaying ? `${Math.max(25, (h * (0.6 + (i % 3) * 0.2))) % 100}%` : `${h * 0.4}%`,
-                      animationDuration: `${0.35 + (i % 4) * 0.15}s`,
-                      animationDelay: `${i * 0.04}s`,
-                    }}
-                  />
-                ))}
-                <span className="ml-2 text-xs font-mono font-semibold text-[#F8F7F2]">
-                  #{playbackTime}
-                </span>
-              </div>
-
-              {/* Verified Privacy Pills */}
-              <div className="flex items-center gap-2 text-xs font-mono">
-                <span className="flex items-center gap-1.5 text-emerald-200 font-medium bg-emerald-500/10 px-2.5 py-1 rounded-lg border border-emerald-500/25">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                  <span className="hidden sm:inline">Researching</span>
-                </span>
-                <span className="flex items-center gap-1 text-[#71717A] bg-[#171717] px-2.5 py-1 rounded-lg border border-[#27272A]">
-                  <Zap className="w-3 h-3 text-amber-500" />
-                  <span>Unsolved</span>
-                </span>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* =========================================================================
