@@ -1,15 +1,13 @@
 import React, { useState, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
-import { Sparkles, Check, RefreshCw, Copy, CheckCircle2, ArrowRight, Share2, Layers } from 'lucide-react';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { Sparkles } from 'lucide-react';
 import { useToast } from '../context/ToastContext';
 
 export default function AfterMeeting() {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: false, margin: '-60px' });
   const { addToast } = useToast();
-  const [animatingStep, setAnimatingStep] = useState(0); // 0: idle, 1: processing, 2: enhanced
   const [copied, setCopied] = useState(false);
-  const [selectedFormat, setSelectedFormat] = useState('executive'); // 'executive' | 'prd' | 'sales'
 
   // Bidirectional continuous scroll parallax & 3D tilt
   const { scrollYProgress } = useScroll({
@@ -28,16 +26,6 @@ export default function AfterMeeting() {
     "Long term: our own efficient, proprietary architecture.",
     "Open question: whether artificial sentience is possible at all.",
   ];
-
-  const handleEnhance = () => {
-    if (animatingStep === 1) return;
-    setAnimatingStep(1);
-
-    setTimeout(() => {
-      setAnimatingStep(2);
-      addToast('Mapped the Knull research roadmap');
-    }, 1200);
-  };
 
   const handleCopy = () => {
     setCopied(true);
@@ -75,16 +63,6 @@ export default function AfterMeeting() {
           style={{ y: sandboxY }}
           className="bg-[#121215] rounded-3xl border border-[#27272A] p-6 sm:p-10 shadow-[0_20px_60px_rgba(248,247,242,0.06)] relative overflow-hidden"
         >
-          {/* Thin accent scanning line when processing */}
-          {animatingStep === 1 && (
-            <motion.div
-              initial={{ x: '-100%' }}
-              animate={{ x: '100%' }}
-              transition={{ duration: 1.1, repeat: Infinity, ease: "linear" }}
-              className="absolute top-0 left-0 right-0 h-[2.5px] bg-[#C8E63A] z-30 shadow-[0_0_16px_#C8E63A]"
-            />
-          )}
-
           <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-[#27272A] gap-4 mb-8">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-xl bg-violet-500/10 text-violet-400 border border-violet-500/25 flex items-center justify-center">
@@ -97,27 +75,6 @@ export default function AfterMeeting() {
                 <h3 className="text-xl font-[550] text-[#F8F7F2]">From BNI to our own architecture</h3>
               </div>
             </div>
-
-            {/* Template Selector Chips */}
-            <div className="flex items-center gap-1.5 bg-[#171717] p-1 rounded-full border border-[#27272A] text-xs font-mono">
-              {[
-                { id: 'executive', label: 'Built' },
-                { id: 'prd', label: 'Researching' },
-                { id: 'sales', label: 'Vision' },
-              ].map((fmt) => (
-                <button
-                  key={fmt.id}
-                  onClick={() => setSelectedFormat(fmt.id)}
-                  className={`px-3 py-1 rounded-full transition-all cursor-pointer ${
-                    selectedFormat === fmt.id
-                      ? 'bg-[#0E0E10] text-[#FAF9F5] font-semibold shadow-xs'
-                      : 'text-[#A1A1AA] hover:text-[#F8F7F2]'
-                  }`}
-                >
-                  {fmt.label}
-                </button>
-              ))}
-            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center perspective-[1200px]">
@@ -126,9 +83,7 @@ export default function AfterMeeting() {
             <motion.div 
               style={{ rotate: rawCardTilt }}
               whileHover={{ rotate: 0, scale: 1.01, transition: { duration: 0.2 } }}
-              className={`lg:col-span-5 bg-gradient-to-br from-[#171717] to-[#1F1F22] p-6 rounded-2xl border border-amber-500/25 space-y-4 transition-all duration-300 shadow-xs cursor-pointer ${
-                animatingStep === 1 ? 'filter blur-[1px] opacity-75' : ''
-              }`}
+              className="lg:col-span-6 bg-gradient-to-br from-[#171717] to-[#1F1F22] p-6 rounded-2xl border border-amber-500/25 space-y-4 transition-all duration-300 shadow-xs cursor-pointer"
             >
               <div className="flex items-center justify-between">
                 <span className="font-mono text-xs uppercase text-amber-200 font-semibold bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/25">
@@ -151,46 +106,11 @@ export default function AfterMeeting() {
               </div>
             </motion.div>
 
-            {/* CENTER: Enhance Button with Micro Animation */}
-            <div className="lg:col-span-2 flex flex-col items-center justify-center gap-2">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={handleEnhance}
-                disabled={animatingStep === 1}
-                className={`w-full sm:w-auto px-6 py-3.5 rounded-full text-xs font-semibold transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer ${
-                  animatingStep === 2
-                    ? 'bg-[#0E0E10] text-[#C8E63A] border border-[#3F3F46]'
-                    : 'bg-[#C8E63A] text-[#171717] hover:bg-[#B8D62E]'
-                }`}
-              >
-                {animatingStep === 1 ? (
-                  <>
-                    <RefreshCw className="w-3.5 h-3.5 animate-spin text-[#F8F7F2]" />
-                    <span>Mapping...</span>
-                  </>
-                ) : animatingStep === 2 ? (
-                  <>
-                    <Check className="w-3.5 h-3.5 text-[#C8E63A]" />
-                    <span>✓ Mapped</span>
-                  </>
-                ) : (
-                  <>
-                    <Sparkles className="w-3.5 h-3.5" />
-                    <span>Show the path</span>
-                  </>
-                )}
-              </motion.button>
-              <span className="text-[10px] font-mono text-[#71717A] text-center">
-                Built &rarr; Research &rarr; Vision
-              </span>
-            </div>
-
             {/* RIGHT: Structured Meeting Result (3D tilted right with colorful cards) */}
             <motion.div 
               style={{ rotate: resultCardTilt }}
               whileHover={{ rotate: 0, scale: 1.01, transition: { duration: 0.2 } }}
-              className="lg:col-span-5 bg-gradient-to-br from-[#121215] to-[#1A1C12] p-6 rounded-2xl border border-emerald-500/25 space-y-4 min-h-[300px] flex flex-col justify-between shadow-xs cursor-pointer"
+              className="lg:col-span-6 bg-gradient-to-br from-[#121215] to-[#1A1C12] p-6 rounded-2xl border border-emerald-500/25 space-y-4 min-h-[300px] flex flex-col justify-between shadow-xs cursor-pointer"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
@@ -198,26 +118,15 @@ export default function AfterMeeting() {
                     <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                     Knull Research Blueprint
                   </span>
-                  {animatingStep === 2 && (
-                    <button
-                      onClick={handleCopy}
-                      className="text-[10px] font-mono text-emerald-300 hover:text-emerald-200 bg-[#121215] border border-emerald-500/25 px-2.5 py-1 rounded-full transition-colors cursor-pointer shadow-xs"
-                    >
-                      {copied ? 'Copied ✓' : 'Copy'}
-                    </button>
-                  )}
+                  <button
+                    onClick={handleCopy}
+                    className="text-[10px] font-mono text-emerald-300 hover:text-emerald-200 bg-[#121215] border border-emerald-500/25 px-2.5 py-1 rounded-full transition-colors cursor-pointer shadow-xs"
+                  >
+                    {copied ? 'Copied ✓' : 'Copy'}
+                  </button>
                 </div>
 
-                <AnimatePresence mode="wait">
-                  {animatingStep === 2 ? (
-                    <motion.div
-                      key={`enhanced-${selectedFormat}`}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                      className="space-y-3 text-xs"
-                    >
+                    <div className="space-y-3 text-xs">
                       {/* Mission Card */}
                       <div className="p-3.5 bg-[#121215] rounded-xl border border-violet-500/25 space-y-1 shadow-xs">
                         <span className="text-[10px] font-mono text-violet-300 uppercase font-semibold">
@@ -257,20 +166,7 @@ export default function AfterMeeting() {
                           Could a sentient artificial being ever exist? We're exploring it, with no guarantee of an answer. BNI is not sentient and doesn't experience feelings.
                         </p>
                       </div>
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="idle"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      className="flex flex-col items-center justify-center py-14 text-center text-[#71717A] text-xs"
-                    >
-                      <Sparkles className="w-8 h-8 text-[#C8E63A] mb-3 animate-pulse" />
-                      <span className="max-w-xs">Click &ldquo;Show the path&rdquo; to see what exists today and what we're still researching.</span>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                    </div>
               </div>
 
               <div className="pt-3 border-t border-[#27272A] text-[10px] font-mono flex items-center justify-between">
