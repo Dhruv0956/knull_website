@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 export default function CustomCursor() {
-  const [cursorType, setCursorType] = useState('default'); // 'default' | 'pointer' | 'interactive' | 'text'
+  const [cursorType, setCursorType] = useState('default'); // 'default' | 'pointer' | 'text'
   const [isVisible, setIsVisible] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
 
@@ -32,12 +32,9 @@ export default function CustomCursor() {
       if (!target) return;
 
       const interactive = target.closest('button, a, input, select, textarea, [data-cursor="pointer"]');
-      const canvasEl = target.closest('[data-cursor="interactive"]');
       const textEl = target.closest('p, h1, h2, h3, blockquote');
 
-      if (canvasEl) {
-        setCursorType('interactive');
-      } else if (interactive) {
+      if (interactive) {
         setCursorType('pointer');
       } else if (textEl && !interactive) {
         setCursorType('text');
@@ -78,46 +75,25 @@ export default function CustomCursor() {
           y: ringY,
         }}
         animate={{
-          scale: isClicking ? 0.75 : cursorType === 'interactive' ? 1.6 : cursorType === 'pointer' ? 1.3 : 1,
-          width: cursorType === 'interactive' ? 56 : cursorType === 'pointer' ? 36 : 28,
-          height: cursorType === 'interactive' ? 56 : cursorType === 'pointer' ? 36 : 28,
+          scale: isClicking ? 0.75 : cursorType === 'pointer' ? 1.3 : 1,
+          width: cursorType === 'pointer' ? 36 : 28,
+          height: cursorType === 'pointer' ? 36 : 28,
           backgroundColor:
-            cursorType === 'interactive'
-              ? 'rgba(200, 230, 58, 0.15)'
-              : cursorType === 'pointer'
+            cursorType === 'pointer'
               ? 'rgba(200, 230, 58, 0.22)'
               : 'rgba(248,247,242, 0.04)',
           borderColor:
-            cursorType === 'interactive'
-              ? 'rgba(200, 230, 58, 0.65)'
-              : cursorType === 'pointer'
+            cursorType === 'pointer'
               ? '#F8F7F2'
               : 'rgba(248,247,242, 0.22)',
           borderWidth: cursorType === 'pointer' ? '1.5px' : '1px',
           boxShadow:
-            cursorType === 'interactive'
-              ? '0 0 24px rgba(200, 230, 58, 0.45), inset 0 0 12px rgba(139, 92, 246, 0.2)'
-              : cursorType === 'pointer'
+            cursorType === 'pointer'
               ? '0 0 16px rgba(200, 230, 58, 0.35)'
               : 'none',
         }}
         transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
       >
-        {/* Animated Rotating Gradient Reticle when hovering interactive card */}
-        {cursorType === 'interactive' && (
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-            className="absolute inset-0 rounded-full border border-dashed border-[#C8E63A]/80"
-          />
-        )}
-
-        {/* Micro text inside cursor when over interactive 3D cards */}
-        {cursorType === 'interactive' && (
-          <span className="text-[8px] font-mono font-bold tracking-widest text-[#F8F7F2] uppercase select-none">
-            DRAG
-          </span>
-        )}
       </motion.div>
 
       {/* 2. Precision Center Dot with High Responsiveness */}
@@ -128,7 +104,7 @@ export default function CustomCursor() {
           y: dotY,
         }}
         animate={{
-          scale: isClicking ? 1.6 : cursorType === 'pointer' ? 0.6 : cursorType === 'interactive' ? 0 : 1,
+          scale: isClicking ? 1.6 : cursorType === 'pointer' ? 0.6 : 1,
           width: 5,
           height: 5,
           backgroundColor: cursorType === 'pointer' ? '#C8E63A' : '#F8F7F2',
