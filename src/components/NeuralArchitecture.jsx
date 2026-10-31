@@ -243,8 +243,8 @@ export default function NeuralArchitecture() {
                   boxShadow: isSelected ? `0 20px 50px ${tint(layer.color, 0.08)}` : 'none',
                 }}
               >
-                <span className="flex items-center justify-between gap-3 mb-4">
-                  <span className="inline-flex items-center gap-2 font-mono text-[11px] tracking-widest uppercase" style={{ color: layer.color }}>
+                <span className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 mb-4">
+                  <span className="inline-flex items-center gap-2 font-mono text-[11px] tracking-widest uppercase whitespace-nowrap" style={{ color: layer.color }}>
                     <span className="w-1.5 h-1.5 rounded-full" style={{ background: layer.color }} />
                     Layer {layer.number}
                   </span>
