@@ -24,20 +24,46 @@ function rgba(hex, a) {
   return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`;
 }
 
-// Region placement shared with the section so connector lines land on the right region.
+// Each region is a flat plane, rotated and foreshortened so the four read as one exploded stack.
+const PLANE_ANGLE = 0.45;
+const PLANE_TILT = 0.38;
+const RIM = 1.14; // plane rim radius relative to the area neurons occupy
+export const PLANE_Y = [0.86, 0.62, 0.38, 0.14]; // plane centres as a fraction of height; region 01 at the bottom
+// Cards for 04 and 02 sit left of the stack, 03 and 01 right; the canvas puts plane numbers on the other side.
+export const CARD_SIDE = (r) => (r % 2 ? 'left' : 'right');
+const LABEL_SIDE = (r) => (r % 2 ? 'right' : 'left');
+
+// Region placement shared with the section so connector lines land on the right plane.
+// Neurons are generated in plane-local (u, v) coordinates and mapped to the screen with `project`.
 export function computeLayout(w, h) {
-  const compact = w / h < 1.35;
-  const spots = compact
-    ? [[0.27, 0.27], [0.73, 0.27], [0.73, 0.73], [0.27, 0.73]]
-    : [[0.125, 0.5], [0.375, 0.46], [0.625, 0.52], [0.875, 0.47]];
-  const rw = compact ? w * 0.2 : w * 0.105;
-  const rh = compact ? h * 0.19 : h * 0.3;
-  const regions = spots.map(([x, y]) => {
-    const cx = x * w;
-    const cy = y * h;
-    return { cx, cy, rw, rh, top: { x: cx, y: cy - rh - 18 }, bottom: { x: cx, y: cy + rh + 18 } };
+  const compact = w < 560;
+  const R = Math.min(w / 2.7, h * 0.22);
+  const rw = R;
+  const rh = R * 0.85;
+  const m = [
+    Math.cos(PLANE_ANGLE),
+    Math.sin(PLANE_ANGLE) * PLANE_TILT,
+    -Math.sin(PLANE_ANGLE),
+    Math.cos(PLANE_ANGLE) * PLANE_TILT,
+  ];
+  const det = m[0] * m[3] - m[1] * m[2];
+  const regions = PLANE_Y.map((f) => {
+    const cx = w / 2;
+    const cy = h * f;
+    const project = (u, v) => [cx + m[0] * u + m[2] * v, cy + m[1] * u + m[3] * v];
+    const toLocal = (x, y) => [(m[3] * (x - cx) - m[2] * (y - cy)) / det, (m[0] * (y - cy) - m[1] * (x - cx)) / det];
+    const rim = Array.from({ length: 64 }, (_, i) => project(Math.cos((i / 64) * TAU) * rw * RIM, Math.sin((i / 64) * TAU) * rh * RIM));
+    const extreme = (axis, sign) => {
+      const p = rim.reduce((best, q) => (q[axis] * sign > best[axis] * sign ? q : best));
+      return { x: p[0], y: p[1] };
+    };
+    const left = extreme(0, -1);
+    const right = extreme(0, 1);
+    const top = extreme(1, -1);
+    const bottom = extreme(1, 1);
+    return { cx, cy, rw, rh, project, toLocal, left, right, top, bottom, bw: (right.x - left.x) / 2, bh: (bottom.y - top.y) / 2 };
   });
-  return { w, h, compact, regions };
+  return { w, h, compact, m, regions };
 }
 
 function makeDendrites(rng, len, branches, depth, steps, curl) {
@@ -66,6 +92,8 @@ function makeDendrites(rng, len, branches, depth, steps, curl) {
 export function buildNetwork(layout) {
   const rng = mulberry32(0x6b6e756c);
   const { regions, compact } = layout;
+  // Regions are generated around a local origin, then projected onto their planes below.
+  const local = regions.map((R) => ({ ...R, cx: 0, cy: 0 }));
   const k = compact ? 0.75 : 1;
   const nodes = [];
   const edges = [];
@@ -117,7 +145,7 @@ export function buildNetwork(layout) {
   };
 
   // Region 01: input. Loose columns so arriving signals settle into an ordered pattern.
-  const R0 = regions[0];
+  const R0 = local[0];
   const cols = (compact ? [4, 4, 3] : [5, 6, 5]).map((count, c) => {
     const x = R0.cx + [-0.45, 0.1, 0.65][c] * R0.rw;
     return Array.from({ length: count }, (_, j) =>
@@ -130,11 +158,12 @@ export function buildNetwork(layout) {
   });
   const streams = cols[0].map((n) => {
     const y0 = n.y + (rng() - 0.5) * R0.rh * 0.7;
-    return { node: n.i, x0: 0, y0, cx: n.x * 0.45, cy: y0 + (n.y - y0) * 0.15, x1: n.x - n.r - 2, y1: n.y };
+    const x0 = -R0.rw * 1.9;
+    return { node: n.i, x0, y0, cx: (x0 + n.x) / 2, cy: y0 + (n.y - y0) * 0.15, x1: n.x - n.r - 2, y1: n.y };
   });
 
   // Region 02: four sub-clusters with dense internal wiring and sparser links between them.
-  const R1 = regions[1];
+  const R1 = local[1];
   const offsets = [[-0.55, -0.4], [0.5, -0.5], [-0.42, 0.52], [0.55, 0.42]];
   const clusters = offsets.map(([ox, oy], c) => {
     const ccx = R1.cx + ox * R1.rw;
@@ -162,9 +191,8 @@ export function buildNetwork(layout) {
   }
 
   // Region 03: artificial lattice on one side, biology-inspired neurons on the other, a proposed interface between.
-  // In the compact snake layout the biological side faces region 04, so the halves swap.
-  const R2 = regions[2];
-  const side = compact ? -1 : 1;
+  const R2 = local[2];
+  const side = 1;
   const membraneX = R2.cx;
   const art = [];
   const ac = compact ? 3 : 4;
@@ -192,7 +220,7 @@ export function buildNetwork(layout) {
     .filter((e) => e >= 0);
 
   // Region 04: an organic, densely recurrent cluster split into three interacting groups.
-  const R3 = regions[3];
+  const R3 = local[3];
   const emo = [];
   for (let tries = 0; emo.length < (compact ? 30 : 58) && tries < 2000; tries++) {
     const a = rng() * TAU;
@@ -213,20 +241,40 @@ export function buildNetwork(layout) {
     nearest(n, emo, 4).forEach((m) => addEdge(n, m, 'emo'));
   });
 
-  // Forward links between regions, plus feedback arcs from region 04 back to 02 and 01.
+  // Project every region onto its plane. Neurons nearer the viewer sit lower on screen and render brighter.
+  nodes.forEach((n) => {
+    const R = regions[n.region];
+    n.u = n.x;
+    [n.x, n.y] = R.project(n.x, n.y);
+    n.z = Math.min(1, Math.max(0, 0.35 * n.z + 0.65 * (0.5 + (0.5 * (n.y - R.cy)) / R.bh)));
+  });
+  edges.forEach((e) => {
+    const a = nodes[e.a];
+    const b = nodes[e.b];
+    [e.cx, e.cy] = regions[e.ra].project(e.cx, e.cy);
+    e.len = Math.hypot(a.x - e.cx, a.y - e.cy) + Math.hypot(e.cx - b.x, e.cy - b.y);
+  });
+  streams.forEach((s) => {
+    [s.x0, s.y0] = regions[0].project(s.x0, s.y0);
+    [s.cx, s.cy] = regions[0].project(s.cx, s.cy);
+    [s.x1, s.y1] = regions[0].project(s.x1, s.y1);
+  });
+
+  // Forward links between planes, plus feedback arcs from region 04 back to 02 and 01.
   const l1Out = cols[cols.length - 1];
   const l2All = clusters.flat();
   const toward = (pool, target, count) => pool.slice().sort((p, q) => d2(p, target) - d2(q, target)).slice(0, count);
-  const center = (R) => ({ x: R.cx, y: R.cy });
-  const artCenter = { x: R2.cx - side * R2.rw * 0.6, y: R2.cy };
+  const center = (r) => ({ x: regions[r].cx, y: regions[r].cy });
+  const [ax, ay] = regions[2].project(-side * R2.rw * 0.6, 0);
+  const artCenter = { x: ax, y: ay };
   const inter = [
-    ...toward(l1Out, center(R1), 3).map((n) => addEdge(n, nearest(n, l2All, 1)[0], 'inter')),
-    ...toward(l2All, artCenter, 3).map((n) => addEdge(n, nearest(n, art, 1)[0], 'inter')),
-    ...toward(bio, center(R3), 2).map((n) => addEdge(n, nearest(n, emo, 1)[0], 'inter', 0.2)),
+    ...toward(l1Out, center(1), 4).map((n) => addEdge(n, nearest(n, l2All, 1)[0], 'inter')),
+    ...toward(l2All, artCenter, 4).map((n) => addEdge(n, nearest(n, art, 1)[0], 'inter')),
+    ...toward(bio, center(3), 3).map((n) => addEdge(n, nearest(n, emo, 1)[0], 'inter', 0.2)),
   ].filter((e) => e >= 0);
   const feedback = [
-    ...toward(emo, center(R1), 2).map((n) => addEdge(n, nearest(n, l2All, 1)[0], 'feedback', compact ? 0.18 : 0.32)),
-    addEdge(toward(emo, center(R0), 1)[0], nearest(center(R0), cols[1], 1)[0], 'feedback', compact ? 0.12 : 0.22),
+    ...toward(emo, center(1), 2).map((n) => addEdge(n, nearest(n, l2All, 1)[0], 'feedback', compact ? 0.18 : 0.32)),
+    addEdge(toward(emo, center(0), 1)[0], nearest(center(0), cols[1], 1)[0], 'feedback', compact ? 0.12 : 0.22),
   ].filter((e) => e >= 0);
 
   const adj = nodes.map(() => []);
@@ -248,8 +296,7 @@ export function buildNetwork(layout) {
     emo,
     inter,
     feedback,
-    membraneX,
-    emoCenter: { x: R3.cx, y: R3.cy },
+    emoCenter: center(3),
     byRegion: [0, 1, 2, 3].map((r) => nodes.filter((n) => n.region === r)),
   };
 }
@@ -295,7 +342,9 @@ export function createNeuralRenderer(canvas, { reducedMotion = false } = {}) {
   const weights = [1, 1, 1, 1];
   const drive = [0.2, 0.2, 0.2, 0.2];
   const pointer = { x: 0, y: 0, tx: 0, ty: 0 };
-  const timers = { spike: 0.2, stream: 0, l2: 1.2, l3a: 1.5, l3b: 4, l3s: 3, l4: 0, pattern: 0 };
+  const timers = { spike: 0.2, stream: 0, l2: 1.2, l3a: 1.5, l3b: 4, l3s: 3, l4: 0, pattern: 0, climb: 3 };
+  const shown = [1, 1, 1, 1]; // weights after the reveal fade, used while drawing
+  const sh = [[0, 0], [0, 0], [0, 0], [0, 0]]; // per-plane screen offset: parallax, reveal rise, focus lift
 
   const focus = () => (hover ?? selected);
   const targetWeight = (r) => {
@@ -311,7 +360,18 @@ export function createNeuralRenderer(canvas, { reducedMotion = false } = {}) {
   };
   const pick = (arr) => arr[Math.floor(rng() * arr.length)];
   const at = (delay, fn) => events.push({ at: t + delay, fn });
-  const edgeWeight = (e) => Math.max(weights[e.ra], weights[e.rb]);
+  const edgeWeight = (e) => Math.max(shown[e.ra], shown[e.rb]);
+  // Planes rise into place one after another, bottom first, the first time the section is on screen.
+  const appear = (r) => {
+    if (reducedMotion) return 1;
+    const p = Math.min(1, Math.max(0, (t - r * 0.22) / 0.9));
+    return p * p * (3 - 2 * p);
+  };
+  const planeShift = (r) => [
+    pointer.x * (r - 1.5) * 10,
+    pointer.y * (r - 1.5) * 5 + (1 - appear(r)) * 28 - (drive[r] - 0.2) * 6,
+  ];
+  const membraneU = (x, y) => layout.regions[2].toLocal(x - sh[2][0], y - sh[2][1]);
 
   function resize(w, h) {
     const nextDpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -347,7 +407,7 @@ export function createNeuralRenderer(canvas, { reducedMotion = false } = {}) {
       budget: o.budget ?? 0,
       chain: o.chain ?? [],
       onArrive: o.onArrive,
-      side: Math.sign(net.nodes[from].x - net.membraneX),
+      side: Math.sign(net.nodes[from].u),
     });
   }
 
@@ -443,7 +503,7 @@ export function createNeuralRenderer(canvas, { reducedMotion = false } = {}) {
   function syncL3() {
     membraneFlash = 1;
     net.byRegion[2].forEach((n) =>
-      at((Math.abs(n.x - net.membraneX) / layout.regions[2].rw) * 0.6, () => (act[n.i] = Math.max(act[n.i], 0.85)))
+      at((Math.abs(n.u) / layout.regions[2].rw) * 0.6, () => (act[n.i] = Math.max(act[n.i], 0.85)))
     );
   }
 
@@ -485,6 +545,13 @@ export function createNeuralRenderer(canvas, { reducedMotion = false } = {}) {
     if (drive[2] > 0.5 && (timers.l3s -= dt) <= 0) {
       timers.l3s = 6.2;
       syncL3();
+    }
+
+    // While nothing is in focus, a signal occasionally climbs from one plane to the next.
+    if (focus() == null && (timers.climb -= dt) <= 0) {
+      timers.climb = 4.5 + rng() * 3;
+      const r = Math.floor(rng() * 3);
+      route(r, r + 1);
     }
 
     // Region 04 cycles through learned patterns; each one grows more coherent, peaks in a coordinated response, then feeds back.
@@ -536,10 +603,11 @@ export function createNeuralRenderer(canvas, { reducedMotion = false } = {}) {
       p.t += (dt * p.speed) / Math.max(edge.len, 1);
       if (edge.kind === 'bridge') {
         const pt = edgePoint(edge, p.dir > 0 ? p.t : 1 - p.t);
-        const s = Math.sign(pt[0] - net.membraneX);
+        const [u, v] = membraneU(pt[0], pt[1]);
+        const s = Math.sign(u);
         if (s !== p.side && s !== 0) {
           p.side = s;
-          membraneHits.push({ y: pt[1], t });
+          membraneHits.push({ v, t });
           p.color = net.nodes[p.dir > 0 ? edge.b : edge.a].kind === 'bio' ? BIO_COLOR : REGION_COLORS[2];
         }
       }
@@ -570,8 +638,9 @@ export function createNeuralRenderer(canvas, { reducedMotion = false } = {}) {
     for (const n of net.nodes) {
       const sway = n.kind === 'bio' ? 2.4 : n.region === 3 ? 1.4 : 0.8;
       const pz = n.z - 0.5;
-      px[n.i] = n.x + Math.sin(time * 0.5 + n.phase) * sway + pointer.x * pz * 16;
-      py[n.i] = n.y + Math.cos(time * 0.43 + n.phase * 1.3) * sway + pointer.y * pz * 10;
+      const [ox, oy] = sh[n.region];
+      px[n.i] = n.x + ox + Math.sin(time * 0.5 + n.phase) * sway + pointer.x * pz * 16;
+      py[n.i] = n.y + oy + Math.cos(time * 0.43 + n.phase * 1.3) * sway + pointer.y * pz * 10;
     }
   }
 
@@ -601,6 +670,10 @@ export function createNeuralRenderer(canvas, { reducedMotion = false } = {}) {
     const { regions, compact } = layout;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, layout.w, layout.h);
+    for (let r = 0; r < 4; r++) {
+      shown[r] = weights[r] * appear(r);
+      sh[r] = planeShift(r);
+    }
     positions(t);
     const eff = levels ?? act;
     const phaseT = timers.l4;
@@ -608,29 +681,72 @@ export function createNeuralRenderer(canvas, { reducedMotion = false } = {}) {
     for (const n of net.emo) emoEff[n.i] = Math.max(eff[n.i], emoLevel(n, t, phaseT));
     const level = (i) => (net.nodes[i].region === 3 ? emoEff[i] : eff[i]);
 
-    // Ground planes and auras give each region its own depth layer.
-    regions.forEach((R, r) => {
-      const w = weights[r];
-      ctx.globalAlpha = (0.05 + 0.12 * drive[r]) * w;
-      ctx.drawImage(glow(REGION_COLORS[r]), R.cx - R.rw * 1.5, R.cy - R.rh * 1.3, R.rw * 3, R.rh * 2.6);
-      ctx.globalAlpha = 0.1 * w;
-      ctx.strokeStyle = REGION_COLORS[r];
-      ctx.lineWidth = 1;
-      ctx.setLineDash([2, 5]);
+    // Exploded-view guides: faint vertical lines joining the rims of neighbouring planes.
+    ctx.lineWidth = 0.8;
+    ctx.setLineDash([2, 5]);
+    ctx.strokeStyle = IVORY;
+    for (let r = 0; r < 3; r++) {
+      const lo = regions[r];
+      const hi = regions[r + 1];
+      ctx.globalAlpha = 0.07 * Math.min(shown[r], shown[r + 1]);
       ctx.beginPath();
-      ctx.ellipse(R.cx, R.cy + R.rh * 0.95, R.rw * 1.05, R.rh * 0.14, 0, 0, TAU);
+      for (const k of ['left', 'right', 'bottom']) {
+        ctx.moveTo(lo[k].x + sh[r][0], lo[k].y + sh[r][1]);
+        ctx.lineTo(hi[k].x + sh[r + 1][0], hi[k].y + sh[r + 1][1]);
+      }
+      ctx.stroke();
+    }
+    ctx.setLineDash([]);
+
+    // Planes, bottom to top: aura, a translucent face, and a rim echoed below it to give the slab some thickness.
+    const [ma, mb, mc, md] = layout.m;
+    const onPlane = (r, dy = 0) => {
+      const R = regions[r];
+      ctx.setTransform(dpr * ma, dpr * mb, dpr * mc, dpr * md, dpr * (R.cx + sh[r][0]), dpr * (R.cy + sh[r][1] + dy));
+    };
+    regions.forEach((R, r) => {
+      const w = shown[r];
+      const color = REGION_COLORS[r];
+      const rx = R.rw * RIM;
+      const ry = R.rh * RIM;
+      onPlane(r);
+      ctx.globalAlpha = (0.06 + 0.14 * drive[r]) * w;
+      ctx.drawImage(glow(color), -rx * 1.5, -ry * 1.5, rx * 3, ry * 3);
+      const face = ctx.createRadialGradient(0, 0, 0, 0, 0, rx);
+      face.addColorStop(0, rgba(color, 0.09));
+      face.addColorStop(1, rgba(color, 0.025));
+      ctx.globalAlpha = w;
+      ctx.fillStyle = face;
+      ctx.beginPath();
+      ctx.ellipse(0, 0, rx, ry, 0, 0, TAU);
+      ctx.fill();
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 1.5;
+      ctx.globalAlpha = (0.2 + 0.25 * drive[r]) * w;
+      ctx.stroke();
+      ctx.globalAlpha = 0.07 * w;
+      ctx.setLineDash([3, 7]);
+      ctx.beginPath();
+      ctx.ellipse(0, 0, rx * 0.62, ry * 0.62, 0, 0, TAU);
       ctx.stroke();
       ctx.setLineDash([]);
+      onPlane(r, 6);
+      ctx.globalAlpha = 0.08 * w;
+      ctx.beginPath();
+      ctx.ellipse(0, 0, rx, ry, 0, 0.15 * Math.PI, 1.15 * Math.PI);
+      ctx.stroke();
     });
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     // Region 01 input streams.
     ctx.lineWidth = 0.8;
     ctx.strokeStyle = REGION_COLORS[0];
-    ctx.globalAlpha = (0.08 + 0.14 * drive[0]) * weights[0];
+    ctx.globalAlpha = (0.08 + 0.14 * drive[0]) * shown[0];
     ctx.beginPath();
+    const [sx, sy] = sh[0];
     net.streams.forEach((s) => {
-      ctx.moveTo(s.x0, s.y0);
-      ctx.quadraticCurveTo(s.cx, s.cy, s.x1, s.y1);
+      ctx.moveTo(s.x0 + sx, s.y0 + sy);
+      ctx.quadraticCurveTo(s.cx + sx, s.cy + sy, s.x1 + sx, s.y1 + sy);
     });
     ctx.stroke();
 
@@ -645,7 +761,7 @@ export function createNeuralRenderer(canvas, { reducedMotion = false } = {}) {
       ctx.lineWidth = lw;
       for (let r = 0; r < 4; r++) {
         ctx.strokeStyle = color({ ra: r });
-        ctx.globalAlpha = alpha * weights[r];
+        ctx.globalAlpha = alpha * shown[r];
         ctx.beginPath();
         net.edges.forEach((e) => e.kind === kind && e.ra === r && traceEdge(e));
         ctx.stroke();
@@ -654,7 +770,7 @@ export function createNeuralRenderer(canvas, { reducedMotion = false } = {}) {
     for (const idx of [...net.inter, ...net.bridges, ...net.feedback]) {
       const e = net.edges[idx];
       ctx.strokeStyle = e.kind === 'feedback' ? PATTERN_COLORS[0] : e.kind === 'bridge' ? IVORY : REGION_COLORS[e.ra];
-      ctx.globalAlpha = (e.kind === 'feedback' ? 0.1 + 0.15 * drive[3] : 0.22) * edgeWeight(e);
+      ctx.globalAlpha = (e.kind === 'feedback' ? 0.1 + 0.15 * drive[3] : e.kind === 'inter' ? 0.3 : 0.22) * edgeWeight(e);
       ctx.lineWidth = e.kind === 'bridge' ? 0.9 : 0.8;
       ctx.setLineDash(e.kind === 'feedback' ? [3, 6] : e.kind === 'bridge' ? [1, 3] : []);
       ctx.beginPath();
@@ -680,7 +796,7 @@ export function createNeuralRenderer(canvas, { reducedMotion = false } = {}) {
       for (const kind of ['art', 'bio']) {
         ctx.strokeStyle = kind === 'bio' ? BIO_COLOR : REGION_COLORS[r];
         ctx.lineWidth = kind === 'bio' ? 0.8 : 0.55;
-        ctx.globalAlpha = (kind === 'bio' ? 0.3 : 0.14) * weights[r];
+        ctx.globalAlpha = (kind === 'bio' ? 0.3 : 0.14) * shown[r];
         ctx.beginPath();
         for (const n of net.byRegion[r]) {
           if (n.kind !== kind) continue;
@@ -695,33 +811,35 @@ export function createNeuralRenderer(canvas, { reducedMotion = false } = {}) {
       }
     }
 
-    // Proposed interface between the artificial and biological halves of region 03.
+    // Proposed interface between the artificial and biological halves of region 03, drawn on its plane (u = 0).
     const R2 = regions[2];
-    const w2 = weights[2];
+    const w2 = shown[2];
+    onPlane(2);
     ctx.globalAlpha = (0.05 + 0.18 * drive[2] + 0.35 * membraneFlash) * w2;
-    ctx.drawImage(glow(IVORY), net.membraneX - 14, R2.cy - R2.rh * 1.05, 28, R2.rh * 2.1);
+    ctx.drawImage(glow(IVORY), -14, -R2.rh * 1.05, 28, R2.rh * 2.1);
     ctx.strokeStyle = IVORY;
-    ctx.lineWidth = 1;
+    ctx.lineWidth = 1.6;
     ctx.globalAlpha = (0.22 + 0.4 * membraneFlash) * w2;
     ctx.beginPath();
     for (let y = -R2.rh; y <= R2.rh; y += 4) {
-      const x = net.membraneX + Math.sin(y * 0.09 + t * 1.4) * 2.2;
-      if (y === -R2.rh) ctx.moveTo(x, R2.cy + y);
-      else ctx.lineTo(x, R2.cy + y);
+      const x = Math.sin(y * 0.09 + t * 1.4) * 2.2;
+      if (y === -R2.rh) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
     }
     ctx.stroke();
     for (let y = -R2.rh + 6; y <= R2.rh; y += 12) {
-      const hit = membraneHits.reduce((m, h) => Math.max(m, 1 - Math.abs(h.y - (R2.cy + y)) / 22 - (t - h.t)), 0);
+      const hit = membraneHits.reduce((m, h) => Math.max(m, 1 - Math.abs(h.v - y) / 22 - (t - h.t)), 0);
       ctx.globalAlpha = (0.16 + 0.8 * Math.max(0, hit) + 0.5 * membraneFlash) * w2;
       ctx.beginPath();
-      ctx.moveTo(net.membraneX - 4, R2.cy + y);
-      ctx.lineTo(net.membraneX + 4, R2.cy + y);
+      ctx.moveTo(-5, y);
+      ctx.lineTo(5, y);
       ctx.stroke();
     }
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     // Neurons.
     for (const n of net.nodes) {
-      const w = weights[n.region];
+      const w = shown[n.region];
       const lv = level(n.i);
       const r = n.r * (0.75 + 0.5 * n.z);
       const color = n.region === 3 && lv > 0.15 ? PATTERN_COLORS[timers.pattern] : nodeColor(n);
@@ -762,10 +880,10 @@ export function createNeuralRenderer(canvas, { reducedMotion = false } = {}) {
       const s = net.streams[p.s];
       const a = quad(s, p.t);
       const b = quad(s, Math.max(0, p.t - 0.06));
-      ctx.globalAlpha = (0.35 + 0.6 * drive[0]) * weights[0];
+      ctx.globalAlpha = (0.35 + 0.6 * drive[0]) * shown[0];
       ctx.beginPath();
-      ctx.moveTo(b[0], b[1]);
-      ctx.lineTo(a[0], a[1]);
+      ctx.moveTo(b[0] + sx, b[1] + sy);
+      ctx.lineTo(a[0] + sx, a[1] + sy);
       ctx.stroke();
     }
     ctx.lineCap = 'butt';
@@ -777,7 +895,7 @@ export function createNeuralRenderer(canvas, { reducedMotion = false } = {}) {
       const w = edgeWeight(edge);
       const ring =
         edge.kind === 'axon' ||
-        (edge.kind === 'bridge' && Math.sign(x - net.membraneX) === Math.sign(net.nodes[edge.b].x - net.membraneX));
+        (edge.kind === 'bridge' && Math.sign(membraneU(x, y)[0]) === Math.sign(net.nodes[edge.b].u));
       ctx.globalAlpha = 0.85 * w;
       ctx.drawImage(glow(p.color), x - 9, y - 9, 18, 18);
       if (ring) {
@@ -798,23 +916,29 @@ export function createNeuralRenderer(canvas, { reducedMotion = false } = {}) {
     // Labels.
     ctx.font = `500 ${compact ? 9 : 10}px "JetBrains Mono", monospace`;
     ctx.textBaseline = 'alphabetic';
+    // Plane numbers sit on the rim opposite the side the section places that layer's card.
     regions.forEach((R, r) => {
-      ctx.globalAlpha = (0.35 + 0.5 * drive[r]) * weights[r];
+      const a = R[LABEL_SIDE(r)];
+      ctx.globalAlpha = (0.35 + 0.5 * drive[r]) * shown[r];
       ctx.fillStyle = REGION_COLORS[r];
-      ctx.textAlign = 'left';
-      ctx.fillText(LAYERS[r].number, R.cx - R.rw - (compact ? 4 : 0), R.cy - R.rh - 6);
+      ctx.textAlign = LABEL_SIDE(r) === 'left' ? 'right' : 'left';
+      ctx.fillText(LAYERS[r].number, a.x + sh[r][0] + (LABEL_SIDE(r) === 'left' ? -10 : 10), a.y + sh[r][1] + 3);
     });
+    const label = (text, r, u, v, dy) => {
+      const [x, y] = regions[r].project(u, v);
+      ctx.fillText(text, x + sh[r][0], y + sh[r][1] + dy);
+    };
     if (!compact || drive[2] > 0.5) {
       ctx.font = '500 8px "JetBrains Mono", monospace';
       ctx.textAlign = 'center';
       ctx.globalAlpha = (0.3 + 0.5 * drive[2]) * w2;
       ctx.fillStyle = IVORY;
-      ctx.fillText('PROPOSED INTERFACE', net.membraneX, R2.cy - R2.rh - 6);
+      label('PROPOSED INTERFACE', 2, 0, -R2.rh * RIM, -8);
       if (!compact) {
         ctx.fillStyle = REGION_COLORS[2];
-        ctx.fillText('ARTIFICIAL', net.membraneX - R2.rw * 0.6, R2.cy + R2.rh + 12);
+        label('ARTIFICIAL', 2, -R2.rw * 0.6, R2.rh * RIM, 14);
         ctx.fillStyle = BIO_COLOR;
-        ctx.fillText('BIO-INSPIRED', net.membraneX + R2.rw * 0.62, R2.cy + R2.rh + 12);
+        label('BIO-INSPIRED', 2, R2.rw * 0.62, R2.rh * RIM, 14);
       }
     }
     if (drive[3] > 0.5) {
@@ -822,8 +946,8 @@ export function createNeuralRenderer(canvas, { reducedMotion = false } = {}) {
       ctx.font = '500 8px "JetBrains Mono", monospace';
       ctx.textAlign = 'center';
       ctx.fillStyle = PATTERN_COLORS[timers.pattern];
-      ctx.globalAlpha = 0.75 * weights[3];
-      ctx.fillText(`LEARNED PATTERN ${PATTERN_NAMES[timers.pattern]}`, R3.cx, R3.cy - R3.rh - 6);
+      ctx.globalAlpha = 0.75 * shown[3];
+      ctx.fillText(`LEARNED PATTERN ${PATTERN_NAMES[timers.pattern]}`, R3.top.x + sh[3][0], R3.top.y + sh[3][1] - 8);
     }
     ctx.globalAlpha = 1;
   }

@@ -1,9 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Play, Square } from 'lucide-react';
 import { LAYERS, SECTION_COPY } from './neural/layers';
-import { computeLayout, createNeuralRenderer } from './neural/network';
+import { CARD_SIDE, computeLayout, createNeuralRenderer } from './neural/network';
 
 const CYCLE_STEP_MS = 3400;
+
+// Desktop card placement around the stack, aligned with each plane (see PLANE_Y in network.js).
+const CARD_POSITION = [
+  'lg:right-0 lg:bottom-0',
+  'lg:left-0 lg:top-[62%] lg:-translate-y-1/2',
+  'lg:right-0 lg:top-[38%] lg:-translate-y-1/2',
+  'lg:left-0 lg:top-0',
+];
 
 function tint(hex, a) {
   const n = parseInt(hex.slice(1), 16);
@@ -40,22 +48,23 @@ export default function NeuralArchitecture() {
       const c = canvasWrapRef.current.getBoundingClientRect();
       if (!c.width || !c.height) return;
       renderer.resize(c.width, c.height);
-      const layout = computeLayout(c.width, c.height);
-      if (layout.compact) {
+      // Connectors only when the cards flank the stack (desktop); stacked cards below need none.
+      if (getComputedStyle(cardRefs.current[0]).position !== 'absolute') {
         setConnectors([]);
         return;
       }
+      const layout = computeLayout(c.width, c.height);
       setConnectors(
         LAYERS.map((_, i) => {
           const card = cardRefs.current[i].getBoundingClientRect();
-          const above = card.bottom <= c.top + 1;
-          const anchor = above ? layout.regions[i].top : layout.regions[i].bottom;
-          const x1 = c.left - stage.left + anchor.x;
+          const left = CARD_SIDE(i) === 'left';
+          const anchor = layout.regions[i][CARD_SIDE(i)];
+          const x1 = c.left - stage.left + anchor.x + (left ? -6 : 6);
           const y1 = c.top - stage.top + anchor.y;
-          const x2 = card.left - stage.left + card.width / 2;
-          const y2 = (above ? card.bottom : card.top) - stage.top;
-          const my = (y1 + y2) / 2;
-          return { d: `M ${x1} ${y1} C ${x1} ${my}, ${x2} ${my}, ${x2} ${y2}`, x1, y1, x2, y2 };
+          const x2 = (left ? card.right : card.left) - stage.left;
+          const y2 = card.top - stage.top + card.height / 2;
+          const mx = (x1 + x2) / 2;
+          return { d: `M ${x1} ${y1} C ${mx} ${y1}, ${mx} ${y2}, ${x2} ${y2}`, x1, y1, x2, y2 };
         })
       );
     };
@@ -176,14 +185,14 @@ export default function NeuralArchitecture() {
           </div>
         </div>
 
-        {/* Stage: network plus the four layer cards, joined by connector lines */}
+        {/* Stage: the stacked network in the centre, layer cards flanking it on desktop, joined by connector lines */}
         <div
           ref={stageRef}
           onPointerMove={handlePointerMove}
           onPointerLeave={() => rendererRef.current?.setPointer(0, 0)}
-          className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-x-5 md:gap-y-8 lg:gap-y-6"
+          className="relative grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 lg:block lg:h-[920px]"
         >
-          <div ref={canvasWrapRef} className="relative h-[340px] md:h-[440px] lg:h-[540px] order-0 md:order-2 md:col-span-2 lg:col-span-4 lg:order-0">
+          <div ref={canvasWrapRef} className="relative h-[600px] md:h-[760px] md:col-span-2 lg:absolute lg:inset-y-0 lg:left-[25%] lg:right-[25%] lg:h-auto">
             <canvas
               ref={canvasRef}
               role="img"
@@ -234,9 +243,7 @@ export default function NeuralArchitecture() {
                 onPointerLeave={(e) => e.pointerType === 'mouse' && setHovered(null)}
                 onFocus={(e) => e.target.matches(':focus-visible') && setHovered(i)}
                 onBlur={() => setHovered(null)}
-                className={`relative z-10 flex flex-col justify-start text-left rounded-2xl border p-5 sm:p-6 transition-[border-color,background-color,box-shadow] duration-300 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#C8E63A] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0E0E10] ${
-                  i < 2 ? 'order-1' : 'order-1 md:order-3 lg:order-1'
-                }`}
+                className={`relative z-10 lg:absolute lg:w-[calc(25%-28px)] flex flex-col justify-start text-left rounded-2xl border p-5 sm:p-6 transition-[border-color,background-color,box-shadow] duration-300 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#C8E63A] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0E0E10] ${CARD_POSITION[i]}`}
                 style={{
                   borderColor: isActive ? tint(layer.color, 0.55) : '#27272A',
                   background: isSelected ? `linear-gradient(180deg, ${tint(layer.color, 0.08)}, #121215 65%)` : '#121215',
