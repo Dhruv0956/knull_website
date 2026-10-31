@@ -11,6 +11,7 @@ import BeforeMeeting from './components/BeforeMeeting';
 import DuringMeeting from './components/DuringMeeting';
 import AfterMeeting from './components/AfterMeeting';
 import AIMemory from './components/AIMemory';
+import NeuralArchitecture from './components/NeuralArchitecture';
 import FeaturesSection from './components/FeaturesSection';
 import Integrations from './components/Integrations';
 import UseCases from './components/UseCases';
@@ -70,6 +71,7 @@ export default function App() {
             <DuringMeeting />
             <BeforeMeeting />
             <AfterMeeting />
+            <NeuralArchitecture />
             <AIMemory />
             <FeaturesSection />
             <Integrations />

@@ -95,6 +95,13 @@ html.lenis, html.lenis body {
   animation: cadence-float 7s ease-in-out infinite;
 }
 
+/* Connector dash flow for the neural architecture section */
+@keyframes neural-dash {
+  to {
+    stroke-dashoffset: -8;
+  }
+}
+
 /* Disable custom cursor on touch devices or reduced motion */
 @media (pointer: coarse) or (prefers-reduced-motion: reduce) {
   .cadence-custom-cursor {
