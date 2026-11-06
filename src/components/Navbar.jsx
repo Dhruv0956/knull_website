@@ -7,7 +7,7 @@ const NAV_ITEMS = [
   { id: 'problem', label: 'The Problem' },
   { id: 'idea', label: 'The Idea' },
   { id: 'vision', label: 'The Vision' },
-  { id: 'individuals', label: 'Artificial Individuals' },
+  { id: 'individuals', label: 'Living Intelligence' },
   { id: 'applications', label: 'Applications' },
   { id: 'founder', label: 'People' },
 ];

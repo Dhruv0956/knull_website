@@ -52,7 +52,7 @@ export default function Hero({ onOpenWorkspace }) {
             <h1 className="text-6xl sm:text-7xl lg:text-[100px] xl:text-[112px] font-[550] tracking-[-0.055em] text-[#F8F7F2] leading-[0.91]">
               <span className="block font-sans">KNULL</span>
               <span className="block font-serif font-normal text-[#F8F7F2]">
-                Artificial <span className="italic">Individuals.</span>
+                Living <span className="italic">Intelligence.</span>
               </span>
             </h1>
 

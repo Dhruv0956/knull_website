@@ -218,7 +218,7 @@ export default function Founder() {
 
               {/* Bottom Card Footer */}
               <div className="w-full pt-4 border-t border-[#222226] flex items-center justify-between text-[10px] font-mono text-[#71717A] relative z-10">
-                <span>Artificial Individuals</span>
+                <span>Living Intelligence</span>
                 <span className="text-[#C8E63A] font-semibold flex items-center gap-1.5 bg-[#C8E63A]/10 px-2.5 py-1 rounded-full border border-[#C8E63A]/30">
                   <Sparkles className="w-3 h-3 text-[#C8E63A]" />
                   <span>Research Lead</span>

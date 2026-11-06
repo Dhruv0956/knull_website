@@ -33,6 +33,28 @@ export const PLANE_Y = [0.86, 0.62, 0.38, 0.14]; // plane centres as a fraction 
 export const CARD_SIDE = (r) => (r % 2 ? 'left' : 'right');
 const LABEL_SIDE = (r) => (r % 2 ? 'right' : 'left');
 
+// Plane outlines, bottom to top: a square base that rounds, pinches front and back, then splits into two hemispheres.
+// n: superellipse exponent (high = square), notch: pinch at u = 0, gyri: folded-edge wobble, split: fissure half-width.
+const SHAPE = [
+  { n: 10, notch: 0, gyri: 0 },
+  { n: 4, notch: 0.08, gyri: 0.012 },
+  { n: 2.4, notch: 0.2, gyri: 0.025 },
+  { n: 2.6, notch: 0, gyri: 0.035, split: 0.07 },
+];
+function outline(r, rx, ry, s = 1) {
+  const { n, notch, gyri, split } = SHAPE[r];
+  const se = (c) => Math.sign(c) * Math.abs(c) ** (2 / n);
+  const ring = (cu, hw, k) =>
+    Array.from({ length: 96 }, (_, i) => {
+      const a = (i / 96) * TAU;
+      const f = s * (1 + gyri * Math.sin(k * a)) * (1 - notch * Math.exp(-(Math.cos(a) ** 2) * 30));
+      return [cu + se(Math.cos(a)) * hw * f, se(Math.sin(a)) * ry * f];
+    });
+  if (!split) return [ring(0, rx, 9)];
+  const hw = (rx * (1 - split)) / 2;
+  return [-1, 1].map((side) => ring(side * (rx - hw), hw, 11));
+}
+
 // Region placement shared with the section so connector lines land on the right plane.
 // Neurons are generated in plane-local (u, v) coordinates and mapped to the screen with `project`.
 export function computeLayout(w, h) {
@@ -47,12 +69,14 @@ export function computeLayout(w, h) {
     Math.cos(PLANE_ANGLE) * PLANE_TILT,
   ];
   const det = m[0] * m[3] - m[1] * m[2];
-  const regions = PLANE_Y.map((f) => {
+  const regions = PLANE_Y.map((f, r) => {
     const cx = w / 2;
     const cy = h * f;
     const project = (u, v) => [cx + m[0] * u + m[2] * v, cy + m[1] * u + m[3] * v];
     const toLocal = (x, y) => [(m[3] * (x - cx) - m[2] * (y - cy)) / det, (m[0] * (y - cy) - m[1] * (x - cx)) / det];
-    const rim = Array.from({ length: 64 }, (_, i) => project(Math.cos((i / 64) * TAU) * rw * RIM, Math.sin((i / 64) * TAU) * rh * RIM));
+    const shape = outline(r, rw * RIM, rh * RIM);
+    const inner = outline(r, rw * RIM, rh * RIM, 0.62);
+    const rim = shape.flat().map(([u, v]) => project(u, v));
     const extreme = (axis, sign) => {
       const p = rim.reduce((best, q) => (q[axis] * sign > best[axis] * sign ? q : best));
       return { x: p[0], y: p[1] };
@@ -61,7 +85,7 @@ export function computeLayout(w, h) {
     const right = extreme(0, 1);
     const top = extreme(1, -1);
     const bottom = extreme(1, 1);
-    return { cx, cy, rw, rh, project, toLocal, left, right, top, bottom, bw: (right.x - left.x) / 2, bh: (bottom.y - top.y) / 2 };
+    return { cx, cy, rw, rh, shape, inner, project, toLocal, left, right, top, bottom, bw: (right.x - left.x) / 2, bh: (bottom.y - top.y) / 2 };
   });
   return { w, h, compact, m, regions };
 }
@@ -228,7 +252,8 @@ export function buildNetwork(layout) {
     const x = R3.cx + Math.cos(a) * rr * R3.rw * (0.92 + 0.12 * Math.sin(3 * a));
     const y = R3.cy + Math.sin(a) * rr * R3.rh * (0.9 + 0.1 * Math.cos(2 * a));
     const c = { x, y };
-    if (emo.every((m) => d2(m, c) > (R3.rw * (compact ? 0.15 : 0.11)) ** 2)) {
+    // Keep the longitudinal fissure between the hemispheres clear.
+    if (Math.abs(x) > R3.rw * 0.16 && emo.every((m) => d2(m, c) > (R3.rw * (compact ? 0.15 : 0.11)) ** 2)) {
       emo.push(addNode(3, x, y, { group: Math.floor(((a + Math.PI) / TAU) * 3) % 3 }));
     }
   }
@@ -704,6 +729,13 @@ export function createNeuralRenderer(canvas, { reducedMotion = false } = {}) {
       const R = regions[r];
       ctx.setTransform(dpr * ma, dpr * mb, dpr * mc, dpr * md, dpr * (R.cx + sh[r][0]), dpr * (R.cy + sh[r][1] + dy));
     };
+    const tracePoly = (rings) => {
+      ctx.beginPath();
+      for (const ring of rings) {
+        ring.forEach(([u, v], i) => (i ? ctx.lineTo(u, v) : ctx.moveTo(u, v)));
+        ctx.closePath();
+      }
+    };
     regions.forEach((R, r) => {
       const w = shown[r];
       const color = REGION_COLORS[r];
@@ -717,8 +749,7 @@ export function createNeuralRenderer(canvas, { reducedMotion = false } = {}) {
       face.addColorStop(1, rgba(color, 0.025));
       ctx.globalAlpha = w;
       ctx.fillStyle = face;
-      ctx.beginPath();
-      ctx.ellipse(0, 0, rx, ry, 0, 0, TAU);
+      tracePoly(R.shape);
       ctx.fill();
       ctx.strokeStyle = color;
       ctx.lineWidth = 1.5;
@@ -726,15 +757,24 @@ export function createNeuralRenderer(canvas, { reducedMotion = false } = {}) {
       ctx.stroke();
       ctx.globalAlpha = 0.07 * w;
       ctx.setLineDash([3, 7]);
-      ctx.beginPath();
-      ctx.ellipse(0, 0, rx * 0.62, ry * 0.62, 0, 0, TAU);
+      tracePoly(R.inner);
       ctx.stroke();
       ctx.setLineDash([]);
-      onPlane(r, 6);
-      ctx.globalAlpha = 0.08 * w;
-      ctx.beginPath();
-      ctx.ellipse(0, 0, rx, ry, 0, 0.15 * Math.PI, 1.15 * Math.PI);
-      ctx.stroke();
+      // Slab thickness: the front half of the rim echoed below; the square base gets a deeper, double edge.
+      for (const dy of r === 0 ? [6, 12] : [6]) {
+        onPlane(r, dy);
+        ctx.globalAlpha = (r === 0 ? 0.14 : 0.08) * w;
+        ctx.beginPath();
+        for (const ring of R.shape) {
+          ring.forEach(([u, v], i) => {
+            if (mb * u + md * v <= 0) return;
+            const [nu, nv] = ring[(i + 1) % ring.length];
+            ctx.moveTo(u, v);
+            ctx.lineTo(nu, nv);
+          });
+        }
+        ctx.stroke();
+      }
     });
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
@@ -816,18 +856,19 @@ export function createNeuralRenderer(canvas, { reducedMotion = false } = {}) {
     const w2 = shown[2];
     onPlane(2);
     ctx.globalAlpha = (0.05 + 0.18 * drive[2] + 0.35 * membraneFlash) * w2;
-    ctx.drawImage(glow(IVORY), -14, -R2.rh * 1.05, 28, R2.rh * 2.1);
+    const mh = R2.rh * 0.88; // stays inside the plane's pinched front and back
+    ctx.drawImage(glow(IVORY), -14, -mh * 1.05, 28, mh * 2.1);
     ctx.strokeStyle = IVORY;
     ctx.lineWidth = 1.6;
     ctx.globalAlpha = (0.22 + 0.4 * membraneFlash) * w2;
     ctx.beginPath();
-    for (let y = -R2.rh; y <= R2.rh; y += 4) {
+    for (let y = -mh; y <= mh; y += 4) {
       const x = Math.sin(y * 0.09 + t * 1.4) * 2.2;
-      if (y === -R2.rh) ctx.moveTo(x, y);
+      if (y === -mh) ctx.moveTo(x, y);
       else ctx.lineTo(x, y);
     }
     ctx.stroke();
-    for (let y = -R2.rh + 6; y <= R2.rh; y += 12) {
+    for (let y = -mh + 6; y <= mh; y += 12) {
       const hit = membraneHits.reduce((m, h) => Math.max(m, 1 - Math.abs(h.v - y) / 22 - (t - h.t)), 0);
       ctx.globalAlpha = (0.16 + 0.8 * Math.max(0, hit) + 0.5 * membraneFlash) * w2;
       ctx.beginPath();
@@ -933,7 +974,7 @@ export function createNeuralRenderer(canvas, { reducedMotion = false } = {}) {
       ctx.textAlign = 'center';
       ctx.globalAlpha = (0.3 + 0.5 * drive[2]) * w2;
       ctx.fillStyle = IVORY;
-      label('PROPOSED INTERFACE', 2, 0, -R2.rh * RIM, -8);
+      label('PROPOSED INTERFACE', 2, 0, -mh, -8);
       if (!compact) {
         ctx.fillStyle = REGION_COLORS[2];
         label('ARTIFICIAL', 2, -R2.rw * 0.6, R2.rh * RIM, 14);

@@ -89,7 +89,7 @@ export default function UseCases() {
       bullets: [
         "Identify recurring behavioral patterns and preferences through consented interactions.",
         "Track how decisions, habits, and responses evolve across different contexts.",
-        "Explore adaptable behavioral models for Artificial Individuals, without treating personality as a fixed label.",
+        "Explore adaptable behavioral models for Living Intelligence, without treating personality as a fixed label.",
         "Keep behavioral interpretations transparent, correctable, and under user control.",
       ],
       metric: "Envisioned",

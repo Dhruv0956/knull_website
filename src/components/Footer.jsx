@@ -10,7 +10,7 @@ export default function Footer() {
         { label: "The Idea", href: "#idea" },
         { label: "The Vision", href: "#vision" },
         { label: "Bio-Neural Interface", href: "#memory" },
-        { label: "Artificial Individuals", href: "#individuals" },
+        { label: "Living Intelligence", href: "#individuals" },
         { label: "Applications", href: "#applications" },
       ],
     },

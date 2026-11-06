@@ -133,11 +133,11 @@ export default function FeaturesSection() {
           <div className="flex items-center gap-2 mb-3">
             <span className="w-2 h-2 rounded-full bg-[#C8E63A]" />
             <span className="text-xs font-mono uppercase tracking-widest text-[#71717A]">
-              05 &bull; ARTIFICIAL INDIVIDUALS
+              05 &bull; LIVING INTELLIGENCE
             </span>
           </div>
           <h2 className="text-5xl sm:text-6xl lg:text-7xl font-[550] tracking-[-0.04em] text-[#F8F7F2] leading-[0.95]">
-            Artificial <span className="font-serif italic font-normal">individuals.</span>
+            Living <span className="font-serif italic font-normal">intelligence.</span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-[#A1A1AA] leading-relaxed">
             Four connected capabilities define what we're building toward: an AI that remembers, questions, discovers and evolves with you. They're also how we study a deeper question, whether artificial sentience could ever be possible. These mechanisms don't create feelings or awareness.

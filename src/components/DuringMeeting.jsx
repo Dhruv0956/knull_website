@@ -262,16 +262,20 @@ export default function DuringMeeting() {
               CENTER TRANSFORMATION CONDUIT (Interactive Neural Bridge)
               ===================================================================== */}
           <div className="hidden lg:flex lg:col-span-2 flex-col items-center justify-center text-center space-y-4 py-8">
-            <motion.div 
+            <motion.button
+              type="button"
               style={{ scale: centerConduitScale }}
-              className="w-14 h-14 rounded-2xl bg-[#0E0E10] text-[#C8E63A] flex items-center justify-center shadow-lg border border-[#333230] relative group cursor-pointer"
-              whileHover={{ scale: 1.12, rotate: 90 }}
+              aria-label={`Next open question: ${comparisons[(activeItemIndex + 1) % comparisons.length].category}`}
+              className="h-11 px-4 rounded-full bg-[#0E0E10] text-[#C8E63A] flex items-center gap-1.5 shadow-lg border border-[#C8E63A]/50 hover:border-[#C8E63A] hover:bg-[#1A1C12] relative group cursor-pointer text-xs font-mono font-semibold uppercase tracking-wider transition-colors outline-none focus-visible:ring-2 focus-visible:ring-[#C8E63A] focus-visible:ring-offset-2 focus-visible:ring-offset-[#171717]"
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.96 }}
               transition={{ type: 'spring', stiffness: 350, damping: 25 }}
               onClick={() => handleSelectMoment((activeItemIndex + 1) % comparisons.length)}
             >
-              <Sparkles className="w-6 h-6 animate-pulse" />
-              <span className="absolute -inset-1 rounded-2xl bg-[#C8E63A]/25 filter blur-sm -z-10 animate-pulse" />
-            </motion.div>
+              Next
+              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+              <span className="absolute -inset-1 rounded-full bg-[#C8E63A]/20 filter blur-sm -z-10 animate-pulse" />
+            </motion.button>
 
             <div className="space-y-1.5">
               <span className="text-[10px] font-mono uppercase tracking-wider font-bold text-[#F8F7F2] block bg-[#121215] px-2.5 py-1 rounded-full border border-[#27272A] shadow-xs">

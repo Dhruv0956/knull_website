@@ -196,7 +196,7 @@ export default function NeuralArchitecture() {
             <canvas
               ref={canvasRef}
               role="img"
-              aria-label="Illustration of Knull's proposed four-region neural architecture: input, neural processing, a proposed bio-neural interface, and emotional neural learning."
+              aria-label="Illustration of Knull's proposed four-layer neural architecture, rising from a square input base through neural processing and a proposed bio-neural interface to emotional neural learning, shaped as two brain hemispheres at the top."
               className="absolute inset-0 w-full h-full"
             />
             {canvasFailed && (
