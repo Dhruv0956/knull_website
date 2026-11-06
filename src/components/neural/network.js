@@ -963,7 +963,9 @@ export function createNeuralRenderer(canvas, { reducedMotion = false } = {}) {
       ctx.globalAlpha = (0.35 + 0.5 * drive[r]) * shown[r];
       ctx.fillStyle = REGION_COLORS[r];
       ctx.textAlign = LABEL_SIDE(r) === 'left' ? 'right' : 'left';
-      ctx.fillText(LAYERS[r].number, a.x + sh[r][0] + (LABEL_SIDE(r) === 'left' ? -10 : 10), a.y + sh[r][1] + 3);
+      // Clamped so the wider square/hemisphere rims never push the number off a narrow canvas.
+      const lx = a.x + sh[r][0] + (LABEL_SIDE(r) === 'left' ? -10 : 10);
+      ctx.fillText(LAYERS[r].number, Math.min(layout.w - 16, Math.max(16, lx)), a.y + sh[r][1] + 3);
     });
     const label = (text, r, u, v, dy) => {
       const [x, y] = regions[r].project(u, v);

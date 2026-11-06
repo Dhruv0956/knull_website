@@ -91,7 +91,10 @@ export default function DuringMeeting() {
     },
   ];
 
+  // Ref tracks the latest index so clicks landing before a re-render still advance one step each.
+  const activeIndexRef = useRef(0);
   const handleSelectMoment = (idx) => {
+    activeIndexRef.current = idx;
     setActiveItemIndex(idx);
     addToast(`Viewing: ${comparisons[idx].category}`);
   };
@@ -270,7 +273,7 @@ export default function DuringMeeting() {
               whileHover={{ scale: 1.06 }}
               whileTap={{ scale: 0.96 }}
               transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-              onClick={() => handleSelectMoment((activeItemIndex + 1) % comparisons.length)}
+              onClick={() => handleSelectMoment((activeIndexRef.current + 1) % comparisons.length)}
             >
               Next
               <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
